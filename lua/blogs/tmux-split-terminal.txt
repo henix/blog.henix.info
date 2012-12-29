@@ -1,0 +1,24 @@
+<p>　　不久前介绍过 <a href="/blog/use-gnu-screen.html">GNU Screen</a> ，不过 screen 的问题是只能水平分割，不能垂直分割。要垂直分割得装 vertial split patch。</p>
+
+<p>　　偶然发现了 <a href="http://tmux.sourceforge.net/">tmux</a> ，screen 的替代品，可以轻松实现垂直分割。</p>
+
+<p>　　先上图：切成三个窗格，一边看 manpage ，一边用 vim ，还可以一边跑 make ：</p>
+<p>#{= makeImg('/files/tmux-split-terminal/tmux.png') }</p>
+
+<p>使用方法：</p>
+<p>先一个 tmux 进入，然后快捷键：</p>
+
+<ul>
+<li>垂直分割：C-b %</li>
+<li>水平分割：C-b "</li>
+<li>杀掉当前的窗格(pane)：退出bash 或者 C-b x</li>
+<li>移动焦点：C-b 方向键</li>
+</ul>
+
+<p>以下是命令，在终端中运行：</p>
+
+<ul>
+<li>往上下左右resize几行：tmux resize-pane -[DULR] 1</li>
+</ul>
+
+<p>详见 man tmux 。</p>

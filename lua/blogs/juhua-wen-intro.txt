@@ -1,0 +1,8 @@
+<p>继火星文之后，伟大的中国网友又发明了娇艳欲滴的<a href="http://baike.baidu.com/view/3464255.htm">菊花文</a>，火星上菊花盛开：</p>
+<p>菊花前：火曐攵γ煶個恏╒倲徆，菊マざ錵ヵ魰忚媞嗰σκ鯟覀</p>
+<p>菊花后：҉火҉曐҉攵҉γ҉煶҉個҉恏╒倲҉徆҉，҉菊҉マ҉ざ҉錵҉ヵ҉魰҉忚҉媞҉嗰҉σ҉κ҉鯟҉覀</p>
+<blockquote><div>
+javascript:var s="看得我菊花一紧";var s2="";var i=0;while(i&lt;s.length){s2 += String.fromCharCode(1161)+ s.charAt(i);i++;};alert(s2);
+</div></blockquote>
+<p>将以上代码拷贝到浏览器地址栏运行即可看效果。</p>
+<p>娟秀的菊花文不但好看，还有防 ** 之功效，比火星文更易读，实为防 ** 又一利器。</p>

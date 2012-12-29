@@ -1,0 +1,26 @@
+<p>以下均为免费/开源软件：</p>
+<dl>
+<dt><a href="http://www.partition-tool.com/personal.htm">EASEUS Partition Master</a></dt>
+<dd>无损分区调整软件。兼容 Win7 。免费版不能修改簇大小，不能 NTFS -&gt; FAT32 。refer: <a href="http://blog.csdn.net/shell_picker/archive/2010/08/06/5793610.aspx">http://blog.csdn.net/shell_picker/archive/2010/08/06/5793610.aspx</a></dd>
+
+<dt><a href="http://www.softwareok.com/?seite=Freeware/Q-Dir">Q-Dir</a></dt>
+<dd>文件管理器。可在左边显示目录树，可两列并排，最多可 4 个并排，支持多 tab 。还可以把当前打开窗口布局保存成一个文件，下次直接打开那个文件，就会自动打开这几个窗口（这是我用的最多的功能）。</dd>
+
+<dt><a href="http://www.piriform.com/speccy">Speccy</a></dt>
+<dd>piriform 出品，必属精品。硬件信息查看，你装驱动的时候就有用了。</dd>
+
+<dt><a href="http://www.xmind.net/">XMind</a></dt>
+<dd>画脑图（mindmap）。我的脑图都是用这个画的。基于 Eclipse 插件，运行需要 Java 。开源。</dd>
+
+<dt><a href="http://www.angusj.com/resourcehacker/">ResHacker</a></dt>
+<dd>PE 工具。从可执行文件中挖出资源（*.res）。</dd>
+
+<dt><a href="http://www.imgburn.com/">ImgBurn</a></dt>
+<dd>刻录光盘，制作 ISO 。</dd>
+
+<dt><a href="http://www.launchy.net/">Launchy</a></dt>
+<dd>程序启动器。有了它，就不需要开始菜单。</dd>
+
+<dt><a href="http://www.slysoft.com/zh/virtual-clonedrive.html">Virtual CloneDrive</a></dt>
+<dd>虚拟光驱。主要是安装了不需要重启。</dd>
+</dl>

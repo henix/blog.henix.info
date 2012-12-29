@@ -1,0 +1,58 @@
+﻿#{include: 'doctype.seg.htm' }
+<head>
+#{include: 'head-common.seg.htm' }
+<title>搜索 - 遥远的街市</title>
+
+<meta name="keywords" content="遥远的街市, henix" />
+<meta name="description" content="遥远的街市 - henix的个人博客" />
+</head>
+
+<body>
+<div id="page">
+
+#{include: 'header.seg.htm' }
+#{include: 'nav.seg.htm' }
+<div id="content">
+
+<div id="cse" style="width: 100%;">Loading</div>
+
+</div><!-- end of content -->
+
+#{include: 'footer.seg.htm' }
+</div><!-- end of page -->
+
+#inline Flower.forms
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+	google.load('search', '1', {language : 'zh-CN', style : google.loader.themes.SHINY});
+	google.setOnLoadCallback(function() {
+		var customSearchControl = new google.search.CustomSearchControl('009632366517980193929:l7aijw2jnny');
+		customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+		var options = new google.search.DrawOptions();
+		options.setAutoComplete(true);
+		customSearchControl.draw('cse', options);
+
+		var args = Flower.formdata.parse(location.search.substring(1), ['wd']);
+		var word = args['wd'];
+		if (word != null) {
+			customSearchControl.execute(word);
+		}
+		/*var gscInput = getByTagAndClass('input', 'gsc-input');
+		Flower.eventer.addEventListener(getByTagAndClass('input', 'gsc-search-button'), 'click', function() {
+			location.search = '?wd=' + gscInput.value;
+		});
+		var ie = Flower.ieVersion();
+		if (ie && ie < 9) { // in IE 6-8, submit event does not bubble
+			Flower.eventer.addEventListener(document.body, 'keyup', function(e) {
+				e = e || window.event;
+				if (e.keyCode == 13) {
+					location.search = '?wd=' + gscInput.value;
+				}
+			});
+		}*/
+	}, true);
+</script>
+
+#{include: 'ga.seg.htm' }
+</body>
+</html>

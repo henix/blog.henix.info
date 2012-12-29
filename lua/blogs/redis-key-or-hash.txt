@@ -1,0 +1,37 @@
+<p>　　最近搞 redis ，看到 Tim Yang 的文章：《<a href="http://timyang.net/data/redis-misunderstanding/">Redis 的几个认识误区</a>》，其中提到了使用 hash 而不是 key/value 方式可以节省内存，还举了 antirez 的这篇《<a href="http://antirez.com/post/redis-weekly-update-7.html">Full of keys</a>》作为例证。antirez 的测试表明，一千万条记录，在作为 key/value 插入时会占用 1.7 GB 内存，而作为 hash 插入时只占用 300 MB 。</p>
+<p>　　所以我自己也做了一次测试，想看看 hash 的效果是不是真的有那么好。</p>
+<p>　　数据为 500 万条，key 均为整数，value 200 字节左右。</p>
+<p>redis.conf：</p>
+<pre class="brush: plain">
+hash-max-zipmap-entries 512
+hash-max-zipmap-value 512
+</pre>
+<p>程序如下：redistest.py</p>
+<pre class="brush: python">
+#!/usr/bin/python2
+
+import redis
+import sys
+import zlib
+
+r = redis.Redis(host='localhost', db=0)
+
+for line in sys.stdin:
+	line = line[:-1]
+	record = line.split('\t', 2)
+	r.hset(("%x" % zlib.crc32(record[0]))[0:4], record[0], record[1])
+</pre>
+<p>　　原文用的是 sha1 ，我用 crc32 ，以节省计算时间。测试结果：</p>
+<table style="width: 100%">
+	<tr>
+		<th></th><th>user</th><th>sys</th><th>VmRSS</th>
+	</tr>
+	<tr>
+		<td>key/value</td> <td>9 m 47 s</td> <td>4 m 22 s</td> <td>1190 MB</td>
+	</tr>
+	<tr>
+		<td>hash</td> <td>12 m 47 s</td> <td>4 m 37 s</td> <td>884 MB</td>
+	</tr>
+</table>
+<p>　　以上时间用 time 命令测量，内存用 cat /proc/$pid/status | grep VmRSS 测量。</p>
+<p>　　提升并没有原文的那么明显。我想，可能因为那篇文章是 2010 年的，Redis 升级时改善了内存使用效率。</p>

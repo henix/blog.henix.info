@@ -1,0 +1,85 @@
+<p>　　想实现这么一个功能：</p>
+
+<p>　　写 html 的时候只需写：</p>
+
+<pre>
+&lt;h2&gt;foo&lt;/h2&gt;
+&lt;h3&gt;foo foo&lt;/h3&gt;
+&lt;h3&gt;foo bar&lt;/h3&gt;
+&lt;h2&gt;bar&lt;/h2&gt;
+</pre>
+
+<p>　　但出来的效果是：</p>
+
+<pre>
+1 foo
+1.1 foo foo
+1.2 foo bar
+2 bar
+</pre>
+
+<p>　　虽然，用 CSS 的 content / counter 属性就可以做到。但我写 html 很多时候是写实验报告的——最后需要提交 Word 格式。我对 Word 那些莫名其妙菜单和多到恐怖但要用的时候又找不到的设置选项实在不敢恭维。而 LaTeX 或者对中文支持好一点的 XeTeX 又太难学了，而且不能转换成 Word 。DocBook 显然更难学。作为 Web 开发人员，用 html 写文档真是得来全不费工夫，CSS 还可以在各种实验报告间复用，充分体现了内容与表现分离的好处。</p>
+<p>　　html 转换成 Word 的方法很简单，右键 -&gt; 打开方式 -&gt; Microsoft Word -&gt; 另存为 doc 。但显然，Word 不支持 CSS 的 counter 属性，也无法执行 JavaScript 。所以解决的办法是，通过 js 生成我需要的内容，再使用 Firefox 插件 DOM Inspector 导出 DOM ，然后用 Word 打开那个导出的 DOM 即可。</p>
+<p>　　这就是为什么一定要用 js 来实现这个功能。</p>
+<p>　　代码如下：（auto_number.js）</p>
+<pre class="brush: js">
+/**
+ * Auto number the tags.
+ *
+ * required: jquery
+ *
+ * e.g. auto_number("h2", "h3")
+ */
+function auto_number() {
+	var len = arguments.length;
+	if (len &lt; 1) {
+		return;
+	}
+	var numbers = new Array(len);
+	for (var i = 0; i &lt; len; i++) {
+		numbers[i] = 0;
+	}
+
+	var args = Array.prototype.slice.call(arguments); // convert arguments to an Array
+
+	$(args.join(',')).each(
+		function(index, e) {
+			var ej = $(e);
+			for (var i = 0; i &lt; len; i++) {
+				if (e.nodeName == args[i].toUpperCase()) {
+					numbers[i]++;
+					ej.html(numbers.slice(0, i+1).join('.') + ' ' + ej.html());
+					// reset the rest numbers
+					for (var j = i+1; j &lt; len; j++) {
+						numbers[j] = 0;
+					}
+					break;
+				}
+			}
+		}
+	);
+}
+</pre>
+<p>　　在页面中使用（需要 jQuery）：</p>
+<pre class="brush: js">
+&lt;script type="text/javascript" src="/path/to/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="/path/to/auto_number.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+$(document).ready(function() {
+	auto_number('h2', 'h3');
+});
+&lt;/script&gt;
+</pre>
+<p>　　可以支持任意标签以及任意深度的嵌套，但最常用的恐怕还是：</p>
+
+<blockquote>
+	<div>auto_number('h2', 'h3');</div>
+</blockquote>
+
+<p>或者</p>
+
+<blockquote>
+	<div>auto_number('h2', 'h3', 'h4');</div>
+</blockquote>
+
+<p>　　以后可以考虑的改进：编号不仅仅是数字，还可以是罗马字母、字母等……不过那样接口会变得很复杂。</p>

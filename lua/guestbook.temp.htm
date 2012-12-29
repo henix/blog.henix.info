@@ -1,0 +1,57 @@
+#{include: 'doctype.seg.htm' }
+<head>
+#{include: 'head-common.seg.htm' }
+<link href="/css/posts.css" rel="stylesheet" type="text/css" />
+<title>留言板 - 遥远的街市</title>
+
+<style type="text/css">
+	.postcontent p {
+		margin-left: 1em;
+		font-size: 14px;
+		line-height: 161.8%;
+	}
+</style>
+</head>
+
+<body>
+<div id="page">
+
+#{include: 'header.seg.htm' }
+#{ local selectedIndex = 2 }#{include: 'nav.seg.htm' }#{ selectedIndex = null }
+<div id="content">
+
+<div class="blogpost">
+	<div class="title"><a href="/guestbook.html">留言板</a></div>
+	<div class="postcontent">
+		<p>欢迎留言。</p>
+		<div id="recentcomments" class="dsq-widget"><h2 class="dsq-widget-title">Recent Comments(20)</h2><script type="text/javascript" src="http://thedistanttown.disqus.com/recent_comments_widget.js?num_items=20&amp;hide_avatars=0&amp;avatar_size=32&amp;excerpt_length=200"></script></div>
+		<a href="http://disqus.com/">Powered by Disqus</a>
+	</div>
+</div>
+
+<div id="disqus_thread"></div>
+
+</div><!-- end of content -->
+
+#{include: 'footer.seg.htm' }
+</div><!-- end of page -->
+
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = '#{= disqus_shortname }'; // required: replace example with your forum shortname
+
+	// The following are highly recommended additional parameters. Remove the slashes in front to use.
+	var disqus_identifier = 'guestbook';
+	var disqus_url = '#{= siteurl }/guestbook.html';
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+
+#{include: 'ga.seg.htm' }
+</body>
+</html>

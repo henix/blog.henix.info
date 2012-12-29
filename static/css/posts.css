@@ -1,0 +1,185 @@
+@charset "utf-8";
+
+/* post content */
+
+.postcontent .center {
+	text-align: center;
+}
+
+.postcontent .red {
+	color: Red;
+}
+
+.blogpost .postcontent p {
+	line-height: 150%;
+	margin: 10px 0;
+}
+
+.postcontent h2 {
+	font-size: 18px;
+	line-height: 150%;
+	margin: 10px 0;
+}
+
+.blogpost .postcontent h3 {
+	font-size: 15px;
+	line-height: 150%;
+	margin: 10px 0;
+}
+
+.blogpost .postcontent ol {
+	list-style: outside decimal;
+	line-height: 150%;
+	margin-left: 2em;
+}
+
+.blogpost .postcontent ul {
+	list-style: outside disc;
+	line-height: 150%;
+	margin-left: 2em;
+}
+
+.blogpost .postcontent dd {
+	margin-left: 1em;
+}
+
+.blogpost .postcontent dl {
+	line-height: 150%;
+}
+
+.blogpost .postcontent dt {
+	line-height: 200%;
+}
+
+.blogpost .postcontent sub {
+	font-size: 75%;
+}
+
+.postcontent sup {
+	vertical-align: super;
+	font-size: smaller;
+}
+
+.postcontent pre {
+	font-family: "Lucida Console", "DejaVu Sans Mono", "Courier New", Courier, monospace;
+	font-size: 12px;
+	background-color: #ccc;
+	border: 1px dashed Black;
+	padding: 0.5em;
+	margin: 10px 1em;
+	color: Black;
+	line-height: 120%;
+}
+
+.postcontent blockquote {
+	border: 1px solid #8CACBB;
+	background-color: #DEE7EC;
+	padding: 1em;
+	margin: 10px 1em;
+	/* quotes: '"' '"'; */
+}
+
+.postcontent table {
+	border-collapse: collapse;
+}
+
+.postcontent th, .postcontent td {
+	border: 1px solid Black;
+	padding: 0.3em;
+}
+
+/*
+.postcontent blockquote:before {
+	content: open-quote;
+}
+
+.postcontent blockquote:after {
+	content: close-quote;
+}
+*/
+
+/* post recommend: deleted */
+
+.post-rec ul {
+	display: inline;
+}
+
+.post-rec iframe {
+	vertical-align: top;
+}
+
+.post-rec li {
+	display: inline;
+	margin: 0 1px;
+	padding: 3px;
+}
+
+.post-rec li:hover {
+	border: 1px dashed blue;
+	background-color: #ccc;
+	margin: 0 0;
+}
+
+/* post nav */
+
+.post-nav a:hover {
+	text-decoration: none;
+	background-color: #ccc;
+	opacity: 0.8;
+	/*filter: alpha(opacity=80);*/
+}
+
+.post-nav a {
+	position: fixed;
+	top: 50%;
+	left: 20%;
+	font-size: 50px;
+	height: 60px;
+	font-weight: bold;
+	z-index: 10; /* keep it on top */
+}
+
+/* IE 6 hack: position: fixed */
+* html .post-nav a {
+	top: 70%;
+	position: absolute;
+}
+/* end of IE 6 hack */
+
+.post-nav a span {
+	font-size: 24px;
+	display: none;
+}
+
+.post-nav a:hover span {
+	display: block;
+	position: absolute;
+	top: -1em;
+	left: 0;
+	font-size: 24px;
+	line-height: 160%;
+	white-space: nowrap;
+	background-color: Black;
+	color: White;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+}
+
+/* related posts */
+
+.related-posts {
+	margin: 1em 0;
+}
+
+.related-posts ul {
+	list-style-type: disc;
+	list-style-position: outside;
+	margin-left: 2em;
+	line-height: 1.6;
+}
+
+.related-posts p {
+	line-height: 2;
+	font-size: 14px;
+	font-weight: bold;
+}

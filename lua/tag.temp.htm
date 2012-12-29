@@ -1,0 +1,29 @@
+#{include: 'doctype.seg.htm' }
+<head>
+#{include: 'head-common.seg.htm' }
+<link href="/css/tags.css" rel="stylesheet" type="text/css" />
+<title>Tag: #{= tagname } - 遥远的街市</title>
+</head>
+
+<body>
+<div id="page">
+
+#{include: 'header.seg.htm' }
+#{include: 'nav.seg.htm' }
+<div id="content">
+
+<div id="tag-name">文章标签：<a href="#{= getTagURL(tag) }">#{= tagname }</a>: #{= tag.desc }</div>
+
+#{ for i = si, ei do }
+#{ local post = blogposts[tag.posti[i]] }
+#{include: 'digestpost.seg.htm' }
+#{ end }
+
+</div><!-- end of content -->
+
+#{include: 'footer.seg.htm' }
+</div><!-- end of page -->
+
+#{include: 'ga.seg.htm' }
+</body>
+</html>

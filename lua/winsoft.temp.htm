@@ -1,0 +1,103 @@
+#{include: 'doctype.seg.htm' }
+<head>
+#{include: 'head-common.seg.htm' }
+<link href="/css/posts.css" rel="stylesheet" type="text/css" />
+<title>Window 软件推荐列表 - 遥远的街市</title>
+</head>
+
+<body>
+<div id="page">
+
+#{include: 'header.seg.htm' }
+#{include: 'nav.seg.htm' }
+<div id="content">
+
+<div class="blogpost">
+	<div class="title"><a href="/winsoft.html">Windows 软件推荐列表</a></div>
+	<div class="postcontent">
+#{= markdown[[　　这里的软件都是免费软件，有些是开源的。
+
+### 安全 / 诊断工具
+
+[Dr.WEB CureIt!](http://www.freedrweb.com/cureit/)
+:	一个直接运行的病毒扫描程序，无需安装，无实时监控
+[Windows 清理助手](http://www.arswp.com/)
+:	清理各种流氓软件
+[Process Monitor](http://technet.microsoft.com/en-us/sysinternals/bb896645)
+:	监控进程的读写文件/注册表行为
+[Autoruns](http://technet.microsoft.com/en-us/sysinternals/bb963902)
+:	列出各种开机自启动程序，包括注册表自启动项、服务、驱动等。
+
+### 系统工具
+
+[EaseUS Partition Master Home Edition](http://www.partition-tool.com/personal.htm)
+:	无损分区调整软件。兼容 Win7 。免费版不能修改簇大小，不能 NTFS -> FAT32 。参考：[http://blog.csdn.net/shell\_picker/article/details/5793610](http://blog.csdn.net/shell_picker/article/details/5793610)
+[Launchy](http://www.launchy.net/)
+:	程序启动器。输入程序名（的前半部分），启动一个程序。开始菜单替代品。
+[VirtuaWin](http://virtuawin.sourceforge.net/)
+:	Windows 的虚拟桌面。可虚拟出多个工作区，然后把窗口放在不同的桌面上。模块介绍：[http://www.appinn.com/virtuawin-2/](http://www.appinn.com/virtuawin-2/)
+[Q-Dir](http://www.softwareok.com/?seite=Freeware/Q-Dir)
+:	文件管理器。可在左边显示目录树，可两列并排，最多可 4 个并排，支持多 tab 。我最喜欢的功能是把当前打开窗口布局保存成一个文件，下次直接打开那个文件，就会自动打开这几个窗口
+[TeraCopy](http://codesector.com/teracopy)
+:	复制增强软件。使用异步读写等技术提高文件拷贝的速度。还提供错误恢复和校验等功能。适用于拷贝大量小文件或超大型文件（10GB+）
+[Tools and utilities for Windows](http://www.ltr-data.se/opencode.html/)
+:	各种 Windows 小工具。主要是他的 ImDisk Driver 是一个比较现代的（支持新版 Windows 和 64 位系统）Windows Ramdisk（内存盘）实现，可以把一块内存虚拟成硬盘
+[CCleaner](http://www.piriform.com/ccleaner)
+:	系统无用文件清理
+[Speccy](http://www.piriform.com/speccy)
+:	piriform 出品，必属精品。硬件信息查看，你装驱动的时候就有用了。
+[GnuWin32](http://gnuwin32.sourceforge.net/)
+:	各种 linux 小工具的 Win32 port 。推荐 md5sum / sha1sum（在 coreutils 中）计算文件 hash
+
+### 办公
+
+[PDFCreator](http://www.pdfforge.org/pdfcreator)
+:	PDF 虚拟打印机。凡是能打印出来的东西都可以用 PDFCreator 转换成 PDF 。
+[XMind](http://www.xmind.net/)
+:	画脑图（mindmap）。基于 Eclipse 插件，运行需要 Java 。
+[Prince](http://www.princexml.com/)
+:	将 HTML 直接转成 PDF 。支持用 CSS3 Paged Media 设定页眉页脚页边距。
+[Wink](http://www.debugmode.com/wink/)
+:	屏幕录像。录好后可添加说明文字、“继续”按钮。可配置为每次鼠标点击或按键才截屏，生成的 swf 录像大小极小。特别适合录制软件的说明录像、教学视频等。
+
+### 多媒体
+
+[Media Player Classic Home Cinema](http://mpc-hc.sourceforge.net/)
+:	一个简单的媒体播放器
+[Real Alternative](http://www.free-codecs.com/download/real_alternative.htm)
+:	Real 格式（rm / rmvb）编码解码器。与上面的播放器配合使用
+
+### 开发工具
+
+[HxD](http://mh-nexus.de/en/)
+:	16 进制编辑器
+]] }
+	</div>
+</div>
+
+<div id="disqus_thread"></div>
+
+</div><!-- end of content -->
+
+#{include: 'footer.seg.htm' }
+</div><!-- end of page -->
+
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = '#{= disqus_shortname }'; // required: replace example with your forum shortname
+
+	// The following are highly recommended additional parameters. Remove the slashes in front to use.
+	var disqus_identifier = 'winsoft';
+	var disqus_url = '#{= siteurl }/winsoft.html';
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+
+#{include: 'ga.seg.htm' }
+</body>
+</html>

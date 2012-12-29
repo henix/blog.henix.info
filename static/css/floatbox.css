@@ -1,0 +1,10 @@
+.floatbox {
+	border: 1px solid #8CACBB;
+	background-color: #DEE7EC;
+	padding: 1em;
+}
+
+.floatbox h5 {
+	margin-bottom: 0.5em;
+	color: Black;
+}

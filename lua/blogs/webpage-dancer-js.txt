@@ -1,0 +1,31 @@
+<p>　　无聊？闲得蛋疼？试试让网页跳舞：</p>
+<p>　　将此链接：<span style="font-size:2em"><a href="javascript:(function(){var elements=document.getElementsByTagName('a');R=0;var arx=new Array();var ary=new Array();var n=elements.length&gt;200?200:elements.length;for(var i=0;i&lt;elements.length;i++){arx[i]=elements[i].getBoundingClientRect().left+Math.random()*200-100;ary[i]=elements[i].getBoundingClientRect().top+Math.random()*200-100;}var moveall=function(){var c=0;for(var i=0;c&lt;n;i++){var s=elements[i].style;if(s.display!='none'){s.position='absolute';s.left=(Math.sin(R*0.002+i*0.25+1.6)*(i/n*40+40)+arx[i])+'px';s.top=(Math.cos(R*0.003+i*0.24+0.24)*(i/n*20+20)+ary[i])+'px';R++;c++;}}};setInterval(moveall,50);})();">Dance it</a></span> 拖到书签栏。</p>
+<p>　　然后打开任何网站，点“Dance it”。</p>
+<p>　　与这个<a href="http://erkie.github.com/">网页射击游戏</a>配合使用，效果更佳。</p>
+<p>　　源代码，受到某电工基地某主页启发而写，而且针对上面的网页射击游戏做了特殊处理：</p>
+<pre class="brush:js">(function() {
+ 	var elements = document.getElementsByTagName('a');
+	R = 0;
+	var arx = new Array();
+	var ary = new Array();
+	var n = elements.length &gt; 200 ? 200 : elements.length;
+	for (var i = 0; i &lt; elements.length; i++) {
+		arx[i] = elements[i].getBoundingClientRect().left + Math.random() * 200 - 100;
+		ary[i] = elements[i].getBoundingClientRect().top + Math.random() * 200 - 100;
+	}
+	var moveall = function() {
+		var c = 0;
+		for (var i = 0; c &lt; n; i++) {
+			var s = elements[i].style;
+			if (s.display != 'none') {
+				s.position = 'absolute';
+				s.left = (Math.sin(R * 0.002 + i * 0.25 + 1.6) * (i/n*40+40) + arx[i]) + 'px';
+				s.top = (Math.cos(R * 0.003 + i * 0.24 + 0.24) * (i/n*20+20) + ary[i]) + 'px';
+				R++;
+				c++;
+			}
+		}
+	};
+	setInterval(moveall, 50);
+})();
+</pre>

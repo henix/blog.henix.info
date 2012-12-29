@@ -1,0 +1,40 @@
+<p>　　《编译原理》课本上的一道带星号的习题：</p>
+
+<blockquote><div>习题 5.9*. 请为语言 L 写一文法使其满足 LL(1) ，且 L = {w | w ∈ (a|b)* 且 w 中 a ，b 的个数相等} 。</div></blockquote>
+
+<p>　　当时一看到这题我就想：这怎么可能呢？这不是要用文法计数吗？文法有这个能力吗？（貌似我脑子里一直想的是正则表达式……）</p>
+
+<p>　　后来在老师的提示下，终于写出了这道题的上下文无关文法解法：</p>
+
+<blockquote><div>S -&gt; a b S | a S b | S a b |<br />
+ &nbsp; &nbsp; &nbsp; &nbsp;b a S | b S a | S b a | &epsilon;</div></blockquote>
+
+<p>　　但还需要转换成 LL(1) 。经过各种尝试（实际上这个文法本身就有二义性，必须想办法消除），得出一个 LL(1) 文法如下：</p>
+
+<blockquote><div>
+S -&gt; a b S | a S<sub>1</sub> b S | b a S | b S<sub>2</sub> a S<br />
+S<sub>1</sub> -&gt; a b S<sub>1</sub> | a S<sub>1</sub> b | &epsilon;<br />
+S<sub>2</sub> -&gt; b a S<sub>2</sub> | b S<sub>2</sub> a | &epsilon;
+</div></blockquote>
+<p>　　只要以 a 开头就变成 S<sub>1</sub> ，只要以 b 开头就变成 S<sub>2</sub> ，这样就消除了二义性。</p>
+<p>　　据此构造预测分析表如下：</p>
+
+<table style="width: 100%">
+<tr><th></th><th>a</th><th>b</th><th>#</th></tr>
+<tr><td>S<sub>1</sub></td><td>a B<sub>1</sub></td><td>&epsilon;</td><td></td></tr>
+<tr><td>B<sub>1</sub></td><td>S B<sub>1</sub></td><td>b S<sub>1</sub></td><td></td></tr>
+<tr><td>S<sub>2</sub></td><td>&epsilon;</td><td>b S<sub>2</sub></td><td></td></tr>
+<tr><td>A<sub>2</sub></td><td>a S<sub>2</sub></td><td>S<sub>2</sub> a</td><td></td></tr>
+<tr><td>S</td><td>a B</td><td>b A</td><td>&epsilon;</td></tr>
+<tr><td>A</td><td>a S</td><td>A<sub>2</sub> S</td><td></td></tr>
+<tr><td>B</td><td>B<sub>1</sub> S</td><td>b S</td><td></td></tr>
+</table>
+
+<p>　　但后来看到 <a href="http://www.inf.puc-rio.br/~roberto/lpeg/lpeg.html">lpeg 主页</a>上的样例，也许这才是这道题的更简洁的解法：</p>
+
+<blockquote><div>
+S -&gt; a B | b A | &epsilon;<br />
+A -&gt; a S | b A A<br />
+B -&gt; b S | a B B
+</div>
+</blockquote>

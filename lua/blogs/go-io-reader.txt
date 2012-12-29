@@ -1,0 +1,16 @@
+<p>　　最近想在 Go 中读取固定长度的 byte 数组。Go 的 io.Reader 定义如下：</p>
+
+<pre class="brush: go">type Reader interface {
+    Read(p []byte) (n int, err error)
+}</pre>
+
+<p>　　用这个函数就可以读取定长 byte 数组了吗？</p>
+<p>　　初看是这样，实则不然。仔细读文档发现这么一句话：</p>
+
+<blockquote><div>If some data is available but not len(p) bytes, Read conventionally returns what is available instead of waiting for more.</div></blockquote>
+
+<p>　　也就是说这个 Read 是不会 wait 的，或者说是 non-blocking 的。我最近写程序遇到这么一种情况，从一个 http 响应中读取一个定长 byte 数组，用 Read 的时候发现这个响应的 Content-Length 明明是够多的，但每次怎么也只能读到前面一部分，读不满。最后我发现问题出在 Read 上：即使没有发生错误，Read 的返回值 n 也可能小于 len(p) ！要多次调用才能读满 p 。估计是因为这个响应是用 chunk 模式发送，Read 每次读到接收到的 chunk 就直接返回，而不会等待后面的 chunk 。</p>
+
+<p>　　那么什么才是符合一般理解的写法呢？使用 io.ReadFull 可以保证读满 byte 数组，即使需要等待。</p>
+
+<p>　　总结：一般语言中默认是 blocking io ，而 Go 语言默认则是 non-blocking io ，这点要注意。</p>

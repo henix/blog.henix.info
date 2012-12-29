@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+#cate-name {
+	font-size: 14px;
+	margin-bottom: 1em;
+	padding: 0.3em;
+	border: 1px solid #8CACBB;
+	background-color: #DEE7EC;
+	color: Black;
+}
+
+#cate-name a:hover {
+	font-weight: bold;
+}

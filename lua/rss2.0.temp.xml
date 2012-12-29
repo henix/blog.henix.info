@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+	<channel>
+		<title>遥远的街市</title>
+		<link>#{= siteurl }/</link>
+		<description>#{= sitedesc }</description>
+		<language>zh-cn</language>
+		<category>Blog</category>
+		<category>技术</category>
+		<category>Computer</category>
+		<category>IT</category>
+		<lastBuildDate>#{= os.date('%a, %d %b %Y %H:%M:%S +0800') }</lastBuildDate>
+		#{ for i, post in ipairs(blogposts) do }
+		<item>
+			<title>#{= post.title }</title>
+			<link>#{= siteurl }#{= getPostURL(post) }</link>
+			<description>#{= escapeHtml(slt2.render(slt2.loadstring(post.content))) }</description>
+			<author>henix</author>
+			<guid>#{= post.name }</guid>
+			<pubDate>#{= os.date('%a, %d %b %Y %H:%M:%S +0800', post.publish_time) }</pubDate>
+			<category>#{= categories[post.category].showname }</category>#{ for _, tagname in ipairs(post.tags) do }<category>#{= tagname }</category>#{ end }
+		</item>
+		#{ end }
+	</channel>
+</rss>

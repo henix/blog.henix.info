@@ -1,0 +1,4 @@
+.postcontent .syntaxhighlighter {
+	opacity: 0.80;
+	filter: alpha(opacity=80);
+}

@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="author" content="henix" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - 所有文章" href="http://feed.feedsky.com/the-distant-town" />
+
+<link rel="stylesheet" href="/css/root.css" type="text/css" />
+<script type="text/javascript">
+var h = (new Date()).getHours();
+var when;
+if (h >= 7 && h < 16) {
+	when = 'morning';
+} else if (h >= 16 && h < 20) {
+	when = 'morning';
+} else {
+	when = 'night';
+}
+if (when !== 'morning') {
+	document.write('<link rel="stylesheet" href="/css/root-' + when + '.css" type="text/css" />');
+}
+</script>
+<link rel="prefetch" href="http://#{= disqus_shortname }.disqus.com/embed.js" />

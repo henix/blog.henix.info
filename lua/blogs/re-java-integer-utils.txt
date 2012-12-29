@@ -1,0 +1,89 @@
+<p>　　// 最近准备写[旧文重发]系列，筛选我的老博客上的部分有价值的文章转发过来</p>
+<p>　　// 旧地址：<a href="http://blog.csdn.net/shell_picker/archive/2010/05/20/5612563.aspx">http://blog.csdn.net/shell_picker/archive/2010/05/20/5612563.aspx</a></p>
+<p>　　最近自己写程序的时候，想提高程序的性能。</p>
+<p>　　一个基本的想法是：减少对象的创建。由于我的程序中要大量使用整数操作，包括 Integer.toString() 、Integer.toHexString() 等等。理论上，每次调用这些函数的时候都会解析整数，并生成字符串，所以我自己写了个类来缓存结果，第二次调用的时候就不用再计算了。 // 今注：今天从 <a href="http://download.java.net/jdk6/source/">http://download.java.net/jdk6/source/</a> 下载了 JDK 的源代码来看，确实如此，每次 Integer.toString() 都会解析整数，并且 new String() 。</p>
+<p>　　以下代码发布在<a href="http://zh.wikipedia.org/zh-cn/公有领域" class="tooltip">公有领域<span>(http://zh.wikipedia.org/zh-cn/公有领域)</span></a>下，你可以自由地使用它们。</p>
+<pre class="brush: java;">
+/**
+ * Integer utils, cached many results of toString/toHexString to get better performance
+ * &lt;p&gt;
+ * Java 1.4 compatible
+ *
+ * @author henix [http://www.henix-blog.co.cc/]
+ */
+public class IntegerUtils {
+
+    static final int MAX_CACHED = 2048;
+
+    private static Integer[] cache = new Integer[MAX_CACHED];
+    private static String[] cachedStrings = new String[MAX_CACHED];
+    private static String[] cachedHexStrings = new String[MAX_CACHED];
+
+    /**
+     * Implement the same logic as Integer.valueOf(int) in Java 1.5.
+     *
+     * @param i
+     * @return
+     */
+    public static Integer getInteger(int i) {
+        if (i &gt;= 0 &amp;&amp; i &lt; MAX_CACHED) {
+            synchronized (cache) {
+                if (cache[i] == null) {
+                    cache[i] = new Integer(i);
+                }
+            }
+            return cache[i];
+        } else {
+            return new Integer(i);
+        }
+    }
+
+    public static String toString(int i) {
+        if (i &gt;= 0 &amp;&amp; i &lt; MAX_CACHED) {
+            synchronized (cachedStrings) {
+                if (cachedStrings[i] == null) {
+                    cachedStrings[i] = Integer.toString(i);
+                }
+            }
+            return cachedStrings[i];
+        } else {
+            return Integer.toString(i);
+        }
+    }
+
+    public static String toHexString(int i) {
+        if (i &gt;= 0 &amp;&amp; i &lt; MAX_CACHED) {
+            synchronized (cachedHexStrings) {
+                if (cachedHexStrings[i] == null) {
+                    cachedHexStrings[i] = Integer.toHexString(i);
+                }
+            }
+            return cachedHexStrings[i];
+        } else {
+            return Integer.toHexString(i);
+        }
+    }
+
+    /**
+     * parseInt that never throws exceptions
+     *
+     * @param str
+     * @return
+     */
+    public static int parseInt(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public static int parseInt(String str, int radix) {
+        try {
+            return Integer.parseInt(str, radix);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+}
+</pre>

@@ -1,0 +1,24 @@
+<p>记录一下，参考 Vim 的 example 修改：</p>
+<pre class="brush: bat">
+set nocompatible
+syntax on
+filetype on
+
+set number
+set ruler
+set incsearch
+set showcmd
+set hlsearch
+set backspace=indent,eol,start
+
+set mouse=a " 启用鼠标
+
+set ts=4
+set shiftwidth=4
+set smarttab
+
+set autoindent
+set smartindent
+
+colorscheme blue
+</pre>

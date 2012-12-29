@@ -1,0 +1,84 @@
+#{include: 'doctype.seg.htm' }
+<head>
+#{include: 'head-common.seg.htm' }
+<link href="/css/posts.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+if (when !== 'morning') {
+	document.write('<link href="/css/posts-' + when + '.css" rel="stylesheet" type="text/css" />');
+}
+</script>
+
+<link rel="stylesheet" href="/syntaxhighlighter/styles/shCore.css" type="text/css" />
+
+<script type="text/javascript">
+var sytheme;
+if (when == 'morning') {
+	sytheme = 'Default';
+} else if (when == 'evening') {
+	sytheme = 'Django';
+} else if (when == 'night') {
+	sytheme = 'Midnight';
+}
+document.write('<link rel="stylesheet" href="/syntaxhighlighter/styles/shTheme' + sytheme + '.css" type="text/css" />');
+</script>
+<noscript><link rel="stylesheet" href="/syntaxhighlighter/styles/shThemeDefault.css" type="text/css" /></noscript>
+
+<title>#{= post.title } - 遥远的街市</title>
+</head>
+
+<body>
+<div id="page">
+
+#{include: 'header.seg.htm' }
+#{include: 'nav.seg.htm' }
+<div id="content">
+#{include: 'fullpost.seg.htm' }
+	<div class="related-posts">
+		<p>相关文章：</p>
+		#{
+		local others = {}
+		for i = 1, #blogposts do
+			if blogposts[i] ~= post then
+				table.insert(others, {i, calcRelative(post, blogposts[i])})
+			end
+		end
+		local function moreRelative(a, b)
+			return a[2] > b[2]
+		end
+		table.sort(others, moreRelative) }
+		<ul>
+			#{
+			local n = 1
+			while others[n][2] > 0.27 do }
+			<li><a href="#{= getPostURL(blogposts[others[n][1]]) }">#{= blogposts[others[n][1]].title }</a></li>
+			#{
+				n = n + 1
+			end }
+		</ul>
+	</div>
+<div id="disqus_thread"></div>
+</div><!-- content -->
+
+#{include: 'footer.seg.htm' }
+</div><!-- page -->
+
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = '#{= disqus_shortname }'; // required: replace example with your forum shortname
+
+	// The following are highly recommended additional parameters. Remove the slashes in front to use.
+	var disqus_identifier = '#{= post.name }';
+	var disqus_url = '#{= siteurl }#{= getPostURL(post) }';
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+
+#{include: 'syntax.seg.htm' }
+#{include: 'ga.seg.htm' }
+</body>
+</html>

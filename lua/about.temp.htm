@@ -1,0 +1,126 @@
+#{include: 'doctype.seg.htm' }<head>
+#{include: 'head-common.seg.htm' }
+<link href="/css/posts.css" rel="stylesheet" type="text/css" />
+<link href="/css/floatbox.css" rel="stylesheet" type="text/css" />
+<title>关于 - 遥远的街市</title>
+
+<style type="text/css">
+.postcontent p {
+	font-size: 14px;
+	color: #039;
+	font-weight: bold;
+}
+.postcontent ul {
+	font-size: 14px;
+	margin-left: 2em;
+	line-height: 161.8%;
+	list-style-type: disc;
+}
+.postcontent a.tooltip:hover span {
+	top: -2em;
+}
+</style>
+<script type="text/javascript">
+if (when === 'night') {
+	document.write('<style type="text/css">.postcontent p {color: #F90;}</style>');
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+
+#{include: 'header.seg.htm' }
+#{ local selectedIndex = 5 }#{include: 'nav.seg.htm' }#{ selectedIndex = null }
+<div id="content">
+
+<div class="blogpost">
+	<div class="title"><a href="/about.html">个人真实 / Personal Reality</a></div>
+	<div class="postcontent">
+		<div class="floatbox" style="float: right">
+			<h5>henix 与不明生物</h5>
+			<img alt="henix" src="/images/henix-profile.jpg" title="henix" width="176" height="220" />
+		</div>
+		<p>function about.id()</p>
+		<ul>
+			<li>henix, 某男，现在也叫小黑</li>
+			<li>技术宅一枚，AC 没有 G 星人</li>
+		</ul>
+		<p>end</p>
+		<p>function about.story()</p>
+		<ul>
+			<li>大学期间主要搞 Java ，Java 是个好东西</li>
+			<li>实习的时候搞过 Python ，但对 Python 无爱。最爱的脚本还是 <a href="/tags/Lua.html">Lua</a>（鲁啊）</li>
+			<li>现在在萌购 030buy 打杂，见习魔法师</li>
+		</ul>
+		<p>end</p>
+		<p>function about.blog()</p>
+		<ul>
+			<li>地址：<a href="http://blog.henix.info/">http://blog.henix.info/</a></li>
+			<li>这个博客的主要内容：技术博客，个人学习的各种笔记，遇到问题的解决办法等等。不保证正确，欢迎留言讨论。</li>
+			<li>请使用至少 IE 7 浏览本站（非 IE 用户可忽略此项）。</li>
+			<li><strong>本博客内容仅代表个人观点，与我过去或现在所属的任何组织或公司无关。</strong></li>
+		</ul>
+		<p>end</p>
+		<p>function about.copyright()</p>
+		<ul>
+			<li>未特殊标明的文章均为原创，转载请注明来源及作者。</li>
+		</ul>
+		<p>end</p>
+		<p>function about.contact()</p>
+		<ul>
+			<li>我的老博客（CSDN）：<a href="http://blog.csdn.net/shell_picker" class="tooltip">Dreamer<span>(http://blog.csdn.net/shell_picker)</span></a>，之前的文章在上面。</li>
+			<li>新浪微博：<a href="http://weibo.com/henix10" class="tooltip">henix10<span>(http://weibo.com/henix10)</span></a></li>
+			<li>豆瓣：<a href="http://www.douban.com/people/henix/" class="tooltip">henix<span>(http://www.douban.com/people/henix/)</span></a></li>
+			<li>Bangumi id：henix</li>
+		</ul>
+		<p>end</p>
+		<p>function about.acknowledgements()</p>
+		<ul>
+			<li>白天的 banner 图片来自 <a href="http://www.publicdomainpictures.net/view-image.php?image=7603">http://www.publicdomainpictures.net/view-image.php?image=7603</a>（Public Domain）。晚上的 banner 图片来自 <a href="http://www.flickr.com/photos/deapeajay/3152724098/">http://www.flickr.com/photos/deapeajay/3152724098/</a>（CC BY-SA 2.0）。</li>
+			<li>域名由 <a href="http://www.godaddy.com/" class="tooltip">GoDaddy<span>(http://www.godaddy.com/)</span></a> 提供</li>
+			<li>评论系统由 <a href="http://disqus.com/" class="tooltip">DISQUS.COM<span>(http://disqus.com/)</span></a> 提供</li>
+			<li>主页空间由 <a href="https://developers.google.com/appengine/" class="tooltip">Google App Engine<span>(https://developers.google.com/appengine/)</span></a> 提供</li>
+			<li>开发工具：<a href="http://www.lua.org/" class="tooltip"><img alt="Lua" src="/images/lua.gif" style="height: 70px;" /><span>(http://www.lua.org/)</span></a>、<a href="http://www.vim.org/" class="tooltip"><img alt="Vim" src="/images/vim_editor.gif" style="height: 40px;" /><span>(http://www.vim.org/)</span></a></li>
+			<li>特此鸣谢</li>
+		</ul>
+		<p>end</p>
+		<p>function about.faq()</p>
+		<ul>
+			<li>你的博客是怎么做出来的？<br />
+			请参考：<a href="/blog/my-static-blog.html">纯静态博客的实现</a></li>
+			<li>以前的“最新评论”去哪了？<br />
+			“留言板”中有前 20 条最新评论。</li>
+			<li>为什么我白天和晚上看到你这个博客的样子不一样？<br />
+			这个博客在白天和晚上会加载不同的 CSS 样式，这是在 JavaScript 里实现的，详见页面源代码的开头部分。这样的设计很 cool 吧？</li>
+			<li>为什么我不能发表评论？提示“Sorry, the browser you are using is not currently supported”？<br />
+			这可能是因为你使用了上古传说中的史前浏览器——IE6 ，或者 IE6 内核的 360 安全浏览器、QQ 浏览器、遨游等。这个博客本身是支持 IE6 的，但是我使用的评论系统 disqus 不支持 IE7 及以下，请升级到 IE8 及以上。或者使用火狐、谷歌浏览器等。</li>
+		</ul>
+		<p>end</p>
+		<p>-- 最后提醒一句：<br />-- 保持低调，保持和谐。<br />-- Stay low, Stay harmonious.</p>
+	</div>
+</div>
+<div id="disqus_thread"></div>
+</div><!-- end of content -->
+#{include: 'footer.seg.htm' }
+</div><!-- end of page -->
+
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	var disqus_shortname = '#{= disqus_shortname }'; // required: replace example with your forum shortname
+
+	// The following are highly recommended additional parameters. Remove the slashes in front to use.
+	var disqus_identifier = 'about';
+	var disqus_url = '#{= siteurl }/about.html';
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+
+#{include: 'ga.seg.htm' }
+</body>
+</html>

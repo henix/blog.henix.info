@@ -1,0 +1,8 @@
+.postcontent blockquote {
+	background-color: #8EACE6;
+	color: Black;
+}
+
+.postcontent th, .postcontent td {
+	border: 1px solid #ccc;
+}

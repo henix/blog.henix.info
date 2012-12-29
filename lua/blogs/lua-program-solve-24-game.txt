@@ -1,0 +1,144 @@
+<p>　　// 旧地址：<a href="http://blog.csdn.net/shell_picker/archive/2010/11/25/6034158.aspx">http://blog.csdn.net/shell_picker/archive/2010/11/25/6034158.aspx</a></p>
+<p>上次看到一个“凑24”的题目但想不出来- -b，所以蛋疼地写了个程序来算。。。现在终于知道答案了。。。</p>
+<p>这个凑24程序没有用搜索或递归之类，想法就是先用逆波兰式枚举所有可能的表达式的形式（这个直接手算枚举），共 5 种：</p>
+<blockquote><div>
+11+1+1+<br />
+11+11++<br />
+111++1+<br />
+111+1++<br />
+1111+++
+</div></blockquote>
+<p>上面是由 4 个数字和 3 个运算符组成的所有合法的逆波兰式的模式。“1”表示一个数字，而“+”表示一个运算符。然后枚举每一个数字和运算符。总枚举量为：5 * 4! * 4^3 = 7680，枚举量很小，所以直接穷举即可。</p>
+<p>代码：</p>
+<pre class="brush: lua;">
+-- 计算逆波兰式
+-- (table) -&gt; number
+function evalPo(e)
+    local s = {} -- a stack
+    local a, b, c
+    for i, v in ipairs(e) do
+        if type(v) == "number" then
+            table.insert(s, v)
+        elseif type(v) == "string" then
+            if #s &lt; 2 then
+                error('not enough values')
+            end
+            b = table.remove(s)
+            a = table.remove(s)
+            if v == '+' then
+                c = a + b
+            elseif v == '-' then
+                c = a - b
+            elseif v == '*' then
+                c = a * b
+            elseif v == '/' then
+                if b == 0 then
+                    return nil, 'divided by 0'
+                else
+                    c = a / b
+                end
+            else
+                error('bad operator: '..v)
+            end
+            table.insert(s, c)
+        end
+    end
+    if #s ~= 1 then
+        return nil, 'not enough operators'
+    end
+    return s[1]
+end
+
+-- 将逆波兰式转换成普通表达式，用于输出
+-- (table) -&gt; string
+function RPNtoExp(e)
+    local s = {} -- a stack
+    local a, b, c
+    for i, v in ipairs(e) do
+        if type(v) == "number" then
+            table.insert(s, v)
+        elseif type(v) == "string" then
+            if #s &lt; 2 then
+                error('not enough values')
+            end
+            b = table.remove(s)
+            a = table.remove(s)
+            table.insert(s, '('..a..v..b..')')
+        end
+    end
+    if #s ~= 1 then
+        return nil, 'not enough operators'
+    end
+    return s[1]
+end
+
+-- 前4列表示4个数字在逆波兰式中的位置，后3列表示3个运算符在逆波兰式中的位置
+-- 这个表是手算出来的
+local RPN_patterns = {
+    {1, 2, 4, 6, 3, 5, 7},
+    {1, 2, 4, 5, 3, 6, 7},
+    {1, 2, 3, 6, 4, 5, 7},
+    {1, 2, 3, 5, 4, 6, 7},
+    {1, 2, 3, 4, 5, 6, 7}
+}
+
+local ar = {}
+io.write('Please input 4 numbers: ')
+for i = 1, 4 do
+    ar[i] = io.read('*n')
+end
+
+local operators = {'+', '-', '*', '/'}
+
+-- 逆波兰式
+local exp = {}
+
+for a = 1, 4 do
+    for b = 1, 4 do
+        if b ~= a then
+            for c = 1, 4 do
+                if c ~= a and c ~= b then
+                    for d = 1, 4 do
+                        if d ~= a and d ~= b and d ~= c then
+                            for i = 1, 4 do
+                                for j = 1, 4 do
+                                    for k = 1, 4 do
+                                        for m = 1, 5 do
+                                            exp[RPN_patterns[m][1]] = ar[a]
+                                            exp[RPN_patterns[m][2]] = ar[b]
+                                            exp[RPN_patterns[m][3]] = ar[c]
+                                            exp[RPN_patterns[m][4]] = ar[d]
+                                            exp[RPN_patterns[m][5]] = operators[i]
+                                            exp[RPN_patterns[m][6]] = operators[j]
+                                            exp[RPN_patterns[m][7]] = operators[k]
+                                            local t = evalPo(exp)
+                                            if t == 24 then
+                                                io.write(RPNtoExp(exp), '\n')
+                                                os.exit()
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+print('Maze24 has no idea.')
+</pre>
+<p>如果你的电脑上没有 Lua 解释器，也可以用 <a href="http://codepad.org/">codepad</a> 来在线运行这段代码。但 codepad 无法输入，所以你需要稍微修改一下代码：</p>
+<p>把 'Please input 4 numbers: ' 后面的那个 for 循环去掉，改成：</p>
+<pre class="brush: lua;">
+ar = {5, 5, 5, 1}
+</pre>
+<p>或者填入其他你想要凑 24 的 4 个数字。</p>
+<p>PS. 顺便附 3 组收藏的凑 24 题目：</p>
+<ul>
+<li>1 4 5 6</li>
+<li>6 7 -6 2 // 还负数呢，我勒个去</li>
+<li>4 4 10 10</li>
+</ul>
+<p>如果想不出来，用上面的程序看答案吧:P</p>
