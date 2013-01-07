@@ -52,7 +52,8 @@ if (window.top != window) {
 
 #inline Flower.csser
 #inline Flower.eventer.addEventListener
-#inline Flower.ieVersion
+#inline Flower.ie.version
+#inline Flower.ie.hoverClass
 #inline FlowerUI.compiler
 <script type="text/javascript">
 function PostItem(elem) {
@@ -87,12 +88,7 @@ PostItem.prototype.init = function() {
 	var ie = Flower.ieVersion();
 	if (ie && ie < 7) {
 		// ie7 以下不支持任意元素的 :hover
-		Flower.eventer.addEventListener(this.postLine, 'mouseenter', function() {
-			Flower.csser.addClass(this1.postLine, 'post-line-hover');
-		});
-		Flower.eventer.addEventListener(this.postLine, 'mouseleave', function() {
-			Flower.csser.removeClass(this1.postLine, 'post-line-hover');
-		});
+		Flower.ie.hoverClass(this.postLine, 'post-line-hover');
 	}
 };
 
