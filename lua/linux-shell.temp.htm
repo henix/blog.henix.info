@@ -84,6 +84,10 @@ random string for password
 ### pretty print json (Perl required)
 
 	curl http://path/to/json | json_pp
+
+### pretty print xml (colorize)([highlight](http://www.andre-simon.de/doku/highlight/en/highlight.html) required)
+
+	cat file.xml | xmllint -format - | highlight -O xterm256 --syntax xml --style rootwater
 ]=] }
 	</div>
 </div>
