@@ -85,7 +85,7 @@ PostItem.prototype.init = function() {
 	Flower.eventer.addEventListener(this.postLine, 'click', function() {
 		this1.toggle();
 	});
-	var ie = Flower.ieVersion();
+	var ie = Flower.ie.version();
 	if (ie && ie < 7) {
 		// ie7 以下不支持任意元素的 :hover
 		Flower.ie.hoverClass(this.postLine, 'post-line-hover');

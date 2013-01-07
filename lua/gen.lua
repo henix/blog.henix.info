@@ -280,6 +280,7 @@ local rain = rainy.new()
 -- config rainy
 local jslibs_path = '/home/henix/jslibs'
 rain:add_incpath(jslibs_path)
+rain:add_moddef(jslibs_path..os.pathsep..'csv.js'..os.pathsep..'csv.moddef')
 rain:add_moddef(jslibs_path..os.pathsep..'base.js'..os.pathsep..'base.moddef')
 rain:add_moddef(jslibs_path..os.pathsep..'flower.js'..os.pathsep..'flower.moddef')
 rain:add_moddef(jslibs_path..os.pathsep..'flower-widgets'..os.pathsep..'flowerui.moddef')
