@@ -1,0 +1,132 @@
+<h2>检查是否包含某字符串</h2>
+
+<p>一般：</p>
+
+<pre class="brush: java">if (str.indexOf(&quot;xxx&quot;) != -1)
+</pre>
+
+<p>好：</p>
+
+<pre class="brush: java">if (str.contains(&quot;xxx&quot;))
+</pre>
+
+<h2>定时任务</h2>
+
+<p>一般：</p>
+
+<pre class="brush: java">Timer timer = new Timer();
+timer.schedule(TimerTask);
+</pre>
+
+<p>好：</p>
+
+<pre class="brush: java">ScheduledExecutorService executor = Executors.newScheduledThreadPool(3);
+executor.scheduleWithFixedDelay(Runnable);
+</pre>
+
+<h2>某个变量，有多个线程会读取，只有一个线程修改它，需要保证读到正确值</h2>
+
+<p>差：</p>
+
+<p>互斥（synchronized 同步化块）</p>
+
+<p>一般：</p>
+
+<p>读写锁（ReentrantReadWriteLock）</p>
+
+<p>好：</p>
+
+<p>volatile 变量</p>
+
+<p>参考文章：</p>
+
+<ul>
+<li><a href="http://www.infoq.com/cn/articles/ftf-java-volatile">聊聊并发（一）——深入分析Volatile的实现原理</a></li>
+<li><a href="http://www.infoq.com/cn/articles/ConcurrentHashMap">聊聊并发（四）——深入分析ConcurrentHashMap</a></li>
+</ul>
+
+<h2>关闭流</h2>
+
+<p>一般：</p>
+
+<pre class="brush: java">
+InputStream in = null;
+try {
+	in = new InputStream(...);
+} finally {
+	if (in != null) {
+		try { in.close(); } catch (IOException e) {}
+	}
+}</pre>
+
+<p>好：</p>
+
+<pre class="brush: java">
+import org.apache.commons.io.IOUtils;
+
+InputStream in = null;
+try {
+	in = new InputStream(...);
+} finally {
+	IOUtils.closeQuietly(in);
+}</pre>
+
+<h2>String 和 byte[] 互转</h2>
+
+<p>一般：</p>
+
+<pre class="brush: java">
+try {
+	str.getBytes(&quot;UTF-8&quot;);
+} catch (UnsupportedEncodingException e) {
+	throw RuntimeException(e);
+}
+</pre>
+
+<p>好：</p>
+
+<pre class="brush: java">import org.apache.commons.io.Charsets;
+
+str.getBytes(Charsets.UTF_8); </pre>
+
+<p>注：JDK7 中引入了 java.nio.charset.StandardCharsets ，org.apache.commons.io.Charsets 相当于一个垫片（shim）</p>
+
+<h2>数据库连接池</h2>
+
+<p>一般：commons-dhcp 或 c3p0</p>
+
+<p>好：tomcat-jdbc</p>
+
+<h2>初始化 String[] 常量</h2>
+
+<p>一般：</p>
+
+<pre class="brush: java"> static final String[] X = new String[]{&quot;a&quot;, &quot;b&quot;}; </pre>
+
+<p>好：</p>
+
+<pre class="brush: java"> static final String[] X = {&quot;a&quot;, &quot;b&quot;}; </pre>
+
+<h2>标记某个类是非线程安全的</h2>
+
+<p>一般：</p>
+
+<pre class="brush: java">/**
+ * 非线程安全
+ */
+public class X {
+    ...
+}
+</pre>
+
+<p>好：</p>
+
+<pre class="brush: java">import net.jcip.annotations.NotThreadSafe;
+
+@NotThreadSafe
+public class X {
+    ...
+}
+</pre>
+
+<p>注：能用代码表达的就不用注释</p>

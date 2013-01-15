@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'java-code-cookbook',
+		title = 'Java 常见代码替换列表',
+		publish_time = 1357564561,
+		tags = {'Java'},
+		category = 'Java',
+	},
+	{
 		name = 'copyright-banner-image-replaced',
 		title = '更换了博客的 banner 图片',
 		publish_time = 1354281718,
