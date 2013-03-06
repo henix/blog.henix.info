@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'tomcat-production-config',
+		title = 'Tomcat 生产环境配置',
+		publish_time = 1359546901,
+		tags = {'Java', 'tomcat'},
+		category = 'Java',
+	},
+	{
 		name = 'java-code-cookbook',
 		title = 'Java 常见代码替换列表',
 		publish_time = 1357564561,
@@ -640,6 +647,7 @@ tags = {
 	['调试']={uname='debug', desc='Debug', posti={}},
 	['Emacs']={uname='emacs', desc='Emacs', posti={}},
 	['后缀数组']={uname='suffix-array', desc='Suffix Array', posti={}},
+	['tomcat']={uname='tomcat', desc='Tomcat', posti={}},
 }
 
 -- store index of blog

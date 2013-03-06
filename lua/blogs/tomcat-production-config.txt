@@ -1,0 +1,43 @@
+<h3>1. 安装 tomcat-native 包</h3>
+
+<pre class="brush: bash">yum install tomcat-native</pre>
+
+<p>　　这个包不需要额外配置，安装后就会自动启用。使用后减少了很多 TIME_WAIT 和 CLOSE_WAIT 。可见 <a href="http://tomcat.apache.org/native-doc/">native</a> 包确实在网络连接上下了很多功夫。</p>
+
+<h3>2. URIEncoding=&quot;UTF-8&quot;</h3>
+
+<h3>3. 配置 gzip</h3>
+
+<pre class="brush: ruby">compression=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/plain,text/css,text/javascript,application/json&quot;</pre>
+
+<p>　　对指定的 mimetype 并且响应大小超过指定的字节数的响应使用 gzip 。</p>
+
+<h3>4. 开启 JMX</h3>
+
+<pre class="brush: ruby">-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8390 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false</pre>
+
+<p>　　这个主要是用于远程 profile 。场景：有一 tomcat 运行在远程，本机和远程之间只有 ssh 连接，想对 tomcat 上的程序进行 profile 。</p>
+
+<p>　　方案：<a href="https://bowerstudios.com/node/731">Tunnel VisualVM (JMX) over SSH</a>（注意看 comments）。大致步骤：</p>
+
+<ol>
+<li>开启 tomcat 的 JMX ，比如我用了端口 8390</li>
+<li>ssh 连接远程时使用 ssh -D 4646 建立一个 socks5 tunnel</li>
+<li>打开 VisualVM ，在网络配置中设置使用 proxy ，为本机的 4646 端口</li>
+<li>添加一个远程 JMX 主机，ip 为远程的 ip ，端口为 JMX 的端口</li>
+</ol>
+
+<h3>附：Java 生产环境常用命令</h3>
+
+<ol>
+<li>jps -v 列出进程</li>
+<li>jstack pid 打印 stacktrace</li>
+<li>jmap -heap pid 检查 GC 情况</li>
+<li>jinfo -flag flag pid 检查是否设置了某个 flag ，例：
+
+<ul>
+<li>jinfo -flag UseG1GC</li>
+<li>jinfo -flag DoEscapeAnalysis</li>
+</ul></li>
+<li>java -XX:+PrintFlagsFinal 列举所有可用的 flags</li>
+</ol>
