@@ -69,6 +69,10 @@
 	margin: 10px 1em;
 	color: Black;
 	line-height: 120%;
+
+	white-space: pre-wrap;
+	*white-space: pre;
+	*word-wrap: break-word;
 }
 
 .postcontent blockquote {
