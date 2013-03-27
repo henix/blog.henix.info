@@ -2,6 +2,7 @@
 static/*.html
 static/*.xml
 static/blog/
+static/tags/
 lua/comments.xml
 lua/visits.2.csv
 lua/comments.lua
