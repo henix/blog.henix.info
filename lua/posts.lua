@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'haskell-monad-emacs',
+		title = 'Haskell 笔记：Monad 和 Emacs 配置',
+		publish_time = 1364355772,
+		tags = {'Haskell', 'Emacs'},
+		category = 'Functional',
+	},
+	{
 		name = 'tomcat-production-config',
 		title = 'Tomcat 生产环境配置',
 		publish_time = 1359546901,
@@ -648,6 +655,7 @@ tags = {
 	['Emacs']={uname='emacs', desc='Emacs', posti={}},
 	['后缀数组']={uname='suffix-array', desc='Suffix Array', posti={}},
 	['tomcat']={uname='tomcat', desc='Tomcat', posti={}},
+	['Haskell']={uname='haskell', desc='Haskell', posti={}},
 }
 
 -- store index of blog
@@ -661,6 +669,7 @@ local table_category = {
 	{'Java', 'Java'},
 	{'Programming', '编程其他'},
 	{'Essays', '随感'},
+	{'Functional', 'Functional Programming'},
 }
 
 categories = {}
