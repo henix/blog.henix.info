@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: dpic version 2012.07.14 option -v for SVG 1.1 -->
+<!-- width="139" height="409" -->
+<svg
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+ xml:space="preserve"
+ style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
+ image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+ width="138px" height="408px"
+ viewBox="0 0 138 408"
+ font-size="11pt" text-anchor="middle"
+ stroke="black" stroke-miterlimit="10" stroke-width="1" fill="none">
+<g>
+<circle cx="23" cy="23" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="21.035714" y="27.8125">
+1
+</text>
+<circle fill="gray"
+ cx="23" cy="113" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="21.035714" y="117.8125">
+0
+</text>
+<circle cx="23" cy="203" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="21.035714" y="207.8125">
+0
+</text>
+<circle cx="23" cy="293" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="21.035714" y="297.8125">
+1
+</text>
+<circle cx="23" cy="383" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="21.035714" y="387.8125">
+0
+</text>
+<circle cx="113" cy="23" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="111.035714" y="27.8125">
+0
+</text>
+<circle fill="gray"
+ cx="113" cy="113" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="111.035714" y="117.8125">
+0
+</text>
+<circle cx="113" cy="203" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="111.035714" y="207.8125">
+0
+</text>
+<circle cx="113" cy="293" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="111.035714" y="297.8125">
+1
+</text>
+<circle cx="113" cy="383" r="22.5" />
+<text stroke-width="0.2pt" fill="black" x="111.035714" y="387.8125">
+1
+</text>
+<polygon fill="black"
+ points="44.92031,91.07969 43.782143,89.941522
+40.367641,95.632359 46.058478,92.217857" />
+<line x1="97.090097" y1="38.909903" x2="40.367641" y2="95.632359" />
+<polygon fill="black"
+ points="82,113 82,114.609612
+88.438447,113 82,111.390388" />
+<line stroke-dasharray="4.5,4.5"
+ x1="45.5" y1="113" x2="88.438447" y2="113" />
+</g></svg>

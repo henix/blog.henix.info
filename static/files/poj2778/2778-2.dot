@@ -1,0 +1,20 @@
+digraph G {
+node [fontname=Tahoma,style=filled]
+
+root -> A -> AC -> ACG
+root -> C
+
+root [label="\N(0)"]
+A [label="\N(1)"]
+C [label="\N(2)",shape=box]
+AC [label="C(3)",fillcolor=red]
+ACG [label="G(4)",shape=box]
+
+{rank=same; A C}
+
+{
+edge [style=dashed,weight=0]
+{A C ACG} -> root
+AC -> C
+}
+}

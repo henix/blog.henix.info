@@ -1,0 +1,14 @@
+digraph G {
+rankdir=LR
+a4_0 -> a4_1 [label="20",color=red]
+a4_0 [label="0, d=2"]
+a4_1 -> a4_0 [label="20"]
+a4_1 -> a4_2 [label="30"]
+a4_1 [label="1, d=1"]
+a4_2 -> a4_3 [label="10"]
+a4_2 [label="2, d=1"]
+a4_3 -> a4_0 [label="20"]
+a4_3 -> a4_1 [label="20"]
+a4_3 [label="3, d=0"]
+a4_1 [style=filled]
+}

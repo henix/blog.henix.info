@@ -1,0 +1,127 @@
+digraph G {
+rankdir=LR
+digraph G {
+rankdir=LR
+a1_0 -> a1_1 [label="40"]
+a1_0 -> a1_3 [label="20",color=red]
+a1_0 [label="0, d=1"]
+a1_1 -> a1_2 [label="30"]
+a1_1 -> a1_3 [label="20"]
+a1_1 [label="1, d=1"]
+a1_2 -> a1_3 [label="10"]
+a1_2 [label="2, d=1"]
+a1_3 [label="3, d=0"]
+}
+digraph G {
+rankdir=LR
+a2_0 -> a2_1 [label="40"]
+a2_0 [label="0, d=1"]
+a2_1 -> a2_2 [label="30"]
+a2_1 -> a2_3 [label="20"]
+a2_1 [label="1, d=1"]
+a2_2 -> a2_3 [label="10"]
+a2_2 [label="2, d=1"]
+a2_3 -> a2_0 [label="20"]
+a2_3 [label="3, d=0"]
+}
+a2_0 [style=filled]
+digraph G {
+rankdir=LR
+a3_0 -> a3_1 [label="40",color=red]
+a3_0 [label="0, d=2"]
+a3_1 -> a3_2 [label="30"]
+a3_1 -> a3_3 [label="20",color=red]
+a3_1 [label="1, d=1"]
+a3_2 -> a3_3 [label="10"]
+a3_2 [label="2, d=1"]
+a3_3 -> a3_0 [label="20"]
+a3_3 [label="3, d=0"]
+}
+digraph G {
+rankdir=LR
+a4_0 -> a4_1 [label="20",color=red]
+a4_0 [label="0, d=2"]
+a4_1 -> a4_0 [label="20"]
+a4_1 -> a4_2 [label="30"]
+a4_1 [label="1, d=1"]
+a4_2 -> a4_3 [label="10"]
+a4_2 [label="2, d=1"]
+a4_3 -> a4_0 [label="20"]
+a4_3 -> a4_1 [label="20"]
+a4_3 [label="3, d=0"]
+}
+a4_1 [style=filled]
+digraph G {
+rankdir=LR
+a5_0 -> a5_1 [label="20"]
+a5_0 [label="0, d=2"]
+a5_1 -> a5_0 [label="20"]
+a5_1 -> a5_2 [label="30"]
+a5_1 [label="1, d=2"]
+a5_2 -> a5_3 [label="10"]
+a5_2 [label="2, d=1"]
+a5_3 -> a5_0 [label="20"]
+a5_3 -> a5_1 [label="20"]
+a5_3 [label="3, d=0"]
+}
+a5_0 [style=filled]
+digraph G {
+rankdir=LR
+a6_0 -> a6_1 [label="20",color=red]
+a6_0 [label="0, d=3"]
+a6_1 -> a6_0 [label="20"]
+a6_1 -> a6_2 [label="30",color=red]
+a6_1 [label="1, d=2"]
+a6_2 -> a6_3 [label="10",color=red]
+a6_2 [label="2, d=1"]
+a6_3 -> a6_0 [label="20"]
+a6_3 -> a6_1 [label="20"]
+a6_3 [label="3, d=0"]
+}
+digraph G {
+rankdir=LR
+a7_0 -> a7_1 [label="10",color=red]
+a7_0 [label="0, d=3"]
+a7_1 -> a7_0 [label="30"]
+a7_1 -> a7_2 [label="20",color=red]
+a7_1 [label="1, d=2"]
+a7_2 -> a7_1 [label="10"]
+a7_2 [label="2, d=1"]
+a7_3 -> a7_0 [label="20"]
+a7_3 -> a7_1 [label="20"]
+a7_3 -> a7_2 [label="10"]
+a7_3 [label="3, d=0"]
+}
+a7_2 [style=filled]
+digraph G {
+rankdir=LR
+a8_0 -> a8_1 [label="10",color=red]
+a8_0 [label="0, d=3"]
+a8_1 -> a8_0 [label="30"]
+a8_1 -> a8_2 [label="20"]
+a8_1 [label="1, d=2"]
+a8_2 -> a8_1 [label="10"]
+a8_2 [label="2, d=3"]
+a8_3 -> a8_0 [label="20"]
+a8_3 -> a8_1 [label="20"]
+a8_3 -> a8_2 [label="10"]
+a8_3 [label="3, d=0"]
+}
+a8_1 [style=filled]
+digraph G {
+rankdir=LR
+a9_0 -> a9_1 [label="10"]
+a9_0 [label="0, d=3"]
+a9_1 -> a9_0 [label="30"]
+a9_1 -> a9_2 [label="20"]
+a9_1 [label="1, d=4"]
+a9_2 -> a9_1 [label="10"]
+a9_2 [label="2, d=3"]
+a9_3 -> a9_0 [label="20"]
+a9_3 -> a9_1 [label="20"]
+a9_3 -> a9_2 [label="10"]
+a9_3 [label="3, d=0"]
+}
+a9_0 [style=filled]
+50
+}
