@@ -1,1 +1,8 @@
 .*.swp
+static/*.html
+static/*.xml
+static/blog/
+lua/comments.xml
+lua/visits.2.csv
+lua/comments.lua
+lua/visits_table.lua
