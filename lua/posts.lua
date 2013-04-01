@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'lua-js-closure',
+		title = '理解 lua 的 for 中的闭包，及其与 js 的闭包的比较',
+		publish_time = 1364836704,
+		tags = {'Lua', 'js', 'closure'},
+		category = 'Lua',
+	},
+	{
 		name = 'haskell-monad-emacs',
 		title = 'Haskell 笔记：Monad 和 Emacs 配置',
 		publish_time = 1364355772,
@@ -656,6 +663,7 @@ tags = {
 	['后缀数组']={uname='suffix-array', desc='Suffix Array', posti={}},
 	['tomcat']={uname='tomcat', desc='Tomcat', posti={}},
 	['Haskell']={uname='haskell', desc='Haskell', posti={}},
+	['closure']={uname='closure', desc='闭包', posti={}},
 }
 
 -- store index of blog
