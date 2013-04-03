@@ -1,0 +1,2 @@
+<p>　　以前用 <a href="http://feed.feedsky.com/the-distant-town">feedsky</a> 是因为想看一下订阅人数，现在觉得订阅人数其实也不是那么重要的。关键是 <a href="http://www.feedsky.com/">feedsky</a> 的服务太不稳定了。</p>
+<p>　　原始 RSS 地址：<a href="/rss2.0.xml">/rss2.0.xml</a></p>

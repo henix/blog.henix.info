@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'giveup-feedsky-use-my-feed',
+		title = '放弃 feedsky ，本博客 RSS 地址',
+		publish_time = 1364949437,
+		tags = {'Blog'},
+		category = 'Essays',
+	},
+	{
 		name = 'lua-js-closure',
 		title = '理解 lua 的 for 中的闭包，及其与 js 的闭包的比较',
 		publish_time = 1364836704,
