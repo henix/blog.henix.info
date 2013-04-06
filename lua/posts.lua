@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'why-not-timeline',
+		title = '为什么 timeline 不一定是组织信息的最佳方式',
+		publish_time = 1365231766,
+		tags = {'Blog'},
+		category = 'Essays',
+	},
+	{
 		name = 'giveup-feedsky-use-my-feed',
 		title = '放弃 feedsky ，本博客 RSS 地址',
 		publish_time = 1364949437,
