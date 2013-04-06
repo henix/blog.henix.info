@@ -108,14 +108,14 @@ blogposts = {
 		title = '[bookmarklet]人人网批量已读脚本',
 		publish_time = 1334485218,
 		tags = {'js', 'bookmarklet'},
-		category = 'Computers',
+		category = 'Web',
 	},
 	{
 		name = 'greasemonkey-userscripts-recommends',
 		title = '一些我使用和开发的油猴脚本',
 		publish_time = 1334480918,
 		tags = {'js', '油猴脚本'},
-		category = 'Computers',
+		category = 'Web',
 	},
 	{
 		name = 'tree-dp',
@@ -311,7 +311,7 @@ blogposts = {
 		title = '神奇的自产生程序，兼谈人工生命',
 		publish_time = 1312631218,
 		tags = {'复杂性', '人工智能'},
-		category = 'Computers',
+		category = 'Programming',
 	},
 	{
 		name = 'redis-key-or-hash',
