@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'haskell-newcounter-ioref-stref',
+		title = '用 Haskell 实现 newCounter ：IORef 和 STRef',
+		publish_time = 1365997190,
+		tags = {'Haskell', 'Monad'},
+		category = 'Functional'
+	},
+	{
 		name = 'why-not-timeline',
 		title = '为什么 timeline 不一定是组织信息的最佳方式',
 		publish_time = 1365231766,
@@ -678,6 +685,7 @@ tags = {
 	['tomcat']={uname='tomcat', desc='Tomcat', posti={}},
 	['Haskell']={uname='haskell', desc='Haskell', posti={}},
 	['closure']={uname='closure', desc='闭包', posti={}},
+	['Monad']={uname='monad', desc='Monad', posti={}},
 }
 
 -- store index of blog
