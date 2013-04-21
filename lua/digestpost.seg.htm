@@ -6,7 +6,7 @@
 		#{ for j, tagname in ipairs(post.tags) do }
 		#{ if j ~= 1 then },#{ end }
 		#{ local tag = tags[tagname] }
-		<a href="#{= getTagURL(tag) }" title="#{= #tag.posti } 篇文章" class="tooltip">#{= tagname }<span>(#{= tag.desc })</span></a>
+		<a href="#{= getTagURL(tag) }" title="#{= #tag.posti } 篇文章">#{= tagname }</a>
 		#{ end }
 	</div>
 </div>
