@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'prolog-24-game-solver',
+		title = '一个 Prolog 的“24点” solver',
+		publish_time = 1366535497,
+		tags = {'Prolog'},
+		category = 'Functional'
+	},
+	{
 		name = 'haskell-newcounter-ioref-stref',
 		title = '用 Haskell 实现 newCounter ：IORef 和 STRef',
 		publish_time = 1365997190,
@@ -686,6 +693,7 @@ tags = {
 	['Haskell']={uname='haskell', desc='Haskell', posti={}},
 	['closure']={uname='closure', desc='闭包', posti={}},
 	['Monad']={uname='monad', desc='Monad', posti={}},
+	['Prolog']={uname='prolog', desc='Prolog', posti={}},
 }
 
 -- store index of blog
