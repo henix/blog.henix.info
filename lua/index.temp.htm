@@ -5,8 +5,8 @@
 <script type="text/javascript">
 if (window.top != window) {
 	alert('检测到疑似被ISP劫持强插广告，请刷新重试。\n本站地址：#{= siteurl }\n即将重定向');
-	window.top.location.href = '#{= siteurl }/?r=' + Math.random().toString(36).substring(2);
-	location.href = "about:blank";
+	// window.top.location.href = '#{= siteurl }/?r=' + Math.random().toString(36).substring(2);
+	// location.href = "about:blank";
 }
 </script>
 </head>
