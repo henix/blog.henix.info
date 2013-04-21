@@ -6,6 +6,10 @@ a {
 	color: #8EADE6;
 }
 
+a.tag {
+	color: White;
+}
+
 #page {
 	/*background-color: #4F6080;*/
 	background-color: #123; /*#213345; /*#444;*/

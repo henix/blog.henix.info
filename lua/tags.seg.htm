@@ -1,23 +1,12 @@
 <div id="tags" class="box">
 	<h5>Tags</h5>
-	<div class="box-body">
-	#{
-		local maxnum = 0
-		local minnum = 100
-		for name, tag in pairs(tags) do
-			local n = #tag.posti or 0
-			if n > maxnum then
-				maxnum = n
-			elseif n < minnum then
-				minnum = n
-			end
-		end
-	 }
-#{ for name, tag in pairs(tags) do }
-#{ local hue = 240 * (1 - ((#tag.posti or 0) - minnum)/(maxnum - minnum)) }
-#{ if hue < 0 then hue = hue + 360 end }
-#{ local r, g, b = HSL2RGB(hue, 1.0, 0.72) }
-<a href="#{= getTagURL(tag) }" title="#{= #tag.posti } 篇文章" class="tooltip" style="font-size: #{= 10 + #tag.posti }px; background-color: rgb(#{=r }, #{=g }, #{=b })">#{= name }<span>(#{= tag.desc })</span></a>
-#{ end }
+	<div class="box-body clearfix">
+#{
+for name, tag in pairs(tags) do
+	if #tag.posti > 1 then
+ }
+<a href="#{= getTagURL(tag) }" title="#{= #tag.posti } 篇文章" class="tag" style="font-size: #{= 10 + #tag.posti }px; background-color: #{= tag.bgColor }">#{= name }</a>
+#{ end
+end }
 	</div>
 </div>

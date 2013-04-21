@@ -210,6 +210,29 @@ for tag, obj in pairs(tags) do
 	obj.weight = 1 / (1 + math.log(#obj.posti))
 end
 
+-- calculate tags' bgColor
+do
+	local maxnum = 0
+	local minnum = 100
+	for name, tag in pairs(tags) do
+		local n = #tag.posti or 0
+		if n > maxnum then
+			maxnum = n
+		elseif n < minnum then
+			minnum = n
+		end
+	end
+
+	for tagname, tag in pairs(tags) do
+		local hue = 240 * (1 - ((#tag.posti or 0) - minnum)/(maxnum - minnum))
+		if hue < 0 then
+			hue = hue + 360
+		end
+		local r, g, b = HSL2RGB(hue, 1.0, 0.72)
+		tag.bgColor = string.format('rgb(%d, %d, %d)', r, g, b)
+	end
+end
+
 -- -1: calculate popularity
 
 local function pop_cmp(a, b)

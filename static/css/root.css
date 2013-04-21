@@ -112,6 +112,14 @@ a.tooltip:hover span {
 	filter: alpha(opacity=90);
 }
 
+a.tag {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	padding: 0.3em 1.5em;
+	color: Black;
+}
+
 /* Layout */
 
 #page {
@@ -264,16 +272,8 @@ a.tooltip:hover span {
 /* box-tags */
 
 #tags a {
-	color: White;
-	padding: 2px;
-}
-
-#tags .box-body {
-	line-height: 2em;
-}
-
-#tags .box-body span {
-	line-height: 1em;
+	float: left;
+	margin: 3px;
 }
 
 /* box-popular */

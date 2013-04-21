@@ -595,6 +595,7 @@ blogposts = {
 	}
 }
 
+-- tags[string] = {uname: string, posti: table, bgColor: string}
 tags = {
 	['Blog']={uname='Blog', desc='博客', posti={}},
 	['cmd.exe']={uname='cmd.exe', desc='Windows命令行', posti={}},
@@ -692,9 +693,15 @@ tags = {
 	['tomcat']={uname='tomcat', desc='Tomcat', posti={}},
 	['Haskell']={uname='haskell', desc='Haskell', posti={}},
 	['closure']={uname='closure', desc='闭包', posti={}},
-	['Monad']={uname='monad', desc='Monad', posti={}},
-	['Prolog']={uname='prolog', desc='Prolog', posti={}},
+	['Monad']={uname='monad', desc='Monad'},
+	['Prolog']={uname='prolog', desc='Prolog'},
 }
+
+for _, tag in pairs(tags) do
+	if tag.posti == nil then
+		tag.posti = {}
+	end
+end
 
 -- store index of blog
 local table_category = {
