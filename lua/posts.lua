@@ -474,13 +474,13 @@ blogposts = {
 		tags = {'Tcl/Tk'},
 		category = 'Programming',
 	},
-	{
+	--[[{
 		name = 'win-cmd-basic-1.1',
 		title = 'Windows 命令行基础: 修订版1.1',
 		publish_time = 1300802855,
 		tags = {'cmd.exe', 'Windows'},
 		category = 'Windows',
-	},
+	},]]
 	{
 		name = 'participate-css-naked-day-2011',
 		title = '再次参加 CSS Naked Day',
