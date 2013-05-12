@@ -22,7 +22,7 @@ henix 的技术博客：[http://blog.henix.info/](http://blog.henix.info/)
 
 ### 设计
 
-* 每篇文章没有“上一篇”、“下一篇”的导航，首页不按时间排列而按照分类排列。这是我的“去 timeline 化”设计：[为什么说 timeline 可能是一个错误](http://www.douban.com/note/243904267/)
+* 每篇文章没有“上一篇”、“下一篇”的导航，首页不按时间排列而按照分类排列。这是我的“去 timeline 化”设计：[为什么 timeline 不一定是组织信息的最佳方式](http://blog.henix.info/blog/why-not-timeline.html)
 * 根据客户端时间自动切换样式表（一套白天样式、一套晚上样式）
 * 禁止 iframe（防 ISP 插广告）
 
