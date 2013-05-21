@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'systemd-traps',
+		title = 'systemd 的那些坑',
+		publish_time = 1369145289,
+		tags = {'Linux', 'systemd'},
+		category = 'Linux',
+	},
+	{
 		name = 'prolog-24-game-solver',
 		title = '一个 Prolog 的“24点” solver',
 		publish_time = 1366535497,
@@ -695,6 +702,7 @@ tags = {
 	['closure']={uname='closure', desc='闭包', posti={}},
 	['Monad']={uname='monad', desc='Monad'},
 	['Prolog']={uname='prolog', desc='Prolog'},
+	['systemd']={uname='systemd', desc='systemd'},
 }
 
 for _, tag in pairs(tags) do
