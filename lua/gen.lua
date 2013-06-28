@@ -236,7 +236,7 @@ end
 -- -1: calculate popularity
 
 local function pop_cmp(a, b)
-	return blogposts[a].comnum * 5 + blogposts[a].visits > blogposts[b].comnum * 5 + blogposts[b].visits
+	return blogposts[a].comnum * 10 + blogposts[a].visits > blogposts[b].comnum * 10 + blogposts[b].visits
 end
 
 for i = 1, #blogposts do
