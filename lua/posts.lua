@@ -13,6 +13,13 @@ baseurl = ''
 -- must be ordered from latest to oldest
 blogposts = {
 	{
+		name = 'real-time-follow',
+		title = '从实时关注到非实时关注',
+		publish_time = 1372682776,
+		tags = {'Internet', 'Blog'},
+		category = 'Essays',
+	},
+	{
 		name = 'systemd-traps',
 		title = 'systemd 的那些坑',
 		publish_time = 1369145289,
@@ -443,7 +450,7 @@ blogposts = {
 		name = 'future-internet-trends',
 		title = '谈互联网未来趋势',
 		publish_time = 1301884744,
-		tags = {'Web'},
+		tags = {'Internet'},
 		category = 'Essays',
 	},
 	{
@@ -703,6 +710,7 @@ tags = {
 	['Monad']={uname='monad', desc='Monad'},
 	['Prolog']={uname='prolog', desc='Prolog'},
 	['systemd']={uname='systemd', desc='systemd'},
+	['Internet']={uname='internet', desc='互联网'},
 }
 
 for _, tag in pairs(tags) do
