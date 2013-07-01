@@ -49,7 +49,7 @@ document.write('<link rel="stylesheet" href="/syntaxhighlighter/styles/shTheme' 
 		<ul>
 			#{
 			local n = 1
-			while n <= #others and n <= 5 do }
+			while n <= #others and n <= 5 and others[n][2] > 0 do }
 			<li><a href="#{= getPostURL(blogposts[others[n][1]]) }">#{= blogposts[others[n][1]].title }</a></li>
 			#{
 				n = n + 1
