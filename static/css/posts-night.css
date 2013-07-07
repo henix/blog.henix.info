@@ -3,6 +3,11 @@
 	color: Black;
 }
 
+.postcontent pre {
+	background-color: #1e2426;
+	color: #babdb6;
+}
+
 .postcontent th, .postcontent td {
 	border: 1px solid #ccc;
 }
