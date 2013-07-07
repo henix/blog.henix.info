@@ -1,5 +1,6 @@
 <p>　　newCounter 是用来理解闭包的一个典型函数，js 版如下：</p>
-<pre class="brush: js">function newCounter() {
+#{= highlight([=[
+function newCounter() {
     var i = 0;
     return function() {
         return i++;
@@ -9,17 +10,19 @@
 var c1 = newCounter();
 var c2 = newCounter();
 console.log(c1(), c1());
-console.log(c2());</pre>
+console.log(c2());
+]=], 'js') }#
 <p>　　该函数返回一个函数，返回的函数被调用时依次返回 0, 1, 2, ... 序列。</p>
 <p>　　用 Haskell 的 IORef 和 STRef 实现 mutable state 如下（不容易想到的是 newCounter 的类型，Monad 套 Monad）：</p>
-<pre class="brush: haskell">import Control.Monad
+#{= highlight([=[
+import Control.Monad
 import Data.IORef
 
 newCounter :: IO (IO Int)
 newCounter = do {
-  counter &lt;- newIORef (0::Int);
+  counter <- newIORef (0::Int);
   return $ do {
-    i &lt;- readIORef counter;
+    i <- readIORef counter;
     writeIORef counter (i+1);
     return i
     }
@@ -27,23 +30,26 @@ newCounter = do {
 
 main :: IO ()
 main = do {
-  c1 &lt;- newCounter;
-  x1 &lt;- c1;
-  x2 &lt;- c1;
-  c2 &lt;- newCounter;
-  y1 &lt;- c2;
+  c1 <- newCounter;
+  x1 <- c1;
+  x2 <- c1;
+  c2 <- newCounter;
+  y1 <- c2;
   print x1;
   print x2;
   print y1;
-  }</pre>
-<pre class="brush: haskell">import Control.Monad.ST
+  }
+]=], 'haskell') }#
+<p> </p>
+#{= highlight([=[
+import Control.Monad.ST
 import Data.STRef
 
 newCounter :: ST s (ST s Int)
 newCounter = do {
-  counter &lt;- newSTRef (0::Int);
+  counter <- newSTRef (0::Int);
   return $ do {
-    i &lt;- readSTRef counter;
+    i <- readSTRef counter;
     writeSTRef counter (i+1);
     return i
     }
@@ -51,13 +57,14 @@ newCounter = do {
 
 main :: IO ()
 main = print $ runST $ do {
-  c1 &lt;- newCounter;
-  x1 &lt;- c1;
-  x2 &lt;- c1;
-  c2 &lt;- newCounter;
-  y1 &lt;- c2;
+  c1 <- newCounter;
+  x1 <- c1;
+  x2 <- c1;
+  c2 <- newCounter;
+  y1 <- c2;
   return (x1, x2, y1)
-  }</pre>
+  }
+]=], 'haskell') }#
 <p>　　总结：</p>
 <ol>
 <li>js 中“不纯”的函数到 Haskell 里就不能再用函数实现了，而必须用 do block</li>
