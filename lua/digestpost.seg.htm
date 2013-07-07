@@ -1,7 +1,7 @@
 <div class="blogpost">
 	<div class="title"><a href="#{= getPostURL(post) }">#{= post.title }</a></div>
 	<div class="post-info clearfix"><span class="post-time">#{= os.date('%Y年%m月%d日 %H:%M:%S', post.publish_time) }</span><span class="post-cat"><a href="#{= getCategoryURL(post.category) }">#{= categories[post.category].showname }</a></span><span class="post-stat">#{= post.comnum } 条评论 | #{= post.visits } 次浏览</span></div>
-	<div class="postcontent">#{= digestHTML(slt2.render(slt2.loadstring(post.content)), 200) }... <a href="#{= getPostURL(post) }">阅读全文</a></div>
+	<div class="postcontent">#{= digestHTML(slt2.render(slt2.loadstring(post.content, '#{', '}#', post.name)), 200) }... <a href="#{= getPostURL(post) }">阅读全文</a></div>
 	<div class="post-tags">
 		#{ for j, tagname in ipairs(post.tags) do }
 		#{ if j ~= 1 then },#{ end }

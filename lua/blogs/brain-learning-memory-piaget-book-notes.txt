@@ -1,7 +1,7 @@
 <p>　　寒假里读了两本书：<a href="http://book.douban.com/subject/1393145/">《脑的学习与记忆》</a>《皮亚杰的认知发展理论》，都是跟教育有关的。</p>
 <p>　　下面是脑图（Mindmap）：</p>
-<p>#{= makeImg('/files/brain-learning-memory-piaget-book-notes/brain.png') }</p>
-<p>#{= makeImg('/files/brain-learning-memory-piaget-book-notes/piaget.png') }</p>
+<p>#{= makeImg('/files/brain-learning-memory-piaget-book-notes/brain.png') }#</p>
+<p>#{= makeImg('/files/brain-learning-memory-piaget-book-notes/piaget.png') }#</p>
 <p>　　一些有趣的结论：</p>
 <ol>
 <li>

@@ -12,14 +12,14 @@
 
 <p>　　然后回顾 <a href="http://en.wikipedia.org/wiki/Burrows–Wheeler_transform">Burrows-Wheeler 逆变换</a>，其步骤为：将最后一列放入矩阵，排序；然后将最后一列附加到当前矩阵的左边，再排序（这里的排序都是稳定的）；不断重复这个过程。结合 poj 1147 的样例如下图所示：</p>
 
-<p class="center">#{= makeImg('/files/bwt/first-step.png') }</p>
+<p class="center">#{= makeImg('/files/bwt/first-step.png') }#</p>
 
 <p>　　上图中，右边一列即排好序的一列，然后把 L 附加到该列的左边。然后再对第一列进行稳定排序就变成下图的样子，注意到灰色部分跑到第一行了。这意味着什么呢？我们的目标是不重建整个矩阵就求出最终答案（矩阵 M 的第一行）。第一行的第一个肯定跟第一列的第一个是一样的，即 F[1] ，也就是上图中右边一列的第一个。然后，我们从左边一列找出第一个在排序之前的位置，也就是顺着箭头所指的方向。</p>
 
 <p>　　“0”在排序之前，所在的位置是 L[2] ，由于排序是稳定的，所以肯定不是 L[3] 或者 L[5] 。然后顺着虚线箭头所指的方向，我们就找到了 M 中第一行的第二个，即 F[2] 。为什么 F[2] 就是 M 的第一行的第二个呢？看下图，标记为灰色的两个跑到第一行去了。</p>
-<p class="center">#{= makeImg('/files/bwt/sorted.png') }</p>
+<p class="center">#{= makeImg('/files/bwt/sorted.png') }#</p>
 <p>　　然后我们依次类推，可以得到 M 的第一行的剩下的元素，如下图中箭头所示的方向：</p>
-<p class="center">#{= makeImg('/files/bwt/ibwt.png') }</p>
+<p class="center">#{= makeImg('/files/bwt/ibwt.png') }#</p>
 <p>　　沿着箭头走，输出所有遇到的左边一列的元素，于是我们得到 M 的第一行为：0 0 0 1 1 。</p>
 <p>　　最后的代码如下：</p>
 <pre class="brush:cpp">

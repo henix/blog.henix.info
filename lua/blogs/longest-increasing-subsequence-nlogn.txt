@@ -45,4 +45,4 @@ int main(int argc, char *argv[])
 	return 0;
 }
 </pre>
-#{include: 'mathjax.seg.htm' }
+#{include: 'mathjax.seg.htm' }#

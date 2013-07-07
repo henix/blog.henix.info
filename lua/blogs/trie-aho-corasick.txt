@@ -400,10 +400,10 @@ int main(int argc, char *argv[])
 <p>　　AC 自动机即 Aho-Corasick 算法，用来做多串匹配：给你 n 个字符串，要在一个目标串上匹配这些串，当然可以做 n 次单串匹配，比如 KMP ，但时间复杂度就高了。</p>
 <p>　　AC 自动机就是在 trie 上做 KMP ，先构造所有字符串的一个 trie ，再添加失败边（failure links），失败边跟 KMP 里的“失败函数”是一样的道理。</p>
 <p>　　下面我们以 {she, he, say, shr, her, e} 这几个单词为例。先构造 trie ：</p>
-<p class="center">#{= makeImg('/files/aho-corasick/ac.gif') }</p>
+<p class="center">#{= makeImg('/files/aho-corasick/ac.gif') }#</p>
 <p>　　方形节点表示该节点是一个单词的结尾，即匹配成功。</p>
 <p>　　再添加失败边：</p>
-<p class="center">#{= makeImg('/files/aho-corasick/ac2.gif') }</p>
+<p class="center">#{= makeImg('/files/aho-corasick/ac2.gif') }#</p>
 <p>　　虚线表示失败边，没有的即默认失败到 root ，这里为了图看起来清晰就省略了。</p>
 <p>　　为什么 she 的失败边指向 he ？因为黄色的部分和红色的部分完全一样。当匹配到 she 的时候，实际上已经隐含匹配了 he 。试想，如果在 she 这个节点遇到了 r ，匹配失败，则应退到 he 继续尝试。</p>
 <h3>构造 AC 自动机</h3>

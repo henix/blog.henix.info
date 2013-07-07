@@ -49,23 +49,23 @@ end
 </pre>
 <p>　　0 是源，3 是汇。每个节点上标注了该节点的 d 值。</p>
 <p>　　Step 1. 现在除汇外所有节点的 d 都等于 1 ，找到一条增广路：</p>
-<p>#{= makeImg('/files/maxflow/2sp1.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp1.gif') }#</p>
 <p>　　Step 2. 灰色节点表示此时必须修改距离标号。我们看到从 0 出发有 0 -&gt; 1 这条路还有容量，但由于 0 的距离标号太小，所以这不是允许弧：</p>
-<p>#{= makeImg('/files/maxflow/2sp2.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp2.gif') }#</p>
 <p>　　Step 3. 修改距离标号后，找到一条增广路：</p>
-<p>#{= makeImg('/files/maxflow/2sp3.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp3.gif') }#</p>
 <p>　　Step 4. 然后 1 又找不到允许弧了，于是修改它的距离标号，并回退到 0 ：</p>
-<p>#{= makeImg('/files/maxflow/2sp4.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp4.gif') }#</p>
 <p>　　Step 5. 从 0 开始，发现也没有允许弧，于是修改距离标号：</p>
-<p>#{= makeImg('/files/maxflow/2sp5.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp5.gif') }#</p>
 <p>　　Step 6. 0 的距离标号修改成 3 后，找到一条允许路：</p>
-<p>#{= makeImg('/files/maxflow/2sp6.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp6.gif') }#</p>
 <p>　　Step 7. 注意这张图的布局跟前面的已经不同，大家只要记住 0 是源，3 是汇就行了。</p>
-<p>#{= makeImg('/files/maxflow/2sp7.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp7.gif') }#</p>
 <p>　　Step 8. </p>
-<p>#{= makeImg('/files/maxflow/2sp8.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp8.gif') }#</p>
 <p>　　Step 9. 0 号节点的距离标号终于被修改成 n = 4 ，算法结束。</p>
-<p>#{= makeImg('/files/maxflow/2sp9.gif') }</p>
+<p>#{= makeImg('/files/maxflow/2sp9.gif') }#</p>
 
 <h3>源代码</h3>
 <p>　　我的实现，在 oj 上测试，gcc 0ms 。</p>

@@ -11,9 +11,9 @@
 
 <p>　　先有图有真相：</p>
 <p>用 wmii 平铺两列，再用 tmux 切分终端：</p>
-<p>#{= makeImg('/files/wmii-intro/wmii-1.png') }</p>
+<p>#{= makeImg('/files/wmii-intro/wmii-1.png') }#</p>
 <p>三列平铺：上人人 + 看博客 + 挂 qq ：</p>
-<p>#{= makeImg('/files/wmii-intro/wmii-2.png') }</p>
+<p>#{= makeImg('/files/wmii-intro/wmii-2.png') }#</p>
 
 <p>　　wmii 的特性有：</p>
 <ul>

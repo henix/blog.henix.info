@@ -4,7 +4,7 @@
 <p><a href="http://v.youku.com/v_show/id_XMjA2OTgzMjcy.html">http://v.youku.com/v_show/id_XMjA2OTgzMjcy.html</a></p>
 <p>这个是原始视频：<a href="http://v.youku.com/v_show/id_XMjIyNjcwMA==.html">http://v.youku.com/v_show/id_XMjIyNjcwMA==.html</a> 。另外顺便一提，我这个视频跟原始视频的同步是很精确的，你可以比较一下。</p>
 <p>想到要玩就玩以前的人都没有搞过的，所以我想到了用 <a href="http://www.autohotkey.com/">AutoHotKey</a> 通吃任意文本编辑器。基本原理是先把视频中的每一帧抓下来保存成图片，再使用 <a href="http://aa-project.sourceforge.net/aview">aview</a>（cygwin 里有 Windows 版）将图片转换成字符，这个直接参考了七星庐大神的攻略：<a href="http://qixinglu.com/archives/vim_is_ascii_player">http://qixinglu.com/archives/vim_is_ascii_player</a> 。</p>
-<p>#{= makeImg('/files/qq-ascii-video.gif') }</p>
+<p>#{= makeImg('/files/qq-ascii-video.gif') }#</p>
 <p>然后一段很简单的 AutoHotKey 脚本：</p>
 <pre class="brush:ahk">#b::
 Loop, read, files.txt

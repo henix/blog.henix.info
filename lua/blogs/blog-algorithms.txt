@@ -59,4 +59,4 @@ function digestHTML(str, length)
 	return string.gsub(string.sub(ret, 1, i - 1), string.char(127), "&lt;br /&gt;")
 end
 </pre>
-#{include: 'mathjax.seg.htm' }
+#{include: 'mathjax.seg.htm' }#

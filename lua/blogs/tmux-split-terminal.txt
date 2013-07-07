@@ -3,7 +3,7 @@
 <p>　　偶然发现了 <a href="http://tmux.sourceforge.net/">tmux</a> ，screen 的替代品，可以轻松实现垂直分割。</p>
 
 <p>　　先上图：切成三个窗格，一边看 manpage ，一边用 vim ，还可以一边跑 make ：</p>
-<p>#{= makeImg('/files/tmux-split-terminal/tmux.png') }</p>
+<p>#{= makeImg('/files/tmux-split-terminal/tmux.png') }#</p>
 
 <p>使用方法：</p>
 <p>先一个 tmux 进入，然后快捷键：</p>

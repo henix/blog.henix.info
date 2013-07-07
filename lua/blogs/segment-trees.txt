@@ -11,7 +11,7 @@
 <p>　　证明的方法主要是先证每一层最多会被选取两个节点，然后由于高度为 log n 可得。</p>
 <p>　　为什么每层最多会选取两个呢？试证如下：</p>
 <p>　　首先，任何一个区间进入线段树，这个区间总会在某个地方被分成两半，除非这个区间的长度为 1 ，那就不用讨论了。分成两半后，前一半由于必须包含 mid 这块区间，它“落下”的时候，每一层最多选取一个节点。后一半同理。</p>
-<p class="center">#{= makeImg('/files/segment-trees/segtree.gif') }<br /><a href="/files/segment-trees/segtree.svg">(svg)</a></p>
+<p class="center">#{= makeImg('/files/segment-trees/segtree.gif') }#<br /><a href="/files/segment-trees/segtree.svg">(svg)</a></p>
 <p>　　如上图，在线段树中查询线段①，被分成②③两个部分。对于每个部分，可以分两种情况：一种是像②那样，没有达到下一层的一半，此时不会选择 C ；另一种是像③那样，超过下一层的一半，此时会选取 D 。后面的类似。于是一层中最多有两个节点被选取。</p>
 <p>　　实现方法：一般是像堆那样实现成数组，然后可以用 2 * i 和 2 * i + 1 作为下标分别访问左右孩子。</p>
 <p>一些线段树题目：</p>

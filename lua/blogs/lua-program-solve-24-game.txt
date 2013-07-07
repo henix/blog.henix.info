@@ -128,12 +128,12 @@ for a = 1, 4 do
     end
 end
 print('Maze24 has no idea.')
-]=], 'lua') }
+]=], 'lua') }#
 <p>如果你的电脑上没有 Lua 解释器，也可以用 <a href="http://codepad.org/">codepad</a> 来在线运行这段代码。但 codepad 无法输入，所以你需要稍微修改一下代码：</p>
 <p>把 'Please input 4 numbers: ' 后面的那个 for 循环去掉，改成：</p>
 #{= highlight([=[
 ar = {5, 5, 5, 1}
-]=], 'lua') }
+]=], 'lua') }#
 <p>或者填入其他你想要凑 24 的 4 个数字。</p>
 <p>PS. 顺便附 3 组收藏的凑 24 题目：</p>
 <ul>

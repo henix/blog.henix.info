@@ -1,9 +1,9 @@
 <p>　　最近读<a href="http://book.douban.com/subject/3234692/">编程珠玑II</a> ，其中介绍了 pic 这个 DSL 。于是试用了一下，感觉非常好。简而言之，pic 就是一门画示意图的语言，类似于 PostScript 或者 LOGO ，但比它们更面向问题。</p>
 <p>　　我使用的是 <a href="https://ece.uwaterloo.ca/~aplevich/dpic/">dpic</a> ，支持输出 svg 。</p>
 <p>　　先有图有真相，以下是用 pic 画的电路图：</p>
-<p class="center">#{= makeImg('/files/pic/design.gif') }</p>
+<p class="center">#{= makeImg('/files/pic/design.gif') }#</p>
 <p>　　pic 支持以下基本图形（<a href="/files/pic/basic.svg">svg</a>）：</p>
-<p class="center">#{= makeImg('/files/pic/basic.gif') }</p>
+<p class="center">#{= makeImg('/files/pic/basic.gif') }#</p>
 <p>　　上面的图形由以下源代码生成：</p>
 <pre class="brush: plain">
 .PS

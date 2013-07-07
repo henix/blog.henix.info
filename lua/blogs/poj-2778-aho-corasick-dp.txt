@@ -1,7 +1,7 @@
 <p>　　poj 2778 DNA Sequence 题目大意：给你一些疾病 DNA 片段，求长度为 n 的 DNA 串中不包含这些片段的串的数量。</p>
 <p>　　一开始不知道怎么做，直到看到网上的一句话，“长度为 n 的字符串可以由长度为 n - 1 的字符串后面加一个字符构成”，由此大彻大悟，原来这就是传说中的自动机 dp ！</p>
 <p>　　举个例子：{AG, CG} ，首先构造 AC 自动机：</p>
-<p class="center">#{= makeImg('/files/poj2778/2778.gif') }</p>
+<p class="center">#{= makeImg('/files/poj2778/2778.gif') }#</p>
 <p>　　给每个节点加了编号，只有 0 1 2 是合法的，其他状态到达就直接死了，不用处理。</p>
 <p>　　然后将上面的 AC 自动机转化成下面这张表：</p>
 <table style="margin: auto;">
@@ -27,7 +27,7 @@
 <p>　　然后把结果矩阵的第一列加起来即得到答案 48 。</p>
 <p>　　题目中 n 可能非常大，这时就轮到快速幂运算出场了。使用快速幂运算，计算 \(A^n\) 的时间复杂度为 O(log n) 次乘法（此题是矩阵乘法）。我的代码中这部分用了两个指针，每次计算都交换，这是为了避免矩阵复制。</p>
 <p>　　最后，还要考虑一种情况，即有些疾病 DNA 片段互相包含的情况，以 {ACG, C} 为例：</p>
-<p class="center">#{= makeImg('/files/poj2778/2778-2.gif') }</p>
+<p class="center">#{= makeImg('/files/poj2778/2778-2.gif') }#</p>
 <p>　　其中 C 是死节点，那么 AC（红色的）是不是呢？表面上看 AC 不是疾病片段，但实际上，匹配了 AC 就相当于匹配了 C ，所以 AC 也是死节点！我称这种情况为“疾病的传染”，见代码中用 spread 注释的部分。</p>
 <p>　　代码（gcc 63MS）：</p>
 <pre class="brush: cpp">
@@ -223,4 +223,4 @@ int main(int argc, const char *argv[])
 <li><a href="http://hi.baidu.com/lilymona/blog/item/4c0252dd3d8cbf1949540390.html">POJ 2778 DNA Sequence [AC自动机+矩阵递推]_Lily's OI space_百度空间</a></li>
 <li><a href="http://blog.csdn.net/kk303/article/details/6936046">POJ2778 - AC自动机+非递归的矩阵乘法 - Jacob's zone - 博客频道 - CSDN.NET</a></li>
 </ul>
-#{include: 'mathjax.seg.htm' }
+#{include: 'mathjax.seg.htm' }#
