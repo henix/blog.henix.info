@@ -23,6 +23,11 @@ document.write('<link rel="stylesheet" href="/syntaxhighlighter/styles/shTheme' 
 </script>
 <noscript><link rel="stylesheet" href="/syntaxhighlighter/styles/shThemeDefault.css" type="text/css" /></noscript>
 
+<script type="text/javascript">
+document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? 'rootwater' : 'default') + '.css" type="text/css" />');
+</script>
+<noscript><link rel="stylesheet" href="/highlight/default.css" type="text/css" /></noscript>
+
 <title>#{= post.title } - 遥远的街市</title>
 </head>
 

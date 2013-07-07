@@ -27,7 +27,7 @@
 	margin: 10px 0;
 }
 
-.blogpost .postcontent ol {
+.postcontent ol {
 	list-style: outside decimal;
 	line-height: 150%;
 	margin-left: 2em;
@@ -69,6 +69,21 @@
 	color: Black;
 	line-height: 120%;
 
+	white-space: pre-wrap;
+	*white-space: pre;
+	*word-wrap: break-word;
+}
+
+.postcontent div.hl {
+	font-size: 12.5px;
+	padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.postcontent div.hl ol {
+	line-height: 125%;
+}
+
+.postcontent div.hl li {
 	white-space: pre-wrap;
 	*white-space: pre;
 	*word-wrap: break-word;

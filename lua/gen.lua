@@ -40,6 +40,22 @@ function markdown(str)
 	return result
 end
 
+function highlight(str, lang)
+	local tmpname = os.tmpname()
+	do
+		local ftmp = assert(io.open(tmpname, 'w'))
+		ftmp:write(str)
+		ftmp:close()
+	end
+	local fin = io.popen('highlight -n -O xhtml --syntax '..lang..' '..tmpname)
+	local all = fin:read('*a')
+	fin:close()
+	os.remove(tmpname)
+	local start1, end1 = string.find(all, '<ol>', 1, true)
+	local start2, end2 = string.find(all, '</ol>', 1, end1 + 1)
+	return '<div class="hl">'..all:sub(start1, end2):gsub('&nbsp;', ' ')..'</div>'
+end
+
 function table.inarray(t, name)
 	for _, v in ipairs(t) do
 		if v == name then

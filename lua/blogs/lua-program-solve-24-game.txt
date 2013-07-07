@@ -10,9 +10,9 @@
 </div></blockquote>
 <p>上面是由 4 个数字和 3 个运算符组成的所有合法的逆波兰式的模式。“1”表示一个数字，而“+”表示一个运算符。然后枚举每一个数字和运算符。总枚举量为：5 * 4! * 4^3 = 7680，枚举量很小，所以直接穷举即可。</p>
 <p>代码：</p>
-<pre class="brush: lua;">
+#{= highlight([=[
 -- 计算逆波兰式
--- (table) -&gt; number
+-- (table) -> number
 function evalPo(e)
     local s = {} -- a stack
     local a, b, c
@@ -20,7 +20,7 @@ function evalPo(e)
         if type(v) == "number" then
             table.insert(s, v)
         elseif type(v) == "string" then
-            if #s &lt; 2 then
+            if #s < 2 then
                 error('not enough values')
             end
             b = table.remove(s)
@@ -50,7 +50,7 @@ function evalPo(e)
 end
 
 -- 将逆波兰式转换成普通表达式，用于输出
--- (table) -&gt; string
+-- (table) -> string
 function RPNtoExp(e)
     local s = {} -- a stack
     local a, b, c
@@ -58,7 +58,7 @@ function RPNtoExp(e)
         if type(v) == "number" then
             table.insert(s, v)
         elseif type(v) == "string" then
-            if #s &lt; 2 then
+            if #s < 2 then
                 error('not enough values')
             end
             b = table.remove(s)
@@ -128,12 +128,12 @@ for a = 1, 4 do
     end
 end
 print('Maze24 has no idea.')
-</pre>
+]=], 'lua') }
 <p>如果你的电脑上没有 Lua 解释器，也可以用 <a href="http://codepad.org/">codepad</a> 来在线运行这段代码。但 codepad 无法输入，所以你需要稍微修改一下代码：</p>
 <p>把 'Please input 4 numbers: ' 后面的那个 for 循环去掉，改成：</p>
-<pre class="brush: lua;">
+#{= highlight([=[
 ar = {5, 5, 5, 1}
-</pre>
+]=], 'lua') }
 <p>或者填入其他你想要凑 24 的 4 个数字。</p>
 <p>PS. 顺便附 3 组收藏的凑 24 题目：</p>
 <ul>
