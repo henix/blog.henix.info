@@ -1,2 +1,2 @@
-﻿Hello, world!<br />
+Hello, world!<br />
 发帖测试

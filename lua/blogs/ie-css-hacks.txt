@@ -1,14 +1,14 @@
 <p>　　最近做右边“热门文章”的彩虹表效果，为了让它在 IE 上能优雅降级，研究了下针对 IE 的 CSS Hacks ：</p>
 <pre class="brush: css">
-selector{ 
-  property:value; /* all browsers */ 
-  property:value\9; /* IE 6 7 8 9 */ 
-  property:value\0; /* IE 8 9 Opera */ 
+selector{
+  property:value; /* all browsers */
+  property:value\9; /* IE 6 7 8 9 */
+  property:value\0; /* IE 8 9 Opera */
   property:value\0/; /* IE 8 9 */
-  property:value\9\0; /* IE 9 */ 
+  property:value\9\0; /* IE 9 */
   *property:value; /* IE6 IE7 */
-  +property:value; /* IE7 */ 
-  _property:value; /* IE6 */ 
+  +property:value; /* IE7 */
+  _property:value; /* IE6 */
 }
 * html selector {
   property:value; /* IE 6 */

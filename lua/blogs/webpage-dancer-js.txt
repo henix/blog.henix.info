@@ -3,8 +3,9 @@
 <p>　　然后打开任何网站，点“Dance it”。</p>
 <p>　　与这个<a href="http://erkie.github.com/">网页射击游戏</a>配合使用，效果更佳。</p>
 <p>　　源代码，受到某电工基地某主页启发而写，而且针对上面的网页射击游戏做了特殊处理：</p>
-<pre class="brush:js">(function() {
- 	var elements = document.getElementsByTagName('a');
+<pre class="brush:js">
+(function() {
+	var elements = document.getElementsByTagName('a');
 	R = 0;
 	var arx = new Array();
 	var ary = new Array();

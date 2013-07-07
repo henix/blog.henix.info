@@ -264,7 +264,7 @@ int main(int argc, const char *argv[])
 		}
 		buf[len] = '\0';
 		insert(buf, lineno);
-		
+
 		lineno++;
 		ch = getchar();
 	}
