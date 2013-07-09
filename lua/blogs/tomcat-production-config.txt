@@ -1,6 +1,8 @@
 <h3>1. 安装 tomcat-native 包</h3>
 
-<pre class="brush: bash">yum install tomcat-native</pre>
+#{= highlight([=[
+yum install tomcat-native
+]=], 'bash') }#
 
 <p>　　这个包不需要额外配置，安装后就会自动启用。使用后减少了很多 TIME_WAIT 和 CLOSE_WAIT 。可见 <a href="http://tomcat.apache.org/native-doc/">native</a> 包确实在网络连接上下了很多功夫。</p>
 
@@ -8,13 +10,20 @@
 
 <h3>3. 配置 gzip</h3>
 
-<pre class="brush: ruby">compression=&quot;2048&quot; compressableMimeType=&quot;text/html,text/xml,text/plain,text/css,text/javascript,application/json&quot;</pre>
+#{= highlight([=[
+compression="2048" compressableMimeType="text/html,text/xml,text/plain,text/css,text/javascript,application/json"
+]=], 'xml') }#
 
 <p>　　对指定的 mimetype 并且响应大小超过指定的字节数的响应使用 gzip 。</p>
 
 <h3>4. 开启 JMX</h3>
 
-<pre class="brush: ruby">-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8390 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false</pre>
+#{= highlight([=[
+-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.port=8390
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+]=], 'ruby') }#
 
 <p>　　这个主要是用于远程 profile 。场景：有一 tomcat 运行在远程，本机和远程之间只有 ssh 连接，想对 tomcat 上的程序进行 profile 。</p>
 

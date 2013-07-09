@@ -27,7 +27,7 @@
 
 <h3>awesome 的配置</h3>
 <p>1. 前面说的为不同的桌面设置不同的壁纸的代码如下：</p>
-<pre class="brush: lua">
+#{= highlight([=[
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 last_desk = 'dark'
@@ -47,12 +47,12 @@ for s = 1, screen.count() do
 	end)
 end
 -- }}}
-</pre>
+]=], 'lua') }#
 <p>　　通过 feh 设置壁纸，且仅在当前桌面和要切换过去的桌面的壁纸不同的时候在调用 feh ，减少 fork 的开销。</p>
 <p>2013-1-7 更新：awesome 3.5 中 attached_add_signal 改为 attached_connect_signal 。</p>
 
 <p>2. 一些自定义快捷键</p>
-<pre class="brush: lua">
+#{= highlight([=[
 -- Win + p 打开 dmenu ：
 awful.key({modkey}, "p", function ()
     awful.util.spawn('dmenu_run')
@@ -67,7 +67,7 @@ end),
 -- 取消 Win + Shift + q 的退出，
 -- 退出的时候用菜单，因为我老是不小心按了...
 -- awful.key({modkey, "Shift"}, "q", awesome.quit),
-</pre>
+]=], 'lua') }#
 <p>　　当然这里又引发了我的另一个思考，如何设计用户界面，我称之为用户界面设计的 henix's law ：</p>
 <blockquote><div>用户越需要频繁使用的功能应该越容易被调用；相反，越不需要频繁使用的功能应该越难被找到。</div></blockquote>
 <p>　　容易调用的例子：快捷键、工具栏；难找到的例子：庞大的菜单、一个套一个的对话框、配置文件。</p>
@@ -76,11 +76,11 @@ end),
 
 <p>3. 窗口背景透明：</p>
 <p>　　在 manage 的 signal 里加入：</p>
-<pre class="brush: lua">
+#{= highlight([=[
     if c.class ~= "MPlayer" then
         c.opacity = 0.72
     end
-</pre>
+]=], 'lua') }#
 <p>　　将除了 mplayer 外所有窗口的透明度设置为 0.72 。</p>
 
 <p>4. 添加 vicious 控件：</p>
@@ -112,7 +112,7 @@ mystatusbar.screen = 1
 </pre>
 <p>　　在底部状态栏显示电池、uptime 、CPU 和内存。</p>
 <p>2013-1-7 更新：awesome 3.5 各种 API 有更新，请使用以下代码：</p>
-<pre class="brush: lua">
+#{= highlight([=[
 -- vicious
 do
 	local batwidget = wibox.widget.textbox()
@@ -144,4 +144,4 @@ do
 		mystatusbar[s]:set_widget(layout)
 	end
 end
-</pre>
+]=], 'lua') }#
