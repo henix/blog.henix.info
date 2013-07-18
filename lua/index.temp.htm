@@ -1,6 +1,6 @@
-#{include: 'doctype.seg.htm' }
+#{include: 'doctype.seg.htm' }#
 <head>
-#{include: 'head-common.seg.htm' }
+#{include: 'head-common.seg.htm' }#
 <title>遥远的街市</title>
 <script type="text/javascript">
 if (window.top != window) {
@@ -14,10 +14,10 @@ if (window.top != window) {
 <body>
 <div id="page">
 
-#{include: 'header.seg.htm' }
-#{ local selectedIndex = 0 }#{include: 'nav.seg.htm' }#{ selectedIndex = null }
+#{include: 'header.seg.htm' }#
+#{ local selectedIndex = 0 }##{include: 'nav.seg.htm' }##{ selectedIndex = null }#
 <div id="content">
-#{include: 'searchbar.seg.htm' }
+#{include: 'searchbar.seg.htm' }#
 <p style="font-size: 14px; margin-bottom: 2em">　　这里是 henix 的技术博客，我平时遇到的各种技术问题和想法会记录在这里。 :)</p>
 #{ for _, catename in ipairs(categories) do }
 #{ local cate = categories[catename] }
@@ -43,11 +43,11 @@ if (window.top != window) {
 </li>#{ end }
 </ul></div>#{ end }
 
-#{include: 'popular.seg.htm' }
-#{include: 'tags.seg.htm' }
+#{include: 'popular.seg.htm' }#
+#{include: 'tags.seg.htm' }#
 </div><!-- end of content -->
 
-#{include: 'footer.seg.htm' }
+#{include: 'footer.seg.htm' }#
 </div><!-- end of page -->
 
 #inline Flower.csser
@@ -131,6 +131,6 @@ CateItem.prototype.init = function() {
 FlowerUI.compileAll();
 </script>
 
-#{include: 'ga.seg.htm' }
+#{include: 'ga.seg.htm' }#
 </body>
 </html>

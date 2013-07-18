@@ -565,13 +565,13 @@ blogposts = {
 		tags = {'cmd.exe', 'Windows'},
 		category = 'Windows',
 	},
-	{
+	--[[{
 		name = 're-java-integer-utils',
 		title = '[旧文重发]IntegerUtils：一个关于整数操作的工具类',
 		publish_time = 1295885344,
 		tags = {'Java', '性能'},
 		category = 'Java',
-	},
+	},]]
 	{
 		name = "mount-ntfs-user-permissions",
 		title = "Linux 中普通用户无法访问 NTFS 分区",

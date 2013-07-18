@@ -1,6 +1,6 @@
-#{include: 'doctype.seg.htm' }
+#{include: 'doctype.seg.htm' }#
 <head>
-#{include: 'head-common.seg.htm' }
+#{include: 'head-common.seg.htm' }#
 <link href="/css/posts.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 if (when !== 'morning') {
@@ -28,19 +28,30 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 </script>
 <noscript><link rel="stylesheet" href="/highlight/default.css" type="text/css" /></noscript>
 
-<title>#{= post.title } - 遥远的街市</title>
+<title>#{= title }# - 遥远的街市</title>
 </head>
 
 <body>
 <div id="page">
 
-#{include: 'header.seg.htm' }
-#{include: 'nav.seg.htm' }
+#{include: 'header.seg.htm' }#
+#{include: 'nav.seg.htm' }#
 <div id="content">
-#{include: 'fullpost.seg.htm' }
-	<div class="related-posts">
-		<p>相关文章：</p>
-		#{
+
+<div class="blogpost">
+	<div class="title"><a href="#{= getPostURL(name) }#">#{= title }#</a></div>
+	<div class="post-info clearfix">
+		<span class="post-time">#{= os.date('%Y年%m月%d日 %H:%M', publish_time) }#</span>
+		<span class="post-cat"><a href="#{= getCategoryURL(catid) }#">#{= catname }#</a></span>
+		<span class="post-stat">#{= comment_count }# 条评论</span>
+	</div>
+	<div class="postcontent">#{= loadFile(post_path) }#</div>
+	<div class="post-tags">#{= loadFile(tags_path) }#</div>
+</div>
+
+<div class="related-posts">
+	<p>相关文章：</p>
+		#${
 		local others = {}
 		for i = 1, #blogposts do
 			if blogposts[i] ~= post then
@@ -50,30 +61,31 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 		local function moreRelative(a, b)
 			return a[2] > b[2]
 		end
-		table.sort(others, moreRelative) }
-		<ul>
-			#{
+		table.sort(others, moreRelative) }$#
+	<ul>
+			#${
 			local n = 1
-			while n <= #others and n <= 5 and others[n][2] > 0 do }
-			<li><a href="#{= getPostURL(blogposts[others[n][1]]) }">#{= blogposts[others[n][1]].title }</a></li>
-			#{
+			while n <= #others and n <= 5 and others[n][2] > 0 do }$#
+			<li><a href=""></a></li>
+			#${
 				n = n + 1
-			end }
-		</ul>
-	</div>
+			end }$#
+	</ul>
+</div>
+
 <div id="disqus_thread"></div>
 </div><!-- content -->
 
-#{include: 'footer.seg.htm' }
+#{include: 'footer.seg.htm' }#
 </div><!-- page -->
 
 <script type="text/javascript">
 	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-	var disqus_shortname = '#{= disqus_shortname }'; // required: replace example with your forum shortname
+	var disqus_shortname = '#{= disqus_shortname }#'; // required: replace example with your forum shortname
 
 	// The following are highly recommended additional parameters. Remove the slashes in front to use.
-	var disqus_identifier = '#{= post.name }';
-	var disqus_url = '#{= siteurl }#{= getPostURL(post) }';
+	var disqus_identifier = '#{= name }#';
+	var disqus_url = '#{= siteurl }##{= getPostURL(name) }#';
 
 	/* * * DON'T EDIT BELOW THIS LINE * * */
 	(function() {
@@ -83,7 +95,7 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 	})();
 </script>
 
-#{include: 'syntax.seg.htm' }
-#{include: 'ga.seg.htm' }
+#{include: 'syntax.seg.htm' }#
+#{include: 'ga.seg.htm' }#
 </body>
 </html>

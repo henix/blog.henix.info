@@ -47,7 +47,7 @@ function highlight(str, lang)
 		ftmp:write(str)
 		ftmp:close()
 	end
-	local fin = io.popen('highlight -n -O xhtml --syntax '..lang..' '..tmpname)
+	local fin = io.popen('highlight -f -n -O xhtml --syntax '..lang..' '..tmpname)
 	local all = fin:read('*a')
 	fin:close()
 	os.remove(tmpname)
