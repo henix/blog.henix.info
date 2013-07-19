@@ -11,7 +11,6 @@ CPU	cpu
 CSS	CSS
 DLL	DLL
 Emacs	emacs
-English	English
 ffmpeg	ffmpeg
 Fun	Fun
 Haskell	haskell
@@ -27,13 +26,11 @@ MathJax	MathJax
 MinGW	MinGW
 Monad	monad
 mount	mount
-NoSQL	NoSQL
 ntfs	ntfs
 pic	pic
 POJ	poj
 Prolog	prolog
 Python	Python
-Redis	Redis
 robocopy	robocopy
 screen	screen
 sed	sed
@@ -67,10 +64,8 @@ X11	X11
 多核	multi-core
 多线程	multi-threading
 字符串	strings
-学习	learning
 并发	Concurrency
 并查集	union-find-set
-心理学	psychology
 性能	Performance
 技术宅	tech-otaku
 数值分析	numerical-analysis
