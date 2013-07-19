@@ -1,7 +1,3 @@
-% [旧文重发]一个 Lua 的凑24程序
-% Algorithm; Lua; 算法
-% 1298006541
-
 　　// 旧地址：[http://blog.csdn.net/shell_picker/archive/2010/11/25/6034158.aspx](http://blog.csdn.net/shell_picker/archive/2010/11/25/6034158.aspx)
 
 　　上次看到一个“凑24”的题目但想不出来- -b，所以蛋疼地写了个程序来算。。。现在终于知道答案了。。。

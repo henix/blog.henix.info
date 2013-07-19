@@ -1,7 +1,3 @@
-% [重发]字符动画之QQ聊天窗口版
-% Computers; 技术宅; AutoHotKey
-% 1301854323
-
 　　// 旧地址：[http://blog.csdn.net/shell_picker/archive/2010/09/17/5889851.aspx](http://blog.csdn.net/shell_picker/archive/2010/09/17/5889851.aspx)
 
 　　看到最近技术宅是如此的火，比如 [Word 版 Only my railgun](http://v.youku.com/v_show/id_XMTM3Mjg5OTcy=.html)、[Vim 版 Bad Apple](http://v.youku.com/v_show/id_XMTQ0MjM4Nzg4.html)。我也来玩玩技术宅，装一下逼。。。

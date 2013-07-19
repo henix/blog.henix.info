@@ -1,7 +1,3 @@
-% 多核系统中的伪共享问题
-% Programming; 并发; CPU; Cache; 多核; 系统结构; 性能
-% 1313323264
-
 　　最近读《[多核计算与程序设计](http://book.douban.com/subject/3624015/)》，其中提到了伪共享问题。
 
 　　伪共享（false sharing）是多核编程中特有的问题。而且牵扯到 Cache ……什么东西一牵扯到 Cache 就变得异常复杂。

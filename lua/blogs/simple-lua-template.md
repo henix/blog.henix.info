@@ -1,7 +1,3 @@
-% Simple Lua Template 0.1 发布
-% Lua; Lua; 模板处理
-% 1309612196
-
 　　[slt](http://code.google.com/p/slt/)（Simple Lua Template）是一个 Lua 模板引擎。模板引擎类似 printf 的格式化字符串，根据一个模板，将一些变量“串行化”成一段文本，不过功能更强大，通常用来生成 HTML 页面。
 
 　　一般的模板引擎应该实现的功能有：
@@ -24,7 +20,7 @@
 ```html
 <span>
 #{ if user ~= nil then }
-  Hello, &#35;{= user.name }!
+  Hello, #{= user.name }!
 #{ else }
   <a href="/login">login</a>
 #{ end }

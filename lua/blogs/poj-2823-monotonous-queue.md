@@ -1,7 +1,3 @@
-% POJ 2823 单调队列 + IO 优化
-% Algorithm; 算法; 单调队列; POJ
-% 1326188374
-
 　　最近继续补算法……学习一下单调队列。据说 [POJ 2823](http://poj.org/problem?id=2823) 是道经典题目。
 
 　　给出一个数组和一个固定长度的窗口，这个窗口从左滑到右，要求依次输出每个区间的最大值。
@@ -12,7 +8,7 @@
 
 　　代码（gcc）：
 
-``` {.cpp .numberLines}
+```cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>

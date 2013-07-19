@@ -1,7 +1,3 @@
-% 多线程与 Python C 模块
-% Programming; Python; 多线程; 并发
-% 1322139463
-
 　　Python 的 C 模块中比较容易遇到的问题就是多线程问题。考虑如下场景：
 
 　　在 Python 中开了两个线程，其中一个线程调用了 C 模块，然后 C 模块中有 blocking 操作（比如 scanf）……

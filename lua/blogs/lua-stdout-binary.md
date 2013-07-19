@@ -1,7 +1,3 @@
-% 在 Lua 中设置 stdout 为二进制模式
-% Lua; Lua; Win32
-% 1319468436
-
 　　最近需要在 Lua 中将 stdout 设为二进制模式，因为要将 png 图像的内容输出至标准输出。实际上，这个问题在 C 语言中就存在，而且只有 Windows 下才有这么蛋疼的问题，Linux 中根本就不区分所谓“文本模式”和“二进制模式”，程序里输出什么实际上就是什么。而 Windows 中，默认以文本模式打开 stdout 和 stdin ，输出一个'\n'（0x0A），但最终得到的是'\r\n'（0x0D0A）
 
 　　首先找到的是这个：[http://lua-users.org/lists/lua-l/2006-10/msg00651.html](http://lua-users.org/lists/lua-l/2006-10/msg00651.html)

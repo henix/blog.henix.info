@@ -1,7 +1,3 @@
-% Pic 语言：画示意图的又一利器
-% Computers; pic; 文档
-% 1307166437
-
 　　最近读[编程珠玑II](http://book.douban.com/subject/3234692/) ，其中介绍了 pic 这个 DSL 。于是试用了一下，感觉非常好。简而言之，pic 就是一门画示意图的语言，类似于 PostScript 或者 LOGO ，但比它们更面向问题。
 
 　　我使用的是 [dpic](https://ece.uwaterloo.ca/~aplevich/dpic/) ，支持输出 svg 。

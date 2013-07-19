@@ -1,7 +1,3 @@
-% SyntaxHighlighter brush for Tcl
-% Web; js; SyntaxHighlighter; Tcl/Tk
-% 1302967872
-
 　　[SyntaxHighlighter](http://alexgorbatchev.com/SyntaxHighlighter/) 是一个基于 JavaScript 的代码着色器。默认没有支持 Tcl 语言，所以我写了一个 Tcl 的语法定义，让它可以高亮 Tcl 源代码。
 
 [SyntaxHighlighter](http://alexgorbatchev.com/SyntaxHighlighter/) is a syntax highlighter based on JavaScript. But it doesn't have built-in support for the Tcl programming language. I write a syntax definition for Tcl, so that it can highlight Tcl source code.

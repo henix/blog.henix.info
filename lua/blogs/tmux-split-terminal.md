@@ -1,7 +1,3 @@
-% 用 tmux 分割终端
-% Linux; Linux; shell; screen; tmux
-% 1301319078
-
 　　不久前介绍过 [GNU Screen](/blog/use-gnu-screen.html) ，不过 screen 的问题是只能水平分割，不能垂直分割。要垂直分割得装 vertial split patch。
 
 　　偶然发现了 [tmux](http://tmux.sourceforge.net/) ，screen 的替代品，可以轻松实现垂直分割。

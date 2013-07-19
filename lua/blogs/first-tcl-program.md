@@ -1,7 +1,3 @@
-% Tcl 的阶乘程序
-% Programming; Tck/Tk
-% 1301062564
-
 　　最近学了下 [Tcl/Tk](http://www.tcl.tk/) ，语法还比较容易理解，但很纠结：
 
 ``` {.tcl .numberLines}

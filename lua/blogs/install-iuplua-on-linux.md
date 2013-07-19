@@ -1,7 +1,3 @@
-% 在 Linux 上安装 iuplua
-% Lua; Lua; IUP; Linux
-% 1300348540
-
 由于我的 Linux 发行版（[Arch Linux](http://www.archlinux.org/)）不包含 [iuplua](http://www.tecgraf.puc-rio.br/iup/) ，所以我不得不自己下载安装：
 
 1. 从 <a href="http://sourceforge.net/projects/iup/files/">http://sourceforge.net/projects/iup/files/</a> 下载

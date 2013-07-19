@@ -1,7 +1,3 @@
-% 在非主线程中使用 wxWidgets
-% Programming; wxWidgets; 多线程
-% 1322367531
-
 　　有时候我们可能需要在非主线程中使用 wxWidgets 创建 GUI ：由主线程启动 GUI 线程，再在 GUI 线程中创建窗口，然后主线程等待一些事件的发生，当事件发生时由主线程通知更新 GUI 。
 
 　　但对 wxWidgets 来说还需要一些额外的技巧：因为 wxWidgets 默认使用 IMPLEMENT_APP 宏来生成 main 函数，并在 main 函数里进入 Mainloop ，而这些我们自己不能控制。但在非主线程中使用 wxWidgets ，必须由我们自己控制何时进入 Mainloop 。

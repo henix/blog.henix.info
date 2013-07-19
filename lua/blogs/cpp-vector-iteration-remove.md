@@ -1,7 +1,3 @@
-% 一边遍历一边删除 vector 中的元素
-% Programming; C++; Vector
-% 1322112251
-
 　　C++ 的 vector 是有多蛋疼啊！比如现在有一个 vector&lt;int&gt; ，我要删除所有值为 0 的元素。
 
 　　一种 naive 的想法是：

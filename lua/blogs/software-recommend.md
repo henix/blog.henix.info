@@ -1,7 +1,3 @@
-% 最近一些软件推荐
-% Windows; Windows
-% 1305718950
-
 　　以下均为免费/开源软件：
 
 [EASEUS Partition Master](http://www.partition-tool.com/personal.htm)

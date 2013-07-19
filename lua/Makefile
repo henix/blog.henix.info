@@ -23,24 +23,15 @@ comments.lua: comments.xml
 
 # post 的一般信息
 
-build/%.title: blogs/%.md
-	sed -n -e '1s/^% *//p' $< > $@
-
 build/%.name:
 	echo $@ | sed -e 's/^build\///' -e 's/\.name$$//' > $@
 
-build/%.publish_time: blogs/%.md
-	sed -n -e '3s/^% *//p' $< > $@
-
 # category
 
-build/%.catid: blogs/%.md
-	sed -n -e '2s/ //g' -e '2s/^%//p' $< | tr ';' '\n' | sed -n -e '1p' > $@
-
-build/%.catname: build/%.catid category.db
+build/%.catname: blogs/%.catid category.db
 	cat $< | join - category.db | cut -d ' ' -f 2 > $@
 
-build/%.catpost: build/%.catid build/%.name build/%.publish_time
+build/%.catpost: blogs/%.catid build/%.name blogs/%.publish_time
 	paste $^ > $@
 
 build/catpost.db: $(patsubst blogs/%.md,build/%.catpost,$(MDS))
@@ -87,7 +78,7 @@ build/%.tags: blogs/%.md
 build/%.tags.seg.htm: build/%.tags tags.db
 	sort -k 1b,1 < $< | join - tags.db | awk '{ if (NR > 1) printf ", " ; print "<a href=\"/tags/" $$2 ".html\">" $$1 "</a>" }' > $@
 
-build/%.tagpost: build/%.tags build/%.name build/%.publish_time
+build/%.tagpost: build/%.tags build/%.name blogs/%.publish_time
 	./tagpost.sh $^ > $@
 
 build/tagpost.db: $(patsubst blogs/%.md,build/%.tagpost,$(MDS))
@@ -143,10 +134,10 @@ build/%.digest.htm: build/%.md.htm digestHtml
 digestHtml: digestHtml.vala
 	valac $<
 
-build/%.lua: build/%.name build/%.title build/%.catid build/%.catname build/%.publish_time build/%.md.htm build/%.tags.seg.htm
+build/%.lua: build/%.name blogs/%.title blogs/%.catid build/%.catname blogs/%.publish_time build/%.md.htm build/%.tags.seg.htm
 	./postlua.sh $^ > $@
 
-build/%.digest.lua: build/%.name build/%.title build/%.catid build/%.catname build/%.publish_time build/%.digest.htm build/%.tags.seg.htm
+build/%.digest.lua: build/%.name blogs/%.title blogs/%.catid build/%.catname blogs/%.publish_time build/%.digest.htm build/%.tags.seg.htm
 	./postlua.sh $^ > $@
 
 blog/%.html: build/%.lua post.pp.htm config.lua build/%.md.htm build/%.tags.seg.htm

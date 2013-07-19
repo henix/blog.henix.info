@@ -1,7 +1,3 @@
-% 在 Linux 中用 ffmpeg 录屏
-% Linux; Linux; X11; ffmpeg; 多媒体
-% 1325383681
-
 　　ffmpeg 是个跨平台的全套视频音频解决方案，可以录屏、录音、转码。
 
 　　为了能在 Linux 中录音，必须先安装 PulseAudio 。

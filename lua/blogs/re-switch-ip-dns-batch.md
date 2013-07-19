@@ -1,7 +1,3 @@
-% [旧文重发]切换 IP/DNS 脚本
-% Windows; cmd.exe; Windows
-% 1295886664
-
 　　// 旧地址 [http://blog.csdn.net/shell_picker/archive/2010/07/21/5753226.aspx](http://blog.csdn.net/shell_picker/archive/2010/07/21/5753226.aspx)：
 
 　　平时奔走于寝室和实验室两地，经常需要切换 IP/DNS 配置。曾经在网上看了一段用 netsh 的切换脚本，下面这段是我对其的改进版：

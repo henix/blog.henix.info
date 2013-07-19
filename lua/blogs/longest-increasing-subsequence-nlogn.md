@@ -1,7 +1,3 @@
-% 最长上升子序列的 nlogn 算法
-% Algorithm; 算法; 动态规划
-% 1326186330
-
 　　[最长上升子序列](http://en.wikipedia.org/wiki/Longest_increasing_subsequence)（Longest increasing subsequence, LIS）是个经典的动态规划问题，用动态规划可以在 O(n^2) 的时间内解决。
 
 　　问题描述参见 [POJ 2533](http://poj.org/problem?id=2533) 。

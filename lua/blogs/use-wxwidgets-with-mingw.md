@@ -1,7 +1,3 @@
-% MinGW + wxWidgets 小记
-% Programming; MinGW; wxWidgets
-% 1305818259
-
 　　从官网上下下来的 wxWidgets 只有源代码，需要自己编译。
 
 　　如何编译的问题全在源码包里的 INSTALL-MSW.txt 里写清楚了。命令样例：
