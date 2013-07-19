@@ -79,7 +79,7 @@ blogposts = {
 		name = 'java-code-cookbook',
 		title = 'Java 常见代码替换列表',
 		publish_time = 1357564561,
-		tags = {'Java'},
+		tags = {'Java', '并发'},
 		category = 'Java',
 	},
 	{
@@ -124,13 +124,13 @@ blogposts = {
 		tags = {'算法', '字符串', 'POJ'},
 		category = 'Algorithm',
 	},
-	{
+	--[[{
 		name = 'go-io-reader',
 		title = '正确理解 Go 的 io.Reader',
 		publish_time = 1343880882,
 		tags = {'Go', '非阻塞IO'},
 		category = 'Programming',
-	},
+	},]]
 	{
 		name = 'blog-algorithms',
 		title = '这个 blog 用到的一些算法',
@@ -320,13 +320,13 @@ blogposts = {
 		tags = {'软件工程', '架构'},
 		category = 'Programming',
 	},
-	{
+	--[[{
 		name = 'js-auto-number-headings',
 		title = '用 JavaScript 自动编号 headings',
 		publish_time = 1318044789,
 		tags = {'js', '文档'},
 		category = 'Web',
-	},
+	},]]
 	{
 		name = 'max-subseg-sum',
 		title = '最大子段和问题',
@@ -348,13 +348,13 @@ blogposts = {
 		tags = {'复杂性', '人工智能'},
 		category = 'Programming',
 	},
-	{
+	--[[{
 		name = 'redis-key-or-hash',
 		title = 'Redis：key 还是 hash？',
 		publish_time = 1311763340,
 		tags = {'Redis', 'NoSQL', '性能'},
 		category = 'Programming',
-	},
+	},]]
 	{
 		name = 'linux-cmd-freq',
 		title = '统计 Linux 下使用频率最高的命令',
@@ -397,13 +397,13 @@ blogposts = {
 		tags = {'MinGW', 'DLL'},
 		category = 'Programming',
 	},
-	{
+	--[[{
 		name = 'LL-1-ab-equal-counts',
 		title = '用 LL(1) 表示含有相同数量 ab 的字符串',
 		publish_time = 1306110700,
 		tags = {'编译原理', 'LL分析'},
 		category = 'Algorithm',
-	},
+	},]]
 	{
 		name = 'hsl-to-rgb',
 		title = 'HSL 色彩空间转换成 RGB',
@@ -432,13 +432,13 @@ blogposts = {
 		tags = {'前端', 'MathJax', '文档', '数学'},
 		category = 'Web',
 	},
-	{
+	--[[{
 		name = 'note-comparison-chinese-english-writing',
 		title = '英汉写作对比研究-笔记',
 		publish_time = 1303739353,
 		tags = {'English'},
 		category = 'Essays',
-	},
+	},]]
 	{
 		name = 'tcl-syntaxhighlighter-brush',
 		title = 'SyntaxHighlighter brush for Tcl',
@@ -453,13 +453,13 @@ blogposts = {
 		tags = {'Internet'},
 		category = 'Essays',
 	},
-	{
+	--[[{
 		name = 'webpage-dancer-js',
 		title = '一段 js ，让网页跳舞',
 		publish_time = 1301882679,
 		tags = {'js', 'Fun', 'bookmarklet'},
 		category = 'Web',
-	},
+	},]]
 	{
 		name = 're-qq-ascii-video',
 		title = '[重发]字符动画之QQ聊天窗口版',
@@ -495,13 +495,13 @@ blogposts = {
 		tags = {'cmd.exe', 'Windows'},
 		category = 'Windows',
 	},]]
-	{
+	--[[{
 		name = 'participate-css-naked-day-2011',
 		title = '再次参加 CSS Naked Day',
 		publish_time = 1300723085,
 		tags = {'CSS', 'Web', '前端'},
 		category = 'Web',
-	},
+	},]]
 	{
 		name = 'read-the-fifth-discipline',
 		title = '读《第五项修炼》',
@@ -516,20 +516,20 @@ blogposts = {
 		tags = {'Lua', 'IUP', 'Linux'},
 		category = 'Lua',
 	},
-	{
+	--[[{
 		name = 'my-vimrc',
 		title = '我的 .vimrc',
 		publish_time = 1300347821,
 		tags = {'Vim', 'vimrc', 'Linux'},
 		category = 'Linux',
-	},
-	{
+	},]]
+	--[[{
 		name = 'juhua-wen-intro',
 		title = '菊花不带这样玩',
 		publish_time = 1298978607,
 		tags = {'***', '菊花', 'Unicode', '潮'},
 		category = 'Computers',
-	},
+	},]]
 	{
 		name = 'use-gnu-screen',
 		title = 'GNU Screen 初探',
@@ -551,13 +551,13 @@ blogposts = {
 		tags = {'Lua', '算法'},
 		category = 'Algorithm',
 	},
-	{
+	--[[{
 		name = 'brain-learning-memory-piaget-book-notes',
 		title = '《脑的学习与记忆》《皮亚杰的认知发展理论》读书笔记',
 		publish_time = 1297674982,
 		tags = {'学习', '心理学'},
 		category = 'Essays',
-	},
+	},]]
 	{
 		name = 're-switch-ip-dns-batch',
 		title = '[旧文重发]切换 IP/DNS 脚本',

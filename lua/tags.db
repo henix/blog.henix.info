@@ -1,4 +1,3 @@
-***	---
 AC自动机	aho-corasick
 AutoHotKey	AutoHotKey
 BLAS/LAPACK	blas-lapack
@@ -6,7 +5,6 @@ Blog	Blog
 bookmarklet	bookmarklet
 C++	cpp
 Cache	cache
-CG	CG
 closure	closure
 cmd.exe	cmd.exe
 CPU	cpu
@@ -16,7 +14,6 @@ Emacs	emacs
 English	English
 ffmpeg	ffmpeg
 Fun	Fun
-Go	go
 Haskell	haskell
 HSL	HSL
 Internet	internet
@@ -47,7 +44,6 @@ Tcl/Tk	Tcl-Tk
 tmux	tmux
 tomcat	tomcat
 trie	trie
-Unicode	Unicode
 Vector	vector
 Vim	Vim
 vimrc	vimrc
@@ -85,7 +81,6 @@ X11	X11
 树状数组	binary-indexed-trees
 模板处理	templating
 油猴脚本	greasemonkey
-潮	the-hit
 算法	Algorithm
 管理	management
 系统结构	computer-architecture
@@ -93,8 +88,7 @@ X11	X11
 线段树	segment-trees
 编译原理	Compilers
 网络流	network-flows
-菊花	juhua
+计算机图形学	CG
 调试	debug
 软件工程	software-engineering
 随机数	random
-非阻塞IO	non-blocking-io

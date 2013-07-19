@@ -1,7 +1,0 @@
-<p>　　以前参加过 <a href="http://naked.dustindiaz.com/2008/">CSS Naked Day 2008</a> 。旨在关注前端，关注 Web 标准。</p>
-<p>　　“如果没有 CSS ，世界将会怎样？”——联想广告词</p>
-<p>　　“CSS 不重要, 那还有什么重要呢？难道是表格？”——<a href="http://www.fcicq.net/wp/?p=576">fcicq</a></p>
-<p>　　“如果你接触了 CSS ，你会发现它真的很强大——特别是跟 HTML 一起使用的时候。”——henix</p>
-<p style="text-align: center; font-size: 2em;"><a href="http://naked.threepixeldrift.com/">Naked CSS Day 2011</a>: <br />April 9th, 2011</p>
-<p>　　届时，这个网站将“裸奔”！</p>
-<p>　　此页符合 Web 标准了吗？请点击页面下方的“Valid”链接。</p>
