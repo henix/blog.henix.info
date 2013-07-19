@@ -1,3 +1,7 @@
+% 瓦片式窗口管理器：wmii
+% Linux; Linux; X11; wmii; WM
+% 1301322342
+
 　　这两天本来在看 awesome ，但，archlinux 的 awesome 只能通过 AUR 安装，于是，[wmii](http://wmii.suckless.org/) ！
 
 　　作为一个崇尚键盘操作的 linuxer ：

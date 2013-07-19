@@ -1,3 +1,7 @@
+% 神奇的自产生程序，兼谈人工生命
+% Programming; 复杂性; 人工智能
+% 1312631218
+
 　　最近读到冯·诺依曼的《[Theory of Self-Reproducing Automata](http://book.douban.com/subject/2982694/)》的[中译本](http://www.douban.com/note/163931886/)，被自复制自动机理论深深吸引了！
 
 　　生命是什么？这本书让我对生命有了新的认识。

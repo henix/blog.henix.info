@@ -1,3 +1,7 @@
+% 计算机科学名言警句
+% Programming; 软件工程; 架构
+% 1318561306
+
 　　是时候分享一下这些年来一直激励着我的名言警句了:) 。
 
 > First make it run, then make it right, then make it fast.<br />
