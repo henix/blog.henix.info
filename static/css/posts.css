@@ -92,7 +92,7 @@
 .postcontent blockquote {
 	border: 1px solid #8CACBB;
 	background-color: #DEE7EC;
-	padding: 1em;
+	padding: 0.3em 1em;
 	margin: 10px 1em;
 	/* quotes: '"' '"'; */
 }
