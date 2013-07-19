@@ -11,7 +11,9 @@ lua/visits_table.lua
 lua/blog/
 lua/build/
 lua/tags/
+lua/pages/
 lua/digestHtml
 lua/*.pp.htm
 lua/*.pp.htm.d
 lua/tags.mk.inc
+lua/category.mk.inc

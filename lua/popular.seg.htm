@@ -1,9 +1,6 @@
 <div id="popular" class="box">
-	<h5>热门文章</h5>
+	<h5>最多评论</h5>
 	<ul class="box-body">
-		#{ for i = 1, 10 do }
-		#{ local post = blogposts[pop_table[i]] }
-		<li><a href="#{= getPostURL(post) }" title="#{= post.comnum } 条评论 | #{= post.visits } 次浏览">#{= post.title }</a></li>
-		#{ end }
+		<li><a href="{= getPostURL(name) }" title="{= comment_count } 条评论">{= title }</a></li>
 	</ul>
 </div>
