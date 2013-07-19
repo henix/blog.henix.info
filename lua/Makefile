@@ -72,13 +72,10 @@ build/index.html.d: build/catpost.db
 
 # tags
 
-build/%.tags: blogs/%.md
-	sed -n -e '2s/ //g' -e '2s/^%//p' $< | tr ';' '\n' | sed '1d' > $@
-
-build/%.tags.seg.htm: build/%.tags tags.db
+build/%.tags.seg.htm: blogs/%.tags tags.db
 	sort -k 1b,1 < $< | join - tags.db | awk '{ if (NR > 1) printf ", " ; print "<a href=\"/tags/" $$2 ".html\">" $$1 "</a>" }' > $@
 
-build/%.tagpost: build/%.tags build/%.name blogs/%.publish_time
+build/%.tagpost: blogs/%.tags build/%.name blogs/%.publish_time
 	./tagpost.sh $^ > $@
 
 build/tagpost.db: $(patsubst blogs/%.md,build/%.tagpost,$(MDS))
@@ -125,8 +122,11 @@ build/tag.end.html: tag.end.pp.htm
 
 # post 和 digest
 
-build/%.md.htm: blogs/%.md
-	pandoc $< > $@
+build/%.smd: blogs/%.md
+	runslt2.lua -d config.lua -v "{}" -t $< > $@
+
+build/%.md.htm: build/%.smd
+	pandoc -f markdown-markdown_in_html_blocks -t html5 $< > $@
 
 build/%.digest.htm: build/%.md.htm digestHtml
 	./digestHtml 150 < $< > $@
