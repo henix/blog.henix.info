@@ -4,7 +4,7 @@
 
 MDS := $(wildcard blogs/*.md)
 
-all: pages/index.html $(patsubst blogs/%.md,blog/%.html,$(MDS)) $(patsubst %,tags/%.html,$(TAGS))
+all: pages/index.html
 
 tags.mk.inc: tags.db
 	printf "TAGS := " > $@
@@ -96,12 +96,15 @@ build/tagpost.db: $(patsubst blogs/%.md,build/%.tagpost,$(MDS))
 build/tags2.db: tags.db
 	sort -k 2b,2 < $< > $@
 
-build/%.tag.name:
-	echo $@ | sed -e 's/^build\///' -e 's/\.tag\.name$$//' > $@
+build/%.tag.id:
+	echo $@ | sed -e 's/^build\///' -e 's/\.tag\.id$$//' > $@
 
-build/%.tag.d: build/%.tag.name build/tagpost.db build/tags2.db
+build/%.tagname: build/%.tag.id build/tags2.db
+	join -2 2 $< build/tags2.db | cut -d ' ' -f 2 > $@
+
+build/%.tag.d: build/%.tag.id build/tagpost.db build/tags2.db
 	printf "tags/%s.html: build/%s.tag.begin.html " $$(cat $<) $$(cat $<) > $@
-	join -2 2 $< build/tags2.db | cut -d ' ' -f 1 | join - build/tagpost.db | sort -k 3nr | cut -d ' ' -f 2 | sed -e 's/.*/build\/&.digest.seg.htm/' | tr '\n' ' ' >> $@
+	join -2 2 $< build/tags2.db | cut -d ' ' -f 2 | join - build/tagpost.db | sort -k 3nr | cut -d ' ' -f 2 | sed -e 's/.*/build\/&.digest.seg.htm/' | tr '\n' ' ' >> $@
 	echo build/tag.end.html >> $@
 	echo -e "\tcat \$$^ > \$$@" >> $@
 
@@ -123,7 +126,7 @@ alltags: $(patsubst %,tags/%.html,$(TAGS))
 -include tag.begin.pp.htm.d
 -include tag.end.pp.htm.d
 
-build/%.tag.begin.html: build/%.tag.name tag.begin.pp.htm
+build/%.tag.begin.html: build/%.tagname tag.begin.pp.htm
 	runslt2.lua -d config.lua -v "{tagname=$$(cat $< | ./escape.lua)}" -t tag.begin.pp.htm > $@
 
 build/tag.end.html: tag.end.pp.htm
