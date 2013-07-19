@@ -15,6 +15,7 @@ int main(string[] args) {
 	while (line != null) {
 		line = line.replace("</p>", "\x7f");
 		line = line.replace("<br />", "\x7f");
+		line = line.replace("</li>", "\x7f");
 		line = tagRe.replace(line, -1, 0, "");
 
 		unichar c;
