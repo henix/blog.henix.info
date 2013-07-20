@@ -120,9 +120,4 @@ int main(int argc, char *argv[])
 }
 ]=], 'cpp', {lineno=true})}#
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  imageFont: null
-});
-</script>
-<script type="text/javascript" src="/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+#{include: 'mathjax.seg.htm'}#

@@ -12,7 +12,7 @@
 
 　　向量乘标量：
 
-axpy ：\(y \leftarrow \alpha x + y\)
+axpy ：\\(y \\leftarrow \\alpha x + y\\)
 
 #{= highlight([=[
 void cblas_daxpy(const int N, const double alpha, const double *X,
@@ -21,7 +21,7 @@ void cblas_daxpy(const int N, const double alpha, const double *X,
 
 　　N 是向量的长度，incX 是 X 向量的增量（i += incX），用 1 即可。
 
-scal ：\(x \leftarrow \alpha x\)
+scal ：\\(x \\leftarrow \\alpha x\\)
 
 #{= highlight([=[
 void cblas_dscal(const int N, const double alpha, double *X, const int incX);
@@ -31,7 +31,7 @@ void cblas_dscal(const int N, const double alpha, double *X, const int incX);
 
 　　矩阵乘向量
 
-gemv ：\(y \leftarrow \alpha A x + \beta y\) 或 \(y \leftarrow \alpha A^T x + \beta y\)
+gemv ：\\(y \\leftarrow \\alpha A x + \\beta y\\) 或 \\(y \\leftarrow \\alpha A^T x + \\beta y\\)
 
 #{= highlight([=[
 void cblas_dgemv(const enum CBLAS_ORDER Order,
@@ -47,7 +47,7 @@ void cblas_dgemv(const enum CBLAS_ORDER Order,
 
 　　矩阵乘矩阵
 
-gemm ：\(C\leftarrow\alpha op(A)op(B) + \beta C\)
+gemm ：\\(C\\leftarrow\\alpha op(A)op(B) + \\beta C\\)
 
 　　LAPACK 中的 getrf 可以做 LU 分解，getri 可以求逆。
 
@@ -120,11 +120,6 @@ _EOF:
 }
 ]=], 'cpp', {lineno=true})}#
 
-　　做了 LU 分解之后，还可以直接用 getrs 函数求解线性方程组 \(Ax = b\) ，比先求出逆矩阵再乘高效。
+　　做了 LU 分解之后，还可以直接用 getrs 函数求解线性方程组 \\(Ax = b\\) ，比先求出逆矩阵再乘高效。
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  imageFont: null
-});
-</script>
-<script type="text/javascript" src="/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+#{include: 'mathjax.seg.htm'}#

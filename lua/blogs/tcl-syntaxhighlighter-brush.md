@@ -88,6 +88,4 @@ proc ::procfs::osversion {} {
 
 <script type="text/javascript" src="/syntaxhighlighter/scripts/shBrushTcl.js"></script>
 
-<script type="text/javascript">
-SyntaxHighlighter.all();
-</script>
+<script type="text/javascript" src="/syntaxhighlighter/all.js"></script>

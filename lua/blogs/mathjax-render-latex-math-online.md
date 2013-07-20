@@ -7,15 +7,15 @@
 
 　　让我们先从那耳熟能详的求根公式开始：（可能速度比较慢，请耐心等待）
 
-$x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$
+$$ x = \frac{-b\pm\sqrt{b^2-4ac}}{2a} $$
 
 　　然后，让我们看看高斯公式：
 
-$\iiint_\Omega(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv=\oint_S Pdydz+Qdzdx+Rdxdy$
+$$ \iiint_\Omega(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z})dv=\oint_S Pdydz+Qdzdx+Rdxdy $$
 
 　　矩阵也是可以的：
 
-$\left[\begin{array}{cccc}1&amp;x_1&amp;y_1&amp;z_1\\1&amp;x_2&amp;y_2&amp;z_2\\1&amp;x_3&amp;y_3&amp;z_3\\1&amp;x_4&amp;y_4&amp;z_4\end{array}\right]\left[\begin{array}{c}a_1\\a_2\\a_3\\a_4\end{array}\right]=\left[\begin{array}{c}T_1\\T_2\\T_3\\T_4\end{array}\right]$
+$$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\1&x_2&y_2&z_2\\1&x_3&y_3&z_3\\1&x_4&y_4&z_4\end{array}\right]\left[\begin{array}{c}a_1\\a_2\\a_3\\a_4\end{array}\right]=\left[\begin{array}{c}T_1\\T_2\\T_3\\T_4\end{array}\right] $$
 
 　　下面是 LaTeX 公式常用符号 cheatsheet ：
 
@@ -103,9 +103,4 @@ $\left[\begin{array}{cccc}1&amp;x_1&amp;y_1&amp;z_1\\1&amp;x_2&amp;y_2&amp;z_2\\
 		\end{align}\)<br />align 模式，按 &amp; 的位置上下对齐</td></tr>
 </table>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  imageFont: null
-});
-</script>
-<script type="text/javascript" src="/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+#{include: 'mathjax.seg.htm'}#
