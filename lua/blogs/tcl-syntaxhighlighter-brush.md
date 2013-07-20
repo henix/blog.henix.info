@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/syntaxhighlighter/styles/shCore.css" type="text/css" />
+<link rel="stylesheet" href="/syntaxhighlighter/styles/shThemeDefault.css" type="text/css" />
+
 　　[SyntaxHighlighter](http://alexgorbatchev.com/SyntaxHighlighter/) 是一个基于 JavaScript 的代码着色器。默认没有支持 Tcl 语言，所以我写了一个 Tcl 的语法定义，让它可以高亮 Tcl 源代码。
 
 [SyntaxHighlighter](http://alexgorbatchev.com/SyntaxHighlighter/) is a syntax highlighter based on JavaScript. But it doesn't have built-in support for the Tcl programming language. I write a syntax definition for Tcl, so that it can highlight Tcl source code.
@@ -80,3 +83,11 @@ proc ::procfs::osversion {} {
 </pre>
 
 　　已在 SyntaxHighlighter 的网站上[留言](http://www.undermyhat.org/blog/2009/09/list-of-brushes-syntaxhighligher/comment-page-3/#comment-18706)，请求将这个 brush 加入。
+
+<script type="text/javascript" src="/syntaxhighlighter/scripts/shCore.js"></script>
+
+<script type="text/javascript" src="/syntaxhighlighter/scripts/shBrushTcl.js"></script>
+
+<script type="text/javascript">
+SyntaxHighlighter.all();
+</script>

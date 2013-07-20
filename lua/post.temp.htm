@@ -8,21 +8,6 @@ if (when !== 'morning') {
 }
 </script>
 
-<link rel="stylesheet" href="/syntaxhighlighter/styles/shCore.css" type="text/css" />
-
-<script type="text/javascript">
-var sytheme;
-if (when == 'morning') {
-	sytheme = 'Default';
-} else if (when == 'evening') {
-	sytheme = 'Django';
-} else if (when == 'night') {
-	sytheme = 'Midnight';
-}
-document.write('<link rel="stylesheet" href="/syntaxhighlighter/styles/shTheme' + sytheme + '.css" type="text/css" />');
-</script>
-<noscript><link rel="stylesheet" href="/syntaxhighlighter/styles/shThemeDefault.css" type="text/css" /></noscript>
-
 <script type="text/javascript">
 document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? 'rdark' : 'default') + '.css" type="text/css" />');
 </script>
@@ -95,7 +80,6 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 	})();
 </script>
 
-#{include: 'syntax.seg.htm' }#
 #{include: 'ga.seg.htm' }#
 </body>
 </html>
