@@ -35,11 +35,11 @@
 
 2\. 要用 wmii ，你需要自己写 .xinitrc ，我的：
 
-```bash
+#{= highlight([=[
 xscreensaver -no-splash &
 ibus-daemon &
 wmii
-```
+]=], 'bash')}#
 
 意思很显然，输入法和 screensaver ，wmii 可不会帮你跑。
 
@@ -47,15 +47,15 @@ wmii
 
 3\. wmii 的配置文件（~/.wmii/wmiirc_local）改起来也比较容易，可以新增一些自定义快捷键：
 
-```bash
+#{= highlight([=[
 MODKEY=Mod4 # Mod4 = Win键
 
 export WMII_TERM="terminal" # Xfce 的 terminal 还不错，故定义为 wmii 的默认 term
 
 local_events() {
-	cat &lt;&lt;'!'
+	cat <<'!'
 Key $MODKEY-l
 	xscreensaver-command -lock # 令 Win-l 为锁屏，跟 Windows 下面一样
 !
 }
-```
+]=], 'bash')}#

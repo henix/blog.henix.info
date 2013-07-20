@@ -6,7 +6,7 @@
 
 　　为了验证是否真的存在伪共享，以及伪共享会造成多大的性能损失，我使用了如下代码来测试（需要 OpenMP）：
 
-```cpp
+#{= highlight([=[
 #include <stdio.h>
 
 int main(int argc, const char *argv[])
@@ -22,7 +22,7 @@ int main(int argc, const char *argv[])
 	}
 	return 0;
 }
-```
+]=], 'cpp')}#
 
 　　这段代码用两个线程写入数组中的两个不同的位置。这里的 16 是两个变量距离了多少个 4 字节。测试结果如下（time 命令测量，单位秒）：
 
@@ -39,9 +39,9 @@ int main(int argc, const char *argv[])
 
 　　在 16 x 4 = 64 字节处有一次突变，64 字节就是我的电脑的 Cache 行大小。也可以通过这个命令查到：
 
-```bash
+#{= highlight([=[
 cat /proc/cpuinfo | grep cache_alignment
-```
+]=], 'bash')}#
 
 Further reading:
 

@@ -2,7 +2,7 @@
 
 　　平时奔走于寝室和实验室两地，经常需要切换 IP/DNS 配置。曾经在网上看了一段用 netsh 的切换脚本，下面这段是我对其的改进版：
 
-``` {.bat .numberLines}
+#{= highlight([=[
 set OUT=%tmp%\telecom.txt
 set name="本地连接"
 
@@ -17,6 +17,6 @@ echo interface ip add dns %name% 202.103.44.150 >> %OUT%
 netsh -f %OUT%
 
 pause
-```
+]=], 'bat', {lineno=true})}#
 
 　　网上很多都是每条指令一个 netsh ，这样 netsh 每次都要初始化，速度比较慢。而我这个先写到一个文件里面，再把整个当成一个脚本运行，netsh 只初始化一次，速度较快。

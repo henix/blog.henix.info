@@ -28,33 +28,33 @@
 
 　　下面是 Python 版：
 
-```python
+#{= highlight([=[
 s = '\'s = \' + repr(s) + \'\\nprint \' + s'
 print 's = ' + repr(s) + '\nprint ' + s
-```
+]=], 'python')}#
 
 　　一个 Lua 版：
 
-```lua
+#{= highlight([=[
 s = 'string.format(\'s = %q\\nprint(%s)\', s, s)'
 print(string.format('s = %q\nprint(%s)', s, s))
-```
+]=], 'lua')}#
 
 　　Bash：
 
-```bash
+#{= highlight([=[
 #!/bin/bash
 s='\x22#!/bin/bash\ns=\x27$s\x27\necho $(echo -e $s)\x22'
 echo "#!/bin/bash
 s='$s'
 echo $(echo -e $s)"
-```
+]=], 'bash')}#
 
 　　C ：
 
-```cpp
+#{= highlight([=[
 #define p(a) int main(){a;puts("p("#a")");return 0;}
 p(puts("#define p(a) int main(){a;puts(\"p(\"#a\")\");return 0;}"))
-```
+]=], 'cpp')}#
 
 　　至于它们是怎么实现的，就留给读者自己琢磨了。自产生程序也称为 [Quine](http://en.wikipedia.org/wiki/Quine_(computing)) ，可以参考 [Quine Page](http://www.nyx.net/~gthompso/quine.htm) 。

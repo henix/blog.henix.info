@@ -4,7 +4,7 @@
 
 　　我的实现：
 
-```cpp
+#{= highlight([=[
 #include <cassert>
 
 inline int lowbit(int x)
@@ -45,17 +45,17 @@ public:
 		delete[] reduced;
 	}
 };
-```
+]=], 'cpp', {lineno=true})}#
 
 　　其中用到了 idx &= (idx - 1) 来删除 idx 的二进制中最后一位 1 。用的是《The C Programming Language》中的方法。
 
-一些题目：
+　　一些题目：
 
 poj 2352 Stars
 
-比较基础的题。由于输入已经按 y 排序，实际上就是对每一个 x ，找出在它之前的比它小的数有多少个。所以可以开一个数组，用 a[i] 表示到目前为止，i 出现的次数，然后对 a[x] 求前缀和。
+　　比较基础的题。由于输入已经按 y 排序，实际上就是对每一个 x ，找出在它之前的比它小的数有多少个。所以可以开一个数组，用 a[i] 表示到目前为止，i 出现的次数，然后对 a[x] 求前缀和。
 
-<pre class="brush: cpp; collapse: true">
+#{= highlight([=[
 #include <cstdio>
 
 using std::printf;
@@ -137,13 +137,13 @@ int main(int argc, const char *argv[])
 	}
 	return 0;
 }
-</pre>
+]=], 'cpp', {lineno=true;collapse=true})}#
 
 poj 2299 Ultra-QuickSort
 
-也是找出每一位前面有多少个比它小的数。先排序，再依次更新。
+　　也是找出每一位前面有多少个比它小的数。先排序，再依次更新。
 
-<pre class="brush: cpp; collapse: true">
+#{= highlight([=[
 #include <cstdio>
 #include <cstdlib>
 #include <cassert>
@@ -228,13 +228,13 @@ int main(int argc, const char *argv[])
 	}
 	return 0;
 }
-</pre>
+]=], 'cpp', {lineno=true;collapse=true})}#
 
 poj 2155 Matrix
 
-二维树状数组。由于问题是区间更新、单点查询。我们可以对问题变一下形：用 sum(a[1][1]..a[i][j]) 表示 (i, j) 翻转了几次。所以 a[i][j] 表示相邻两位的增量，然后更新的时候使用类似容斥原理的方法进行更新。代码如下（gcc）：
+　　二维树状数组。由于问题是区间更新、单点查询。我们可以对问题变一下形：用 sum(a[1][1]..a[i][j]) 表示 (i, j) 翻转了几次。所以 a[i][j] 表示相邻两位的增量，然后更新的时候使用类似容斥原理的方法进行更新。代码如下（gcc）：
 
-<pre class="brush: cpp; collapse: true">
+#{= highlight([=[
 #include <stdio.h>
 
 inline int lowbit(int x)
@@ -302,11 +302,11 @@ int main(int argc, const char *argv[])
 	}
 	return 0;
 }
-</pre>
+]=], 'cpp', {lineno=true;collapse=true})}#
 
 Links:
 
-* [Algorithm Tutorials: Binary Indexed Trees](http://community.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=binaryIndexedTrees)（我就是看了上面的那张图才把树状数组看懂了）
+* [Algorithm Tutorials: Binary Indexed Trees](http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=binaryIndexedTrees)（我就是看了上面的那张图才把树状数组看懂了）
 * [数据结构之树状数组 | 董的博客](http://dongxicheng.org/structure/binary_indexed_tree/)
 * [树状数组](http://old.blog.edu.cn/user3/Newpoo/archives/2007/1712628.shtml)
 * [树状数组题目总结](http://hi.baidu.com/lilu03555/blog/item/4118f04429739580b3b7dc74.html)

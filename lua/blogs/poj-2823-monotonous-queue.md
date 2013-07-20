@@ -8,7 +8,7 @@
 
 　　代码（gcc）：
 
-```cpp
+#{= highlight([=[
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 	free(ar);
 	return 0;
 }
-```
+]=], 'cpp', {lineno=true})}#
 
 Links:
 

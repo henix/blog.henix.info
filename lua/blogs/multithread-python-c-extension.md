@@ -10,7 +10,7 @@
 
 　　比如如下代码，因为使用了 getline ，所以需要释放 GIL ：
 
-```cpp
+#{= highlight([=[
 int get_valid_num(int a, int b)
 {
 	int n = 0;
@@ -29,7 +29,7 @@ int get_valid_num(int a, int b)
 	Py_END_ALLOW_THREADS;
 	return n;
 }
-```
+]=], 'cpp')}#
 
 　　但 GIL 跟 C 中开的线程没关系，C 中开的 OS 原生线程不会受此影响。
 

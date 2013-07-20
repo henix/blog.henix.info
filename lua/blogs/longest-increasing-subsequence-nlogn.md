@@ -8,7 +8,7 @@
 
 　　代码：
 
-```cpp
+#{= highlight([=[
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -49,4 +49,4 @@ int main(int argc, char *argv[])
 	printf("%d\n", len);
 	return 0;
 }
-```
+]=], 'cpp')}#

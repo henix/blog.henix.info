@@ -17,7 +17,7 @@
 
 　　Simple Lua Template 的想法很简单。就像 jsp 可以在 HTML 中嵌入 Java 代码一样，或者像 PHP 的风格一样，slt 就是在 HTML 中嵌入 Lua 代码。
 
-```html
+#{= highlight([=[
 <span>
 #{ if user ~= nil then }
   Hello, #{= user.name }!
@@ -25,7 +25,7 @@
   <a href="/login">login</a>
 #{ end }
 </span>
-#{include: 'footer.seg.htm' }
-```
+#{]=]..[=[include: 'footer.seg.htm' }
+]=], 'html', {lineno=true})}#
 
 　　我认为这样就够用了，也够简单。欢迎试用，欢迎提建议：[http://code.google.com/p/slt/](http://code.google.com/p/slt/) 。

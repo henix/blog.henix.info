@@ -13,7 +13,7 @@
 
 　　reducewhat.py：我应该减少哪个？
 
-```python
+#{= highlight([=[
 #!/usr/bin/python2
 import sys
 import re
@@ -24,20 +24,20 @@ for line in sys.stdin:
 
 for record in sorted(records, key=lambda d:int(d[0])*(len(d[1])+len(d[2])), reverse=True):
 	print "%s %s%s" % record
-```
+]=], 'python', {lineno=true})}#
 
 　　然后可以有两种调用方式：
 
 　　统计整个命令行：
 
-```bash
+#{= highlight([=[
 sed '/^$/d' .bash_history | sort | uniq -c | ./reducewhat.py
-```
+]=], 'bash')}#
 
 　　只统计“命令”部分：
 
-```bash
+#{= highlight([=[
 sed '/^$/d' .bash_history | awk '{print $1}' | sort | uniq -c | ./reducewhat.py
-```
+]=], 'bash')}#
 
 　　sed 的作用是除去空行，否则后面的 python 脚本可能出错

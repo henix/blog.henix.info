@@ -28,7 +28,7 @@ $$ \mbox{for each}\,C \in \{R,G,B\} $$
 
 　　一个 C 实现如下：
 
-``` {.cpp .numberLines}
+#{= highlight([=[
 /**
  * rgb[] 分量的取值范围：0.0 - 1.0
  */
@@ -70,7 +70,7 @@ void HSL2RGB(float h, float s, float l, float rgb[])
 		rgb[0] = rgb[1] = rgb[2] = l;
 	}
 }
-```
+]=], 'cpp', {lineno=true})}#
 
 　　现在，我的博客的标签列表（Tags）已经应用了这个，文章数量越多，相应的标签颜色越暖。
 

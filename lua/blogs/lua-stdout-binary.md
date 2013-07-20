@@ -10,7 +10,7 @@
 
 binstd.c
 
-```cpp
+#{= highlight([=[
 #include <stdio.h>
 #include <fcntl.h>
 #include <io.h>
@@ -46,7 +46,7 @@ LUA_API int luaopen_binstd(lua_State* L)
 	lua_register(L, "binprint", binprint);
 	return 0;
 }
-```
+]=], 'cpp', {lineno=true})}#
 
 　　编译：
 
@@ -56,10 +56,10 @@ gcc -shared -o binstd.dll -ID:\soft\Lua5\include -LD:\soft\Lua5\lib binstd.c -ll
 
 　　然后在 Lua 中：
 
-```lua
+#{= highlight([=[
 require "binstd"
 binprint("hello\n")
-```
+]=], 'lua')}#
 
 　　运行上面的代码并重定向至文件，用 16 进制编辑器可以看到换行符没有被替换成 \\r\\n 。
 

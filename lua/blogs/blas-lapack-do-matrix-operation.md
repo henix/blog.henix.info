@@ -14,18 +14,18 @@
 
 axpy ：\(y \leftarrow \alpha x + y\)
 
-```cpp
+#{= highlight([=[
 void cblas_daxpy(const int N, const double alpha, const double *X,
                  const int incX, double *Y, const int incY);
-```
+]=], 'cpp')}#
 
 　　N 是向量的长度，incX 是 X 向量的增量（i += incX），用 1 即可。
 
 scal ：\(x \leftarrow \alpha x\)
 
-```cpp
+#{= highlight([=[
 void cblas_dscal(const int N, const double alpha, double *X, const int incX);
-```
+]=], 'cpp')}#
 
 ### BLAS 2 ：矩阵-向量运算
 
@@ -33,13 +33,13 @@ void cblas_dscal(const int N, const double alpha, double *X, const int incX);
 
 gemv ：\(y \leftarrow \alpha A x + \beta y\) 或 \(y \leftarrow \alpha A^T x + \beta y\)
 
-```
+#{= highlight([=[
 void cblas_dgemv(const enum CBLAS_ORDER Order,
                  const enum CBLAS_TRANSPOSE TransA, const int M, const int N,
                  const double alpha, const double *A, const int lda,
                  const double *X, const int incX, const double beta,
                  double *Y, const int incY);
-```
+]=], 'cpp')}#
 
 　　其中最难理解的是 lda 这个参数，文档上的解释是：“声明 A 的时候，A 的第一个维度的大小”。也就是说，如果在 C 语言里面声明 a[5][5] ，那么 lda 即是 5 。其实意思是说，lda 可以跟 M 不一样。
 
@@ -53,7 +53,7 @@ gemm ：\(C\leftarrow\alpha op(A)op(B) + \beta C\)
 
 　　有了以上这些做基础，就可以写一些稍微实用的程序了。比如下面这段求行列式和矩阵求逆：
 
-``` {.cpp .numberLines}
+#{= highlight([=[
 #define BLAS(name) cblas_##name
 #define LAPACK(name) LAPACKE_##name
 
@@ -88,13 +88,13 @@ double det_and_invert(double *a, int n)
 	delete[] ipiv;
 	return det;
 }
-```
+]=], 'cpp', {lineno=true})}#
 
 　　以上也参考了某些网上的求行列式代码。
 
 　　求逆矩阵；
 
-``` {.cpp .numberLines}
+#{= highlight([=[
 #define BLAS(name) cblas_##name
 #define LAPACK(name) LAPACKE_##name
 
@@ -118,7 +118,7 @@ _EOF:
 	delete[] ipiv;
 	return info;
 }
-```
+]=], 'cpp', {lineno=true})}#
 
 　　做了 LU 分解之后，还可以直接用 getrs 函数求解线性方程组 \(Ax = b\) ，比先求出逆矩阵再乘高效。
 

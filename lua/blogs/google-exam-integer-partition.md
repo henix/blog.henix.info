@@ -36,7 +36,7 @@
 
 　　时间复杂度 &lt; O(N^2)
 
-```cpp
+#{= highlight([=[
 #include <stdio.h>
 
 int money[] = {1, 2, 5, 10, 20, 50, 100};
@@ -71,20 +71,20 @@ int main(int argc, char *argv[])
 	printf("there are %d way to represent %d\n", ar[6][n], n);
 	return 0;
 }
-```
+]=], 'cpp', {lineno=true})}#
 
 　　其中 ar[i][j] 表示只用第 i 张面值及以下构成 j 用多少种方法。
 
 　　后来在 huanfeng 同学的提醒下，改进如下：
 
-```
+#{= highlight([=[
 a[6][n] = ar[6][n-100] // 至少包含 1 张 100 的拆分个数
     + ar[5][n] // 不包含 100 的拆分个数
-```
+]=], 'cpp')}#
 
 　　直接把时间复杂度从 O(n^2) 降到了 O(n)：
 
-```cpp
+#{= highlight([=[
 #include <stdio.h>
 
 int money[] = {1, 2, 5, 10, 20, 50, 100};
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 	printf("there are %d way to represent %d\n", ar[6][n], n);
 	return 0;
 }
-```
+]=], 'cpp', {lineno=true})}#
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({

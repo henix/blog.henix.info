@@ -12,7 +12,7 @@
 
 　　上面的图形由以下源代码生成：
 
-```
+#{= highlight([=[
 .PS
 B1: box "box";
 move;
@@ -28,7 +28,7 @@ ellipse "ellipse";
 move;
 arc; down; move; "arc"
 .PE
-```
+]=], 'asm')}#
 
 　　一个 pic 文件必须以 .PS 开头、.PE 结尾。在 pic 中，任何时刻都有两个全局量：当前坐标、当前方向（上下左右）。
 
@@ -76,15 +76,15 @@ arc; down; move; "arc"
 
 　　表示两个位置中间的某个分点，样例：
 
-```
+#{= highlight([=[
 Tri1: box width .5
-move to 1/2 &lt;Tri1.e, Tri1.c&gt;
+move to 1/2 <Tri1.e, Tri1.c>
 line up 0.1
 line to Tri1.e
-move to 1/2 &lt;Tri1.e, Tri1.c&gt;
+move to 1/2 <Tri1.e, Tri1.c>
 line down 0.1
 line to Tri1.e
-```
+]=], 'asm')}#
 
 Links:
 

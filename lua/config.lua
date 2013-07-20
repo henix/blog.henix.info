@@ -29,3 +29,23 @@ function loadFile(path)
 	fin:close()
 	return all
 end
+
+function makeImg(url)
+	return '<a href="'..url..'" title="点击查看大图"><img src="'..url..'" style="max-width:100%" /></a>'
+end
+
+function highlight(str, lang, options)
+	options = options or {}
+
+	local tmpname = os.tmpname()
+	do
+		local ftmp = assert(io.open(tmpname, 'w'))
+		ftmp:write(str)
+		ftmp:close()
+	end
+	local fin = io.popen('highlight -f '..(options.lineno and '-n ' or '')..'-O xhtml --syntax '..lang..' '..tmpname)
+	local all = fin:read('*a')
+	fin:close()
+	os.remove(tmpname)
+	return '<div class="hl'..(options.lineno and ' lineno' or ' nolineno')..'">'..all:gsub('&nbsp;', ' ')..'</div>'
+end

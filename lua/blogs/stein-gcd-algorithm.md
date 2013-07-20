@@ -4,7 +4,7 @@
 
 　　在网上看了一段代码如下：
 
-```cpp
+#{= highlight([=[
 int gcd(int a, int b)
 {
 	if (a < b) {
@@ -22,7 +22,7 @@ int gcd(int a, int b)
 		return gcd(a, b/2);
 	return gcd((a+b)/2, (a-b)/2);
 }
-```
+]=], 'cpp')}#
 
 　　所以算法思想也就明了了：若 a b 都是偶数，则提出 2 这个公因子；若某一个是偶数，另一个不是，那么约去 2 也是可以的；若都是奇数，则用 (a+b)/2 和 (a-b)/2 计算。
 
@@ -33,7 +33,7 @@ int gcd(int a, int b)
 
 　　网上不少非递归代码感觉很乱，而且冗余。我的版本如下：
 
-```cpp
+#{= highlight([=[
 int gcd_stein(int a, int b)
 {
 	int k = 0;
@@ -64,6 +64,6 @@ int gcd_stein(int a, int b)
 	}
 	return 0; // never here
 }
-```
+]=], 'cpp')}#
 
 　　后来发现，其实这个问题的最优代码还是 wikipedia 上的：[http://en.wikipedia.org/wiki/Binary_GCD_algorithm](http://en.wikipedia.org/wiki/Binary_GCD_algorithm) 。

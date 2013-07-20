@@ -16,7 +16,7 @@
 
 　　代码：
 
-``` {.lua .numberLines}
+#{= highlight([=[
 -- 计算逆波兰式
 -- (table) -> number
 function evalPo(e)
@@ -134,15 +134,15 @@ for a = 1, 4 do
     end
 end
 print('Maze24 has no idea.')
-```
+]=], 'lua', {lineno=true})}#
 
 　　如果你的电脑上没有 Lua 解释器，也可以用 [codepad](http://codepad.org/) 来在线运行这段代码。但 codepad 无法输入，所以你需要稍微修改一下代码：
 
 　　把 'Please input 4 numbers: ' 后面的那个 for 循环去掉，改成：
 
-```lua
+#{= highlight([=[
 ar = {5, 5, 5, 1}
-```
+]=], 'lua')}#
 
 　　或者填入其他你想要凑 24 的 4 个数字。
 
