@@ -139,13 +139,13 @@ a.tag {
 
 #header h1 {
 	font-size: 40px;
-	font-family: "微软雅黑", sans-serif;
+	font-family: "WenQuanYi Zen Hei", "微软雅黑", sans-serif;
 	font-weight: bold;
 	position: absolute;
 	top: 40px;
 	left: 80px;
-	width: 200px;
-	height: 40px;
+	/*width: 200px;
+	height: 40px;*/
 	line-height: 100%;
 }
 
@@ -154,15 +154,15 @@ a.tag {
 	color: Black;
 	text-decoration: none;
 	/* FIR */
-	background: url(/images/title.png) no-repeat 0 0;
-	text-indent: -5000px;
-	width: 200px;
-	height: 40px;
+	/*background: url(/images/title.png) no-repeat 0 0;
+	text-indent: -5000px;*/
+	/*width: 200px;
+	height: 40px;*/
 }
 
 #header h1 a:hover {
 	color: #333;
-	background: url(/images/title.png) no-repeat 0 -40px;
+	/*background: url(/images/title.png) no-repeat 0 -40px;*/
 }
 
 #header h2 {
