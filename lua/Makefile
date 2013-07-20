@@ -140,6 +140,8 @@ build/%.lua: build/%.name blogs/%.title blogs/%.catid build/%.catname blogs/%.pu
 build/%.digest.lua: build/%.name blogs/%.title blogs/%.catid build/%.catname blogs/%.publish_time build/%.digest.htm build/%.tags.seg.htm
 	./postlua.sh $^ > $@
 
+-include post.pp.htm.d
+
 blog/%.html: build/%.lua post.pp.htm config.lua build/%.md.htm build/%.tags.seg.htm
 	runslt2.lua -d config.lua -t post.pp.htm < $< > $@
 
