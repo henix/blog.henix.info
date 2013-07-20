@@ -76,7 +76,7 @@ pre {
 .postcontent div.hl {
 	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", Courier, monospace;
 	font-size: 12.5px;
-	padding: 1em 1em 1em 1.5em;
+	padding: 1em 1em 1em 1.4em;
 }
 
 .postcontent div.hl ol {
@@ -84,8 +84,8 @@ pre {
 }
 
 .postcontent div.hl li {
-	border-left: 1px solid #999;
-	padding-left: 0.5em;
+	border-left: 2px solid #999;
+	padding-left: 0.6em;
 
 	white-space: pre-wrap;
 	*white-space: pre;
