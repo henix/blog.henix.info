@@ -4,7 +4,7 @@
 
 MDS := $(wildcard blogs/*.md)
 
-all: pages/index.html
+all: pages/index.html pages/search.html
 
 tags.mk.inc: tags.db
 	printf "TAGS := " > $@
@@ -149,6 +149,19 @@ allposts: $(patsubst blogs/%.md,blog/%.html,$(MDS))
 
 build/%.digest.seg.htm: build/%.digest.lua digestpost.seg.htm config.lua build/%.digest.htm build/%.tags.seg.htm
 	runslt2.lua -d config.lua -t digestpost.seg.htm < $< > $@
+
+# other pages
+
+JSLIB_PATH := ~/jslibs
+RAINY_PATH := ~/rainy
+
+-include search.pp.htm.d
+
+build/search.rain.htm: search.pp.htm
+	runslt2.lua -d config.lua -v "{}" -t $< > $@
+
+pages/search.html: build/search.rain.htm
+	$(RAINY_PATH)/rain --incpath $(JSLIB_PATH) --moddef $(JSLIB_PATH)/base.js/base.moddef --moddef $(JSLIB_PATH)/csv.js/csv.moddef --moddef $(JSLIB_PATH)/flower.js/flower.moddef --moddef $(JSLIB_PATH)/flower-widgets/flowerui.moddef $< > $@
 
 clean:
 	rm $(TARGETS)
