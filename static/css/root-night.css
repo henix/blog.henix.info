@@ -22,12 +22,12 @@ a.tag {
 
 #header h1 a {
 	color: #ccc;
-	background: url(/images/title-night.png) no-repeat 0 0;
+	/*background: url(/images/title-night.png) no-repeat 0 0;*/
 }
 
 #header h1 a:hover {
 	color: #999;
-	background: url(/images/title-night.png) no-repeat 0 -40px;
+	/*background: url(/images/title-night.png) no-repeat 0 -40px;*/
 }
 
 #header h2 {
