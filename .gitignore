@@ -17,3 +17,5 @@ lua/*.pp.htm
 lua/*.pp.htm.d
 lua/tags.mk.inc
 lua/category.mk.inc
+
+static/js/catebox.js
