@@ -1,6 +1,6 @@
-#{include: 'doctype.seg.htm' }
+#{include: 'doctype.seg.htm' }#
 <head>
-#{include: 'head-common.seg.htm' }
+#{include: 'head-common.seg.htm' }#
 <link href="/css/posts.css" rel="stylesheet" type="text/css" />
 <title>友情链接 - 遥远的街市</title>
 
@@ -21,10 +21,9 @@
 <body>
 <div id="page">
 
-#{include: 'header.seg.htm' }
-#{ local selectedIndex = 1 }#{include: 'nav.seg.htm' }#{ selectedIndex = null }
+#{include: 'header.seg.htm' }#
+#{ local selectedIndex = 1 }##{include: 'nav.seg.htm' }##{ selectedIndex = null }#
 <div id="content">
-<div class="clear">&nbsp;</div>
 
 <div class="blogpost">
 	<div class="title"><a href="/links.html">友情链接</a></div>
@@ -58,16 +57,16 @@
 
 </div><!-- end of content -->
 
-#{include: 'footer.seg.htm' }
+#{include: 'footer.seg.htm' }#
 </div><!-- end of page -->
 
 <script type="text/javascript">
 	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-	var disqus_shortname = '#{= disqus_shortname }'; // required: replace example with your forum shortname
+	var disqus_shortname = '#{= disqus_shortname }#'; // required: replace example with your forum shortname
 
 	// The following are highly recommended additional parameters. Remove the slashes in front to use.
 	var disqus_identifier = 'links';
-	var disqus_url = '#{= siteurl }/links.html';
+	var disqus_url = '#{= siteurl }#/links.html';
 
 	/* * * DON'T EDIT BELOW THIS LINE * * */
 	(function() {
@@ -77,6 +76,6 @@
 	})();
 </script>
 
-#{include: 'ga.seg.htm' }
+#{include: 'ga.seg.htm' }#
 </body>
 </html>
