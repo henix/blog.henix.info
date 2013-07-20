@@ -39,7 +39,7 @@ void cblas_dgemv(const enum CBLAS_ORDER Order,
                  const double alpha, const double *A, const int lda,
                  const double *X, const int incX, const double beta,
                  double *Y, const int incY);
-]=], 'cpp')}#
+]=], 'cpp', {lineno=true})}#
 
 　　其中最难理解的是 lda 这个参数，文档上的解释是：“声明 A 的时候，A 的第一个维度的大小”。也就是说，如果在 C 语言里面声明 a[5][5] ，那么 lda 即是 5 。其实意思是说，lda 可以跟 M 不一样。
 

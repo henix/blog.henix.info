@@ -2,8 +2,8 @@
 
 /* Highlighting theme: vim rdark */
 
-div.hl	{ background-color:#1e2426; }
-li.hl	{ color:#babdb6; background-color:#1e2426; font-size:10pt; font-family:'Courier New',monospace;}
+div.hl, pre.hl	{ background-color:#1e2426; }
+li.hl	{ color:#babdb6; background-color:#1e2426; }
 .hl.num { color:#8ae234; }
 .hl.esc { color:#888a85; }
 .hl.str { color:#8ae234; }
@@ -18,4 +18,3 @@ li.hl	{ color:#babdb6; background-color:#1e2426; font-size:10pt; font-family:'Co
 .hl.kwb { color:#e3e7df; }
 .hl.kwc { color:#cfa272; }
 .hl.kwd { color:#9ebd77; }
-

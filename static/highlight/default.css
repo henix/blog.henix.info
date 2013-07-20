@@ -2,8 +2,8 @@
 
 /* Highlighting theme: Kwrite Editor */
 
-div.hl	{ background-color:#e0eaee; }
-li.hl	{ color:#000000; background-color:#e0eaee; font-size:10pt; font-family:'Courier New',monospace;}
+div.hl, pre.hl	{ background-color:#e0eaee; }
+li.hl	{ color:#000000; background-color:#e0eaee; }
 .hl.num { color:#b07e00; }
 .hl.esc { color:#ff00ff; }
 .hl.str { color:#bf0303; }
@@ -18,4 +18,3 @@ li.hl	{ color:#000000; background-color:#e0eaee; font-size:10pt; font-family:'Co
 .hl.kwb { color:#0057ae; }
 .hl.kwc { color:#000000; font-weight:bold; }
 .hl.kwd { color:#010181; }
-

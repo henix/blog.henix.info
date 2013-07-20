@@ -2,8 +2,8 @@
 
 /* Highlighting theme: Solarized Dark */
 
-div.hl	{ background-color:#002b36; }
-li.hl	{ color:#839496; background-color:#002b36; font-size:10pt; font-family:'Courier New',monospace;}
+div.hl, pre.hl	{ background-color:#002b36; }
+li.hl	{ color:#839496; background-color:#002b36; }
 .hl.num { color:#dc322f; }
 .hl.esc { color:#6c71c4; }
 .hl.str { color:#dc322f; }
@@ -18,4 +18,3 @@ li.hl	{ color:#839496; background-color:#002b36; font-size:10pt; font-family:'Co
 .hl.kwb { color:#859900; }
 .hl.kwc { color:#cb4b16; }
 .hl.kwd { color:#93a1a1; }
-

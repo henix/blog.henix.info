@@ -47,5 +47,5 @@ function highlight(str, lang, options)
 	local all = fin:read('*a')
 	fin:close()
 	os.remove(tmpname)
-	return '<div class="hl'..(options.lineno and ' lineno' or ' nolineno')..'">'..all:gsub('&nbsp;', ' ')..'</div>'
+	return (options.lineno and '<div class="hl">' or '<pre class="hl">')..all:gsub('&nbsp;', ' ')..(options.lineno and '</div>' or '</pre>')
 end
