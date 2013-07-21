@@ -18,8 +18,8 @@ category.mk.inc: category.db
 
 -include category.mk.inc
 
-comments.lua: comments.xml
-	lua5.1 parsecom.lua $< > $@
+comments.db: comments.xml
+	lua5.1 parsecom.lua $< | sort -k 1b,1 > $@
 
 # post 的一般信息
 

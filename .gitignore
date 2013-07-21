@@ -5,7 +5,7 @@ static/blog/
 static/tags/
 lua/comments.xml
 lua/visits.2.csv
-lua/comments.lua
+lua/comments.db
 lua/visits_table.lua
 
 lua/blog/

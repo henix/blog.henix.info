@@ -63,9 +63,11 @@ local callbacks = {
 	end,
 	CharacterData = function(parser, str)
 		if inThread and inThreadId then
-			local myid = string.match(str, ".*/([^/]*)%.html$")
-			assert(myid, '"'..str..'" cannot find a match')
-			threads[tid].id = filter(myid)
+			local myid = string.match(str, ".*/blog/([^/]*)%.html$")
+			-- assert(myid, '"'..str..'" cannot find a match')
+			if myid then
+				threads[tid].id = filter(myid)
+			end
 		elseif inPost and inPostMessage then
 			comments[#comments].msg = str
 		elseif inPost and inPostName then
@@ -82,10 +84,14 @@ fin:close()
 
 parser:parse(all)
 
-print('comnum_table = {')
+-- print('comnum_table = {')
 for id, v in pairs(threads) do
-	io.write('\t[\'', v.id, '\'] = ', v.comnum, ',\n')
+	--io.write('\t[\'', v.id, '\'] = ', v.comnum, ',\n')
+	if v.id then
+		io.write(v.id, '\t', v.comnum, '\n')
+	end
 end
+--[[
 print('}')
 
 function data2code(data)
@@ -106,3 +112,4 @@ function data2code(data)
 end
 
 io.write('comments_table = ', data2code(comments), '\n')
+]]
