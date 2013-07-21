@@ -2,7 +2,7 @@
 
 　　本博客现迁移到：
 
-<p class="center" style="font-size:x-large">[http://blog.henix.info/](http://blog.henix.info/)</p>
+<p class="center" style="font-size:x-large"><a href="http://blog.henix.info/">http://blog.henix.info/</a></p>
 
 　　旧地址 http://www.henix-blog.co.cc/ 不再支持。
 

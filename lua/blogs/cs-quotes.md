@@ -2,7 +2,7 @@
 
 > First make it run, then make it right, then make it fast.<br />
 先要让程序跑起来，然后求正确，然后求快。
-<div class="right">-- Unix 设计哲学</div>
+<p class="right">-- Unix 设计哲学</p>
 
 　　当我不知道该做什么、或者是掉进一味追求性能的陷阱的时候，我就想起这句话，它总能给我正确的指引。
 
@@ -35,7 +35,7 @@
 
 > Any application that can be written in JavaScript, will eventually be written in JavaScript.<br />
 凡是可以用 JavaScript 来写的应用，最终都会用 JavaScript 来写。
-<div class="right">-- [Atwood's Law](http://www.codinghorror.com/blog/2007/07/the-principle-of-least-power.html)</div>
+<p class="right">-- <a href="http://www.codinghorror.com/blog/2007/07/the-principle-of-least-power.html">Atwood's Law</a></p>
 
 　　看看 JavaScript 版本的 [PC 虚拟机](http://bellard.org/jslinux/)和[文本编辑器](http://www.ymacs.org/demo/)，在这个 Web 的时代，如果说 JavaScript 都不重要，那还有什么重要的呢？
 
@@ -44,4 +44,4 @@
 　　以他的一句名言作结，以纪念这位学术大师。
 
 > UNIX is very simple, it just needs a genius to understand its simplicity.
-<div class="right">-- Dennis Ritchie</div>
+<p class="right">-- Dennis Ritchie</p>
