@@ -126,7 +126,7 @@ build/%.smd: blogs/%.md
 	runslt2.lua -d config.lua -v "{}" -t $< > $@
 
 build/%.md.htm: build/%.smd
-	pandoc -f markdown-markdown_in_html_blocks --mathjax $< > $@
+	gfm $< > $@
 
 build/%.digest.htm: build/%.md.htm digestHtml
 	./digestHtml 150 < $< > $@

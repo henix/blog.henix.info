@@ -6,7 +6,7 @@
 
 　　若 s = 0 ，则返回 (l, l, l) 。否则，使用下列过程：
 
-$$ q= \begin{cases} l \times (1+s), & \mbox{if } l < \frac{1}{2} \\ l+s-(l \times s), & \mbox{if } l \ge \frac{1}{2} \end{cases} $$
+$$ q= \begin{cases} l \times (1+s), & \mbox{if } l < \frac{1}{2} \\\\ l+s-(l \times s), & \mbox{if } l \ge \frac{1}{2} \end{cases} $$
 
 $$ p = 2 \times l - q $$
 
@@ -22,7 +22,7 @@ $$ \mbox{if } t_C < 0 \rightarrow t_C = t_C + 1.0 \quad \mbox{for each}\,C \in \
 
 $$ \mbox{if } t_C > 1 \rightarrow t_C = t_C - 1.0 \quad \mbox{for each}\,C \in \{R,G,B\} $$
 
-$$ {Color}_C = \begin{cases} p+ \left((q-p) \times 6 \times t_C\right), & \mbox{if } t_C &lt; \frac{1}{6} \\ q, & \mbox{if } \frac{1}{6} \le t_C < \frac{1}{2} \\ p+\left((q-p) \times 6 \times (\frac{2}{3} - t_C) \right), & \mbox{if } \frac{1}{2} \le t_C < \frac{2}{3} \\ p, & \mbox{otherwise } \end{cases} $$
+$$ {Color}_C = \begin{cases} p+ \left((q-p) \times 6 \times t_C\right), & \mbox{if } t_C < \frac{1}{6} \\\\ q, & \mbox{if } \frac{1}{6} \le t_C < \frac{1}{2} \\\\ p+\left((q-p) \times 6 \times (\frac{2}{3} - t_C) \right), & \mbox{if } \frac{1}{2} \le t_C < \frac{2}{3} \\\\ p, & \mbox{otherwise } \end{cases} $$
 
 $$ \mbox{for each}\,C \in \{R,G,B\} $$
 

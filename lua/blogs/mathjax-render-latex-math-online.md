@@ -15,7 +15,7 @@ $$ \iiint_\Omega(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\fr
 
 　　矩阵也是可以的：
 
-$$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\1&x_2&y_2&z_2\\1&x_3&y_3&z_3\\1&x_4&y_4&z_4\end{array}\right]\left[\begin{array}{c}a_1\\a_2\\a_3\\a_4\end{array}\right]=\left[\begin{array}{c}T_1\\T_2\\T_3\\T_4\end{array}\right] $$
+$$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\\\1&x_2&y_2&z_2\\\\1&x_3&y_3&z_3\\\\1&x_4&y_4&z_4\end{array}\right]\left[\begin{array}{c}a_1\\\\a_2\\\\a_3\\\\a_4\end{array}\right]=\left[\begin{array}{c}T_1\\\\T_2\\\\T_3\\\\T_4\end{array}\right] $$
 
 　　下面是 LaTeX 公式常用符号 cheatsheet ：
 
