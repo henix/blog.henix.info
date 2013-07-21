@@ -1,4 +1,9 @@
-#{include: 'popular.seg.htm' }#
+<div id="popular" class="box">
+	<h5>最多评论</h5>
+	<ul class="box-body">
+#{= loadFile('build/popular.seg.htm') }#
+	</ul>
+</div>
 </div><!-- end of content -->
 
 #{include: 'footer.seg.htm' }#

@@ -18,9 +18,6 @@ category.mk.inc: category.db
 
 -include category.mk.inc
 
-comments.db: comments.xml
-	lua5.1 parsecom.lua $< | sort -k 1b,1 > $@
-
 # post 的一般信息
 
 build/post/%.name:
@@ -60,7 +57,7 @@ build/%.cat.d: build/%.cat.id build/catpost.db
 build/index.begin.html: index.begin.pp.htm
 	runslt2.lua -d config.lua -v "{}" -t $< > $@
 
-build/index.end.html: index.end.pp.htm
+build/index.end.html: index.end.pp.htm build/popular.seg.htm
 	runslt2.lua -d config.lua -v "{}" -t $< > $@
 
 build/index.html.d: build/catpost.db
@@ -151,6 +148,17 @@ build/tag/tag.end.html: tag.end.pp.htm
 
 # post 和 digest
 
+## 评论数
+
+comments.db: comments.xml
+	lua5.1 parsecom.lua $< | sort -k 1b,1 > $@
+
+build/post/%.comnum: build/post/%.name comments.db
+	join $< comments.db | cut -d ' ' -f 2 > $@
+
+build/popular.seg.htm: comments.db $(patsubst blogs/%.md,build/post/%.name,$(MDS)) $(patsubst blogs/%.md,blogs/%.title,$(MDS))
+	cat $(patsubst blogs/%.md,build/post/%.name,$(MDS)) | sort | join - comments.db | sort -k 2nr | head -n 10 | while read id comnum; do echo "<li><a href=\"/blog/$$id.html\" title=\"$$comnum 条评论\">$$(cat blogs/$$id.title | sed -f htmlesc.sed)</a></li>" ; done > $@
+
 build/post/%.smd: blogs/%.md
 	runslt2.lua -d config.lua -v "{}" -t $< > $@
 
@@ -163,10 +171,10 @@ build/post/%.digest.htm: build/post/%.md.htm digestHtml
 digestHtml: digestHtml.vala
 	valac $<
 
-build/post/%.lua: build/post/%.name blogs/%.title blogs/%.catid build/post/%.catname blogs/%.publish_time
+build/post/%.lua: build/post/%.name blogs/%.title blogs/%.catid build/post/%.catname blogs/%.publish_time build/post/%.comnum
 	./postlua.sh $^ $(patsubst build/post/%.name,build/post/%.md.htm,$<) $(patsubst build/post/%.name,build/post/%.tags.seg.htm,$<) $(patsubst build/post/%.name,build/post/%.rela.seg.htm,$<) > $@
 
-build/post/%.digest.lua: build/post/%.name blogs/%.title blogs/%.catid build/post/%.catname blogs/%.publish_time
+build/post/%.digest.lua: build/post/%.name blogs/%.title blogs/%.catid build/post/%.catname blogs/%.publish_time build/post/%.comnum
 	./postlua.sh $^ $(patsubst build/post/%.name,build/post/%.digest.htm,$<) $(patsubst build/post/%.name,build/post/%.tags.seg.htm,$<) > $@
 
 -include post.pp.htm.d
