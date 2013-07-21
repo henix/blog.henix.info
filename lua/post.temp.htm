@@ -36,26 +36,7 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 
 <div class="related-posts">
 	<p>相关文章：</p>
-		#${
-		local others = {}
-		for i = 1, #blogposts do
-			if blogposts[i] ~= post then
-				table.insert(others, {i, calcRelative(post, blogposts[i])})
-			end
-		end
-		local function moreRelative(a, b)
-			return a[2] > b[2]
-		end
-		table.sort(others, moreRelative) }$#
-	<ul>
-			#${
-			local n = 1
-			while n <= #others and n <= 5 and others[n][2] > 0 do }$#
-			<li><a href=""></a></li>
-			#${
-				n = n + 1
-			end }$#
-	</ul>
+	<ul>#{= loadFile(rela_path) }#</ul>
 </div>
 
 <div id="disqus_thread"></div>

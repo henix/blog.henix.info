@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# name title catid catname publish_time postPath tagPath
+# name title catid catname publish_time postPath tagPath rela_path
 
 echo "{
 	name = '$(cat $1)',
@@ -11,4 +11,5 @@ echo "{
 	comment_count = 0,
 	post_path = '$6',
 	tags_path = '$7',
+	rela_path = '$8',
 }"
