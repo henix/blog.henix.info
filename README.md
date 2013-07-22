@@ -1,6 +1,8 @@
 henix 的技术博客：[http://blog.henix.info/](http://blog.henix.info/)
 
-一个 lua 的静态站点生成器。
+一个使用 Makefile / bash / lua / vala / github-markdown 的静态站点生成器。
+
+v1 完全用 lua 编写，v2 重构为由 Makefile 粘合的各种语言大杂烩。。。 [采用 Makefile 重构](https://github.com/henix/blog.henix.info/issues/5)
 
 * [新年第一贴/准备启用新博客](http://blog.henix.info/blog/new-year-new-blog.html)
 * [纯静态博客的实现](http://blog.henix.info/blog/my-static-blog.html) （注意到当时 jekyll 等还没开始流行）
@@ -10,7 +12,7 @@ henix 的技术博客：[http://blog.henix.info/](http://blog.henix.info/)
 
 ### 内容
 
-* 文章点击量（使用 Google Analytics 统计）
+* <del>文章点击量（使用 Google Analytics 统计）</del> [在首页添加最新评论](https://github.com/henix/blog.henix.info/issues/2)
 * 文章评论数（使用 Disqus 统计）
 * 热门文章（根据评论数和点击量）
 * 相关文章（根据标签）
@@ -18,7 +20,7 @@ henix 的技术博客：[http://blog.henix.info/](http://blog.henix.info/)
 ### 呈现
 
 * 数学公式（via MathJax） [MathJax: 在网页上显示 LaTeX 数学公式](http://blog.henix.info/blog/mathjax-render-latex-math-online.html)
-* 代码高亮（via SyntaxHighlighter）
+* 代码高亮（via [highlight](https://github.com/henix/blog.henix.info/issues/4)）
 
 ### 设计
 
@@ -39,13 +41,23 @@ henix 的技术博客：[http://blog.henix.info/](http://blog.henix.info/)
 * [flower.js](https://github.com/henix/flower.js)
 * [rainy](https://github.com/henix/rainy) : js 依赖管理
 
+### vala
+
+需要安装 vala 编译器
+
+### github-markdown
+
+详见这个 issue：[后端渲染引擎采用 pandoc](https://github.com/henix/blog.henix.info/issues/7)
+
+安装 github-markdown 并把 gfm 所在的目录加入 $PATH
+
 ## Build
 
 	cd lua
-	# 从 ga 下载点击量 csv 并保存为 visits.2.csv
 	# 从 disqus 导出评论 xml 并保存为 comments.xml
-	make # 生成点击量和评论数据
-	./gen.lua # 生成的东西放在 static
+	make
+	make -j3 allposts alltags
+	./sync.sh
 
 ## Run
 
