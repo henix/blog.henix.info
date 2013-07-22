@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. ./config.sh
+
 name=$(cat $1)
 title=$(cat $2)
 catname=$(cat $3)

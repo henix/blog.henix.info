@@ -4,7 +4,7 @@
 
 MDS := $(wildcard blogs/*.md)
 
-all: pages/index.html pages/search.html pages/links.html pages/about.html pages/guestbook.html pages/rss2.0.xml
+all: pages/index.html pages/search.html pages/links.html pages/about.html pages/guestbook.html pages/rss2.0.xml pages/sitemap.xml
 
 tags.mk.inc: tags.db
 	printf "TAGS := " > $@
@@ -215,18 +215,16 @@ pages/about.html: about.pp.htm config.lua
 pages/guestbook.html: guestbook.pp.htm config.lua
 	runslt2.lua -d config.lua -v "{}" -t $< > $@
 
-# 全局配置，注意跟 config.lua 中的保持一致
-
-SITEURL:="http://blog.henix.info"
-SITEDESC:="henix's blog 每月1号和15号更新"
-
 # RSS
 
 build/post/%.rss.seg.htm: build/post/%.name blogs/%.title build/post/%.catname blogs/%.publish_time build/post/%.md.htm blogs/%.tags
 	SITEURL=$(SITEURL) ./rss.seg.sh $^ > $@
 
-pages/rss2.0.xml: $(patsubst blogs/%.md,build/post/%.rss.seg.htm,$(MDS)) build/catpost.db rss2.0.temp.sh config.lua
-	sort -k 3nr build/catpost.db | cut -f 2 | sed -e 's/.*/build\/post\/&.rss.seg.htm/' | xargs cat | SITEURL=$(SITEURL) SITEDESC=$(SITEDESC) ./rss2.0.temp.sh > $@
+pages/rss2.0.xml: $(patsubst blogs/%.md,build/post/%.rss.seg.htm,$(MDS)) build/catpost.db rss2.0.temp.sh config.sh
+	sort -k 3nr build/catpost.db | cut -f 2 | sed -e 's/.*/build\/post\/&.rss.seg.htm/' | xargs cat | ./rss2.0.temp.sh > $@
+
+pages/sitemap.xml: ./sitemap.temp.sh build/catpost.db tags.db
+	./$^ > $@
 
 clean:
 	rm $(TARGETS)
