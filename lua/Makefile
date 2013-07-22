@@ -1,4 +1,4 @@
-.PHONY: all allposts alltags clean
+.PHONY: all allposts alltags
 
 .SECONDARY:
 
@@ -225,6 +225,3 @@ pages/rss2.0.xml: $(patsubst blogs/%.md,build/post/%.rss.seg.htm,$(MDS)) build/c
 
 pages/sitemap.xml: ./sitemap.temp.sh build/catpost.db tags.db
 	./$^ > $@
-
-clean:
-	rm $(TARGETS)
