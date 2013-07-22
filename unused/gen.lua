@@ -62,7 +62,7 @@ function table.inarray(t, name)
 			return true
 		end
 	end
-	return false	
+	return false
 end
 
 function HSL2RGB(h, s, l)

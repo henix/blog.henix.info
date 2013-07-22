@@ -588,7 +588,7 @@ blogposts = {
 	},
 	{
 		name = 'robocopy-sync-files',
-		title = '使用 robocopy 实时同步文件夹', 
+		title = '使用 robocopy 实时同步文件夹',
 		publish_time = 1293944333,
 		tags = {'cmd.exe', 'robocopy', '备份', '复制', 'Windows'},
 		category = 'Windows',
