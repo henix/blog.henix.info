@@ -1,26 +1,30 @@
-<p>　　网络流问题定义什么的我就不介绍了，网上到处都找得到。</p>
-<p>　　我第一次听说“最大流有 4 种做法”，大约是在这篇帖子里：<a href="http://tieba.baidu.com/p/1359675218">http://tieba.baidu.com/p/1359675218</a> ，现在知道最大流的求法不止 4 种。</p>
-<p>寻找增广路派：</p>
-<ol>
-	<li>原始的 Ford-Fulkerson 算法，用 DFS 寻找增广路</li>
-	<li>Edmonds-Karp 算法，用 BFS 寻找增广路</li>
-	<li>最短增广路算法，引入距离标号、允许弧，每次在允许弧上增广</li>
-	<li>Dinic 算法，引入层次网络</li>
-</ol>
-<p>预推流派：</p>
-<ol>
-	<li>原始预推流</li>
-	<li>FIFO 实现预推流</li>
-	<li>最高标号预推流</li>
-</ol>
-<p>　　还有 R.E.Tarjan 大神的 link/cut tree ，使得时间复杂度降到 log 级。</p>
-<p>　　Edmonds-Karp 就是用 BFS 在残余网络上寻找增广路，时间复杂度 O(VE<sup>2</sup>) 。以 poj 1273 这题为例，下面是我第一次写的代码：</p>
-<pre class="brush: cpp; collapse: true">
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdbool.h&gt;
-#include &lt;limits.h&gt;
-#include &lt;assert.h&gt;
+　　网络流问题定义什么的我就不介绍了，网上到处都找得到。
+
+　　我第一次听说“最大流有 4 种做法”，大约是在这篇帖子里：[http://tieba.baidu.com/p/1359675218](http://tieba.baidu.com/p/1359675218) ，现在知道最大流的求法不止 4 种。
+
+寻找增广路派：
+
+1. 原始的 Ford-Fulkerson 算法，用 DFS 寻找增广路
+2. Edmonds-Karp 算法，用 BFS 寻找增广路
+3. 最短增广路算法，引入距离标号、允许弧，每次在允许弧上增广
+4. Dinic 算法，引入层次网络
+
+预推流派：
+
+1. 原始预推流
+2. FIFO 实现预推流
+3. 最高标号预推流
+
+　　还有 R.E.Tarjan 大神的 link/cut tree ，使得时间复杂度降到 log 级。
+
+　　Edmonds-Karp 就是用 BFS 在残余网络上寻找增广路，时间复杂度 O(VE<sup>2</sup>) 。以 poj 1273 这题为例，下面是我第一次写的代码：
+
+#{= highlight([=[
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <limits.h>
+#include <assert.h>
 
 struct edge_t {
 	int capacity;
@@ -41,7 +45,7 @@ int maxflow(int n, struct edge_t edges[n][n], int source, int sink) {
 		while (nv != source) {
 			v = parent[nv];
 			int t = edges[v][nv].capacity - edges[v][nv].flow;
-			if (t &lt; delta) {
+			if (t < delta) {
 				delta = t;
 			}
 			nv = v;
@@ -65,16 +69,16 @@ int maxflow(int n, struct edge_t edges[n][n], int source, int sink) {
 		memset(occured, 0, sizeof(occured));
 		occured[source] = true;
 
-		while (qhead &lt; qend) {
+		while (qhead < qend) {
 			int v = queue[qhead++];
-			if (edges[v][sink].flow &lt; edges[v][sink].capacity) {
+			if (edges[v][sink].flow < edges[v][sink].capacity) {
 				parent[sink] = v;
 				return true;
 			}
 			int i;
-			for (i = 0; i &lt; n; ++i) {
+			for (i = 0; i < n; ++i) {
 				if (!occured[i]) {
-					if (edges[v][i].flow &lt; edges[v][i].capacity) {
+					if (edges[v][i].flow < edges[v][i].capacity) {
 						occured[i] = true;
 						parent[i] = v;
 						queue[qend++] = i;
@@ -92,7 +96,7 @@ int maxflow(int n, struct edge_t edges[n][n], int source, int sink) {
 
 	int sum = 0;
 	int i;
-	for (i = 0; i &lt; n; ++i) {
+	for (i = 0; i < n; ++i) {
 		sum += edges[source][i].flow;
 	}
 	return sum;
@@ -101,7 +105,7 @@ int maxflow(int n, struct edge_t edges[n][n], int source, int sink) {
 int main(int argc, char const *argv[])
 {
 	int n, m;
-	while (scanf("%d%d", &amp;m, &amp;n) == 2) {
+	while (scanf("%d%d", &m, &n) == 2) {
 
 		struct edge_t edges[n][n];
 		memset(edges, 0, sizeof(edges));
@@ -111,9 +115,9 @@ int main(int argc, char const *argv[])
 		memset(soccured, 0, sizeof(soccured));
 		memset(eoccured, 0, sizeof(eoccured));
 
-		for (; m &gt; 0; m--) {
+		for (; m > 0; m--) {
 			int s, e, c;
-			scanf("%d%d%d", &amp;s, &amp;e, &amp;c);
+			scanf("%d%d%d", &s, &e, &c);
 			s--; // my index start from 0
 			e--;
 			edges[s][e].capacity += c;
@@ -131,14 +135,16 @@ int main(int argc, char const *argv[])
 	}
 	return 0;
 }
-</pre>
-<p>　　主要参考了 <a href="http://en.wikipedia.org/wiki/Edmonds–Karp_algorithm">wiki</a> 。但后来看了别人写的代码，发现其实 flow 可以不用保存，第二版：</p>
-<pre class="brush: cpp; collapse: true">
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdbool.h&gt;
-#include &lt;limits.h&gt;
-#include &lt;assert.h&gt;
+]=], 'cpp', {lineno=true;collapse=true})}#
+
+　　主要参考了 [wiki](http://en.wikipedia.org/wiki/Edmonds–Karp_algorithm) 。但后来看了别人写的代码，发现其实 flow 可以不用保存，第二版：
+
+#{= highlight([=[
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <limits.h>
+#include <assert.h>
 
 struct edge_t {
 	int capacity;
@@ -159,7 +165,7 @@ int maxflow(int n, struct edge_t edges[n][n], int source, int sink) {
 		while (nv != source) {
 			v = parent[nv];
 			int t = edges[v][nv].capacity;
-			if (t &lt; delta) {
+			if (t < delta) {
 				delta = t;
 			}
 			nv = v;
@@ -184,16 +190,16 @@ int maxflow(int n, struct edge_t edges[n][n], int source, int sink) {
 		memset(occured, 0, sizeof(occured));
 		occured[source] = true;
 
-		while (qhead &lt; qend) {
+		while (qhead < qend) {
 			int v = queue[qhead++];
-			if (edges[v][sink].capacity &gt; 0) {
+			if (edges[v][sink].capacity > 0) {
 				parent[sink] = v;
 				return true;
 			}
 			int i;
-			for (i = 0; i &lt; n; ++i) {
+			for (i = 0; i < n; ++i) {
 				if (!occured[i]) {
-					if (edges[v][i].capacity &gt; 0) {
+					if (edges[v][i].capacity > 0) {
 						occured[i] = true;
 						parent[i] = v;
 						queue[qend++] = i;
@@ -215,14 +221,14 @@ int maxflow(int n, struct edge_t edges[n][n], int source, int sink) {
 int main(int argc, char const *argv[])
 {
 	int n, m;
-	while (scanf("%d%d", &amp;m, &amp;n) == 2) {
+	while (scanf("%d%d", &m, &n) == 2) {
 
 		struct edge_t edges[n][n];
 		memset(edges, 0, sizeof(edges));
 
-		for (; m &gt; 0; m--) {
+		for (; m > 0; m--) {
 			int s, e, c;
-			scanf("%d%d%d", &amp;s, &amp;e, &amp;c);
+			scanf("%d%d%d", &s, &e, &c);
 			s--; // my index start from 0
 			e--;
 			edges[s][e].capacity += c;
@@ -237,13 +243,14 @@ int main(int argc, char const *argv[])
 	}
 	return 0;
 }
-</pre>
-<p>　　capacity 可以看成“这条边上可以增加的流的大小”，当前找到的增广路保存在 parent 数组里。</p>
+]=], 'cpp', {lineno=true;collapse=true})}#
 
-<h3>实测效率</h3>
-<p>　　在 OJ 上实测，如果用原始的 Ford-Fulkerson 算法，则 TLE ，因为原始算法的时间复杂度跟最大流的大小有关。而用 Edmonds-Karp 就 0ms 过了。</p>
+　　capacity 可以看成“这条边上可以增加的流的大小”，当前找到的增广路保存在 parent 数组里。
 
-<h3>参考资料</h3>
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Edmonds–Karp_algorithm">Edmonds–Karp algorithm - Wikipedia, the free encyclopedia</a></li>
-</ul>
+### 实测效率
+
+　　在 OJ 上实测，如果用原始的 Ford-Fulkerson 算法，则 TLE ，因为原始算法的时间复杂度跟最大流的大小有关。而用 Edmonds-Karp 就 0ms 过了。
+
+### 参考资料
+
+* [Edmonds–Karp algorithm - Wikipedia, the free encyclopedia](http://en.wikipedia.org/wiki/Edmonds–Karp_algorithm)

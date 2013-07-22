@@ -1,35 +1,54 @@
-<p>　　poj 2778 DNA Sequence 题目大意：给你一些疾病 DNA 片段，求长度为 n 的 DNA 串中不包含这些片段的串的数量。</p>
-<p>　　一开始不知道怎么做，直到看到网上的一句话，“长度为 n 的字符串可以由长度为 n - 1 的字符串后面加一个字符构成”，由此大彻大悟，原来这就是传说中的自动机 dp ！</p>
-<p>　　举个例子：{AG, CG} ，首先构造 AC 自动机：</p>
+　　poj 2778 DNA Sequence 题目大意：给你一些疾病 DNA 片段，求长度为 n 的 DNA 串中不包含这些片段的串的数量。
+
+　　一开始不知道怎么做，直到看到网上的一句话，“长度为 n 的字符串可以由长度为 n - 1 的字符串后面加一个字符构成”，由此大彻大悟，原来这就是传说中的自动机 dp ！
+
+　　举个例子：{AG, CG} ，首先构造 AC 自动机：
+
 <p class="center">#{= makeImg('/files/poj2778/2778.gif') }#</p>
-<p>　　给每个节点加了编号，只有 0 1 2 是合法的，其他状态到达就直接死了，不用处理。</p>
-<p>　　然后将上面的 AC 自动机转化成下面这张表：</p>
+
+　　给每个节点加了编号，只有 0 1 2 是合法的，其他状态到达就直接死了，不用处理。
+
+　　然后将上面的 AC 自动机转化成下面这张表：
+
 <table style="margin: auto;">
 <tr><td></td><td>A</td><td>C</td><td>T</td><td>G</td></tr>
 <tr><td>0</td><td>1</td><td>2</td><td>0</td><td>0</td></tr>
 <tr><td>1</td><td>1</td><td>2</td><td>0</td><td>3</td></tr>
 <tr><td>2</td><td>1</td><td>2</td><td>0</td><td>4</td></tr>
 </table>
-<p>　　这张表表示当前状态遇到一个字母后跳转到什么状态。我称之为“跳转表”，对应于我代码中的 jump 域。这个貌似跟传说中的“trie 图”类似，都是把自动机确定化。</p>
-<p>　　然后数一下每一行有多少个 0 ，多少个 1 ……将上表转化成下面的递推关系：</p>
+
+　　这张表表示当前状态遇到一个字母后跳转到什么状态。我称之为“跳转表”，对应于我代码中的 jump 域。这个貌似跟传说中的“trie 图”类似，都是把自动机确定化。
+
+　　然后数一下每一行有多少个 0 ，多少个 1 ……将上表转化成下面的递推关系：
+
 <blockquote>
-	<div>
-		\(f_0(n) = 2 * f_0(n-1) + 1 * f_1(n-1) + 1 * f_2(n-1)\)<br />
-		\(f_1(n) = 1 * f_0(n-1) + 1 * f_1(n-1) + 1 * f_2(n-1)\)<br />
-		\(f_2(n) = 1 * f_0(n-1) + 1 * f_1(n-1) + 1 * f_2(n-1)\)
-	</div>
+<p>\(f_0(n) = 2 * f_0(n-1) + 1 * f_1(n-1) + 1 * f_2(n-1)\)<br />
+\(f_1(n) = 1 * f_0(n-1) + 1 * f_1(n-1) + 1 * f_2(n-1)\)<br />
+\(f_2(n) = 1 * f_0(n-1) + 1 * f_1(n-1) + 1 * f_2(n-1)\)</p>
 </blockquote>
-<p>　　其中 \(f_i(n)\) 表示到第 n 步，有多少个字符串处于状态 i 。\(f_0(n-1)\) 前面的系数 2 是 0 那一行包含的 0 的数量，表示如果上一步有一个处于状态 0 ，那么下一步就会有 2 个处于状态 0（分别对应遇到 T 和 G 的情况）。其他类似。</p>
-<p>　　将上面的系数矩阵提出来，立即得到：</p>
+
+　　其中 \(f_i(n)\) 表示到第 n 步，有多少个字符串处于状态 i 。\(f_0(n-1)\) 前面的系数 2 是 0 那一行包含的 0 的数量，表示如果上一步有一个处于状态 0 ，那么下一步就会有 2 个处于状态 0（分别对应遇到 T 和 G 的情况）。其他类似。
+
+　　将上面的系数矩阵提出来，立即得到：
+
 <p>$$ \left[ \begin{array}{c} f_0(n)\\f_1(n)\\f_2(n) \end{array} \right] = \left[ \begin{array}{ccc} 2&amp;1&amp;1\\1&amp;1&amp;1\\1&amp;1&amp;1 \end{array} \right]^n \left[ \begin{array}{c} 1\\0\\0 \end{array} \right] $$</p>
-<p>　　这就是所谓“常系数线性递推式”，详见黑书练习题 2.1.8 。比如对于 n = 3 ，先计算系数矩阵的 3 次方：</p>
+
+　　这就是所谓“常系数线性递推式”，详见黑书练习题 2.1.8 。比如对于 n = 3 ，先计算系数矩阵的 3 次方：
+
 <p>$$ \left[ \begin{array}{ccc} 2&amp;1&amp;1\\1&amp;1&amp;1\\1&amp;1&amp;1 \end{array} \right]^3 = \left[ \begin{array}{ccc} 20&amp;14&amp;14\\14&amp;10&amp;10\\14&amp;10&amp;10 \end{array} \right] $$</p>
-<p>　　然后把结果矩阵的第一列加起来即得到答案 48 。</p>
-<p>　　题目中 n 可能非常大，这时就轮到快速幂运算出场了。使用快速幂运算，计算 \(A^n\) 的时间复杂度为 O(log n) 次乘法（此题是矩阵乘法）。我的代码中这部分用了两个指针，每次计算都交换，这是为了避免矩阵复制。</p>
-<p>　　最后，还要考虑一种情况，即有些疾病 DNA 片段互相包含的情况，以 {ACG, C} 为例：</p>
+
+　　然后把结果矩阵的第一列加起来即得到答案 48 。
+
+　　题目中 n 可能非常大，这时就轮到快速幂运算出场了。使用快速幂运算，计算 \\(A^n\\) 的时间复杂度为 O(log n) 次乘法（此题是矩阵乘法）。我的代码中这部分用了两个指针，每次计算都交换，这是为了避免矩阵复制。
+
+　　最后，还要考虑一种情况，即有些疾病 DNA 片段互相包含的情况，以 {ACG, C} 为例：
+
 <p class="center">#{= makeImg('/files/poj2778/2778-2.gif') }#</p>
-<p>　　其中 C 是死节点，那么 AC（红色的）是不是呢？表面上看 AC 不是疾病片段，但实际上，匹配了 AC 就相当于匹配了 C ，所以 AC 也是死节点！我称这种情况为“疾病的传染”，见代码中用 spread 注释的部分。</p>
-<p>　　代码（gcc 63MS）：</p>
+
+　　其中 C 是死节点，那么 AC（红色的）是不是呢？表面上看 AC 不是疾病片段，但实际上，匹配了 AC 就相当于匹配了 C ，所以 AC 也是死节点！我称这种情况为“疾病的传染”，见代码中用 spread 注释的部分。
+
+　　代码（gcc 63MS）：
+
 #{= highlight([=[
 #include <stdio.h>
 #include <string.h>
@@ -211,16 +230,17 @@ int main(int argc, const char *argv[])
 	free(c2);
 	return 0;
 }
-]=], 'lua') }#
-<p>　　其他相关题目：</p>
-<ul>
-	<li>poj 3691 DNA repair</li>
-	<li>poj 1625 Censored!</li>
-	<li>hdu 2825 Wireless Password</li>
-</ul>
-<p>　　贴两个解题报告：</p>
-<ul>
-<li><a href="http://hi.baidu.com/lilymona/blog/item/4c0252dd3d8cbf1949540390.html">POJ 2778 DNA Sequence [AC自动机+矩阵递推]_Lily's OI space_百度空间</a></li>
-<li><a href="http://blog.csdn.net/kk303/article/details/6936046">POJ2778 - AC自动机+非递归的矩阵乘法 - Jacob's zone - 博客频道 - CSDN.NET</a></li>
-</ul>
+]=], 'cpp', {lineno=true}) }#
+
+　　其他相关题目：
+
+* poj 3691 DNA repair
+* poj 1625 Censored!
+* hdu 2825 Wireless Password
+
+　　贴两个解题报告：
+
+* [POJ 2778 DNA Sequence [AC自动机+矩阵递推]_Lily's OI space_百度空间](http://hi.baidu.com/lilymona/blog/item/4c0252dd3d8cbf1949540390.html)
+* [POJ2778 - AC自动机+非递归的矩阵乘法 - Jacob's zone - 博客频道 - CSDN.NET](http://blog.csdn.net/kk303/article/details/6936046)
+
 #{include: 'mathjax.seg.htm' }#
