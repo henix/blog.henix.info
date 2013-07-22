@@ -1,0 +1,57 @@
+　　以前写过[一个 Lua 的凑24程序](/blog/lua-program-solve-24-game.html)，最近在学 Prolog ，顺便写一下这个程序的 Prolog 版，充分发挥 Prolog 的搜索功能。基本原理不变，枚举所有可能的逆波兰式。
+
+　　代码（[gist](https://gist.github.com/henix/5428681)）：
+
+#{= highlight([=[
+/* RPN = Reverse Polish notation */
+ 
+operator(add).
+operator(sub).
+operator(mul).
+operator(div).
+ 
+doop(add, A, B, C) :- C = A + B.
+doop(sub, A, B, C) :- C = A - B.
+doop(mul, A, B, C) :- C = A * B.
+doop(div, A, B, C) :- B1 is B, B1 \= 0, C = A / B.
+ 
+/* rpn2exp(Stack: List, Prog: List, Result: Int, Expr) */
+rpn2exp([X], [], X).
+rpn2exp(Stack, [Head|Tail], Res) :-
+integer(Head),
+rpn2exp([Head|Stack], Tail, Res).
+rpn2exp([X,Y|Others], [Head|Tail], Res) :-
+operator(Head),
+doop(Head, Y, X, X1),
+rpn2exp([X1|Others], Tail, Res).
+ 
+eval_rpn(Prog, Res) :- rpn2exp([], Prog, Exp), Res is Exp.
+ 
+try_prog([A, B, C, D], [A, B, X, C, Y, D, Z], N) :- eval_rpn([A, B, X, C, Y, D, Z], N).
+try_prog([A, B, C, D], [A, B, X, C, D, Y, Z], N) :- eval_rpn([A, B, X, C, D, Y, Z], N).
+try_prog([A, B, C, D], [A, B, C, X, D, Y, Z], N) :- eval_rpn([A, B, C, X, D, Y, Z], N).
+try_prog([A, B, C, D], [A, B, C, X, Y, D, Z], N) :- eval_rpn([A, B, C, X, Y, D, Z], N).
+try_prog([A, B, C, D], [A, B, C, D, X, Y, Z], N) :- eval_rpn([A, B, C, D, X, Y, Z], N).
+ 
+solve24order(Numbers, Prog) :- try_prog(Numbers, Prog, 24).
+solve24order(Numbers, Prog) :- try_prog(Numbers, Prog, 24.0).
+ 
+solve24(Numbers, Prog) :- setof(T, lists:perm(Numbers, T), Bag), lists:member(T1, Bag), solve24order(T1, Prog), rpn2exp([], Prog, E), write(E), nl, fail.
+]=], 'pro', {lineno=true})}#
+
+　　运行样例：
+
+```
+?- solve24([5,5,5,1], X).
+(5-1/5)*5
+5* (5-1/5)
+false.
+
+?- solve24([4,4,10,10], X).
+(10*10-4)/4
+false.
+```
+
+　　Prolog 让我想到了 Haskell 的单元测试库 QuickCheck ，它们都指向了一个东西—— Specification driven programming 。QuickCheck 是这样一种单元测试框架，你只需要告诉电脑这个程序的行为应该满足什么规范（specification），然后由电脑自动生成测试用例。比如为了测试一个排序程序，你只需告诉电脑：“这个函数运行之后，这个数组应该有序”（写一个判断数组是否有序的函数传给 QuickCheck），然后剩下的生成测试用例，完成测试等工作就都交给 QuickCheck 完成了。（Scala 有个类似的库叫 ScalaCheck）
+
+　　对于未来的编程应该是什么样子，我有个不切实际的梦想：未来，我们可以进行真正的“测试驱动开发”：你只需要编写测试用例，由电脑自动生成让这些测试用例通过的程序。Prolog 可以说已经做到了一部分，但还有很大一部分没做到。

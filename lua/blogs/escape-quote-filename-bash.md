@@ -1,0 +1,160 @@
+　　最近遇到的一个问题：程序中有一个文件名，需要把这个文件名放在 shell 中执行，但文件名中可能包含特殊字符，所以需要转义。
+
+　　比如，如果文件名是：
+
+```
+[SumiSora&CASO&HKG][Tears_to_Tiara][02][GB].rmvb
+```
+
+　　这个文件名肯定不能直接放到 bash 中的，因为“&amp;”和 [ 、] 等都是 bash 的特殊字符。
+
+　　bash 的自动补全默认采用反斜线转义：
+
+```
+\[SumiSora\&CASO\&HKG\]\[Tears_to_Tiara\]\[02\]\[GB\].rmvb
+```
+
+　　或者用单引号转义：
+
+```
+'[SumiSora&CASO&HKG][Tears_to_Tiara][02][GB].rmvb'
+```
+
+　　所以问题是，如何正确地实现转义？
+
+　　经过一些搜索：
+
+* [http://stackoverflow.com/questions/35817/how-to-escape-os-system-calls-in-python](http://stackoverflow.com/questions/35817/how-to-escape-os-system-calls-in-python)
+* [http://stackoverflow.com/questions/5608112/escape-filenames-using-the-same-way-bash-do-it](http://stackoverflow.com/questions/5608112/escape-filenames-using-the-same-way-bash-do-it)
+
+　　找到了两个东西可以实现这个功能：
+
+1. python 3.3a 的 shlex.quote
+2. bash 的内置命令 printf "%q" str（这货可不是 coreutils 的 printf ！）
+
+　　但既然要实现 bash 的文件名转义，没有什么比 bash 本身的代码更权威的了。于是下载了 bash-4.2 的源代码来看。先花了很多时间定位，最终定位到 builtins/printf.def 这个文件，在大约 500 多行 case 'q' 的部分调用了以下函数：
+
+* ansic_shouldquote
+* ansic_quote
+* sh_backslash_quote
+
+　　前两个函数在 lib/sh/strtrans.c 中，后一个函数在 lib/sh/shquote.c 中。所以最后终于定位到 shquote.c 这个文件。
+
+1. 如果要使用单引号转义，那么使用 sh_single_quote 的算法
+2. 想用反斜线转义，那么使用 sh_blackslash_quote 的算法
+
+　　这两个函数的代码如下：
+
+　　单引号转义：
+
+#{= highlight([=[
+/* **************************************************************** */
+/*								    */
+/*	 Functions for quoting strings to be re-read as input	    */
+/*								    */
+/* **************************************************************** */
+
+/* Return a new string which is the single-quoted version of STRING.
+   Used by alias and trap, among others. */
+char *
+sh_single_quote (string)
+     const char *string;
+{
+  register int c;
+  char *result, *r;
+  const char *s;
+
+  result = (char *)xmalloc (3 + (4 * strlen (string)));
+  r = result;
+  *r++ = '\'';
+
+  for (s = string; s && (c = *s); s++)
+    {
+      *r++ = c;
+
+      if (c == '\'')
+	{
+	  *r++ = '\\';	/* insert escaped single quote */
+	  *r++ = '\'';
+	  *r++ = '\'';	/* start new quoted string */
+	}
+    }
+
+  *r++ = '\'';
+  *r = '\0';
+
+  return (result);
+}
+]=], 'cpp', {lineno=true})}#
+
+　　用 lua 实现如下：
+
+#{= highlight([=[
+function shquote(s)
+	return "'"..string.gsub("'", "'\''").."'"
+end
+]=], 'lua')}#
+
+　　由于在单引号里面再用 \\' 转义单引号也是非法的（我想这是因为单引号里面连 \\ 也不是特殊字符），所以对于文件名里面出现的单引号，必须先结束上一个串，插入单引号，再开始下一个串。
+
+　　反斜线转义：
+
+#{= highlight([=[
+/* Quote special characters in STRING using backslashes.  Return a new
+   string.  NOTE:  if the string is to be further expanded, we need a
+   way to protect the CTLESC and CTLNUL characters.  As I write this,
+   the current callers will never cause the string to be expanded without
+   going through the shell parser, which will protect the internal
+   quoting characters. */
+char *
+sh_backslash_quote (string)
+     char *string;
+{
+  int c;
+  char *result, *r, *s;
+
+  result = (char *)xmalloc (2 * strlen (string) + 1);
+
+  for (r = result, s = string; s && (c = *s); s++)
+    {
+      switch (c)
+	{
+	case ' ': case '\t': case '\n':		/* IFS white space */
+	case '\'': case '"': case '\\':		/* quoting chars */
+	case '|': case '&': case ';':		/* shell metacharacters */
+	case '(': case ')': case '<': case '>':
+	case '!': case '{': case '}':		/* reserved words */
+	case '*': case '[': case '?': case ']':	/* globbing chars */
+	case '^':
+	case '$': case '`':			/* expansion chars */
+	case ',':				/* brace expansion */
+	  *r++ = '\\';
+	  *r++ = c;
+	  break;
+#if 0
+	case '~':				/* tilde expansion */
+	  if (s == string || s[-1] == '=' || s[-1] == ':')
+	    *r++ = '\\';
+	  *r++ = c;
+	  break;
+
+	case CTLESC: case CTLNUL:		/* internal quoting characters */
+	  *r++ = CTLESC;			/* could be '\\'? */
+	  *r++ = c;
+	  break;
+#endif
+
+	case '#':				/* comment char */
+	  if (s == string)
+	    *r++ = '\\';
+	  /* FALLTHROUGH */
+	default:
+	  *r++ = c;
+	  break;
+	}
+    }
+
+  *r = '\0';
+  return (result);
+}
+]=], 'cpp', {lineno=true})}#
