@@ -218,7 +218,7 @@ pages/guestbook.html: guestbook.pp.htm config.lua
 # RSS
 
 build/post/%.rss.seg.htm: build/post/%.name blogs/%.title build/post/%.catname blogs/%.publish_time build/post/%.md.htm blogs/%.tags
-	SITEURL=$(SITEURL) ./rss.seg.sh $^ > $@
+	./rss.seg.sh $^ > $@
 
 pages/rss2.0.xml: $(patsubst blogs/%.md,build/post/%.rss.seg.htm,$(MDS)) build/catpost.db rss2.0.temp.sh config.sh
 	sort -k 3nr build/catpost.db | cut -f 2 | sed -e 's/.*/build\/post\/&.rss.seg.htm/' | xargs cat | ./rss2.0.temp.sh > $@
