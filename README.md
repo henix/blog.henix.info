@@ -1,8 +1,10 @@
 henix 的技术博客：[http://blog.henix.info/](http://blog.henix.info/)
 
-一个使用 Makefile / bash / lua / vala / github-markdown 的静态站点生成器。
+一个使用 Makefile + Scala + lua + vala + github-markdown 的静态站点生成器。
 
-v1 完全用 lua 编写，v2 重构为由 Makefile 粘合的各种语言大杂烩。。。 [采用 Makefile 重构](https://github.com/henix/blog.henix.info/issues/5)
+* v1 完全用 lua 编写
+* v2 重构为由 Makefile 粘合的各种语言大杂烩 [采用 Makefile 重构](https://github.com/henix/blog.henix.info/issues/5)
+* v3 在 Makefile 的基础上将高内聚的计算部分迁移到 Scala [用 Scala 重构](https://github.com/henix/blog.henix.info/issues/9)
 
 * [新年第一贴/准备启用新博客](http://blog.henix.info/blog/new-year-new-blog.html)
 * [纯静态博客的实现](http://blog.henix.info/blog/my-static-blog.html) （注意到当时 jekyll 等还没开始流行）
@@ -30,6 +32,11 @@ v1 完全用 lua 编写，v2 重构为由 Makefile 粘合的各种语言大杂�
 
 ## Dependency
 
+### Scala
+
+* 需要安装 scala
+* commons-io 2.4
+
 ### lua
 
 * lxp : XML parser
@@ -55,6 +62,7 @@ v1 完全用 lua 编写，v2 重构为由 Makefile 粘合的各种语言大杂�
 
 	cd lua
 	# 从 disqus 导出评论 xml 并保存为 comments.xml
+	make runscala
 	make
 	make -j3 allposts alltags
 	./sync.sh
