@@ -10,6 +10,15 @@ disqus_shortname = 'thedistanttown'
 
 baseurl = ''
 
+function escapeHtml(s)
+	local tmp = {['>']='&gt;', ['<']='&lt;'}
+	local ret
+	ret = string.gsub(s, '&', '&amp;')
+	ret = string.gsub(ret, '[<>]', tmp)
+	ret = string.gsub(ret, '"', '&quot;')
+	return ret
+end
+
 -- Macros
 function getPostURL(name)
 	return '/blog/'..name..'.html'
@@ -19,8 +28,8 @@ function getCategoryURL(cat)
 	return '/#'..cat
 end
 
-function getTagURL(tag)
-	return '/tags/'..tag.uname..'.html'
+function getTagURL(id)
+	return '/tags/'..id..'.html'
 end
 
 function loadFile(path)

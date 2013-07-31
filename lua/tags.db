@@ -12,7 +12,6 @@ CSS	CSS
 DLL	DLL
 Emacs	emacs
 ffmpeg	ffmpeg
-Fun	Fun
 Haskell	haskell
 HSL	HSL
 Internet	internet
@@ -20,7 +19,6 @@ IUP	IUP
 Java	Java
 js	JavaScript
 Linux	Linux
-LL分析	LL-parsing
 Lua	Lua
 MathJax	MathJax
 MinGW	MinGW
@@ -43,7 +41,6 @@ tomcat	tomcat
 trie	trie
 Vector	vector
 Vim	Vim
-vimrc	vimrc
 Web	Web
 Win32	Win32
 Windows	Windows
@@ -81,7 +78,6 @@ X11	X11
 系统结构	computer-architecture
 线性代数	linear-algebra
 线段树	segment-trees
-编译原理	Compilers
 网络流	network-flows
 计算机图形学	CG
 调试	debug

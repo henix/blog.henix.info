@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+	http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+#{ curdate = os.date('%Y-%m-%d') }#
+<url>
+	<loc>#{= siteurl }#</loc>
+	<priority>1.00</priority>
+	<lastmod>#{= curdate }#</lastmod>
+	<changefreq>weekly</changefreq>
+</url>
+<url>
+	<loc>#{= siteurl }#/about.html</loc>
+	<priority>0.5</priority>
+	<lastmod>#{= curdate }#</lastmod>
+	<changefreq>weekly</changefreq>
+</url>
+<url>
+	<loc>#{= siteurl }#/links.html</loc>
+	<priority>0.5</priority>
+	<lastmod>#{= curdate }#</lastmod>
+	<changefreq>weekly</changefreq>
+</url>
+<url>
+	<loc>#{= siteurl }#/guestbook.html</loc>
+	<priority>0.5</priority>
+	<lastmod>#{= curdate }#</lastmod>
+	<changefreq>weekly</changefreq>
+</url>
+#{ for _, post in ipairs(posts) do }#
+<url>
+	<loc>#{= siteurl }##{= getPostURL(post.id) }#</loc>
+	<priority>0.5</priority>
+	<lastmod>#{= curdate }#</lastmod>
+	<changefreq>weekly</changefreq>
+</url>#{ end }#
+</urlset>

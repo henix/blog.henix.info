@@ -5,7 +5,9 @@
 	<span class="post-stat">#{= comment_count }# 条评论</span>
 </div>
 <div class="blogpost" data-name="postDetail">
-	<div class="postcontent">#{= loadFile(post_path) }#...</div>
-	<div class="post-tags">#{= loadFile(tags_path) }#</div>
+	<div class="postcontent">#{= loadFile('build/post/'..name..'.digest.htm') }#...</div>
+	<div class="post-tags">#{ for i, tag in ipairs(tags) do }#
+	#{ if i > 1 then }#, #{ end }#<a href="#{= getTagURL(tag.id) }#">#{= escapeHtml(tag.name) }#</a>#{ end }#
+	</div>
 </div>
 </li>

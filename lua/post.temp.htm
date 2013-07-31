@@ -24,19 +24,23 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 <div id="content">
 
 <div class="blogpost">
-	<div class="title"><a href="#{= getPostURL(name) }#">#{= title }#</a></div>
+	<div class="title"><a href="#{= getPostURL(name) }#">#{= escapeHtml(title) }#</a></div>
 	<div class="post-info clearfix">
 		<span class="post-time">#{= os.date('%Y年%m月%d日 %H:%M', publish_time) }#</span>
-		<span class="post-cat"><a href="#{= getCategoryURL(catid) }#">#{= catname }#</a></span>
+		<span class="post-cat"><a href="#{= getCategoryURL(catid) }#">#{= escapeHtml(catname) }#</a></span>
 		<span class="post-stat">#{= comment_count }# 条评论</span>
 	</div>
-	<div class="postcontent">#{= loadFile(post_path) }#</div>
-	<div class="post-tags">#{= loadFile(tags_path) }#</div>
+	<div class="postcontent">#{= loadFile('build/post/'..name..'.md.htm') }#</div>
+	<div class="post-tags">#{ for i, tag in ipairs(tags) do }#
+	#{ if i > 1 then }#, #{ end }#<a href="#{= getTagURL(tag.id) }#">#{= escapeHtml(tag.name) }#</a>#{ end }#
+	</div>
 </div>
 
 <div class="related-posts">
 	<p>相关文章：</p>
-	<ul>#{= loadFile(rela_path) }#</ul>
+	<ul>#{ for _, rela in ipairs(relaposts) do }#
+	<li><a href="#{= getPostURL(rela.id) }#">#{= escapeHtml(rela.title) }#</a></li>#{ end }#
+	</ul>
 </div>
 
 <div id="disqus_thread"></div>

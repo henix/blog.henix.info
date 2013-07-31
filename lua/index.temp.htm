@@ -1,0 +1,46 @@
+#{include: 'doctype.seg.htm' }#
+<head>
+#{include: 'head-common.seg.htm' }#
+<title>遥远的街市</title>
+<script type="text/javascript">
+if (window.top != window) {
+	alert('检测到疑似被ISP劫持强插广告，请刷新重试。\n本站地址：#{= siteurl }#\n即将重定向');
+	// window.top.location.href = '#{= siteurl }#/?r=' + Math.random().toString(36).substring(2);
+	// location.href = "about:blank";
+}
+</script>
+</head>
+
+<body>
+<div id="page">
+
+#{include: 'header.seg.htm' }#
+#{ local selectedIndex = 0 }##{include: 'nav.seg.htm' }##{ selectedIndex = null }#
+<div id="content">
+#{include: 'searchbar.seg.htm' }#
+<p style="font-size: 14px; margin-bottom: 2em">　　这里是 henix 的技术博客，我平时遇到的各种技术问题和想法会记录在这里。 :)</p>
+#{ for _, cate in ipairs(categories) do }#
+<div class="box" data-class="CateItem">
+<h5 class="cate-title">
+	<a name="#{= cate.catid }#" href="javascript:;" data-name="toggleA">#{= cate.catname }#</a>
+</h5>
+<ul class="box-body post-list">
+#{ for _, v in ipairs(cate.posts) do }##{= loadFile('build/post/'..v..'.digest.seg.htm') }##{ end }#
+</ul>
+</div>
+#{ end }#
+<div id="popular" class="box">
+	<h5>最多评论</h5>
+	<ul class="box-body">#{ for _, p in ipairs(populars) do }#
+		<li><a href="#{= getPostURL(p.id) }#" title="#{= p.comnum }# 条评论">#{= escapeHtml(p.title) }#</a></li>#{ end }#
+	</ul>
+</div>
+</div><!-- end of content -->
+
+#{include: 'footer.seg.htm' }#
+</div><!-- end of page -->
+
+#{include: 'catebox.seg.htm' }#
+#{include: 'ga.seg.htm' }#
+</body>
+</html>
