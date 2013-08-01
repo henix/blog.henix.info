@@ -50,11 +50,11 @@ object Blog {
 
   lazy val postById: Map[String, Blogpost] = posts.map((s) => (s.id, s)).toMap
 
-  lazy val comnumById: Map[String, Int] = {
+  lazy val comnumById: PartialFunction[String, Int] = {
     val src = Source.fromFile("comments.db")
     val res = src.getLines.map(_.split('\t')).map(ar => (ar(0), ar(1).toInt)).toMap
     src.close()
-    res
+    res.orElse { case _ => 0 }
   }
 
   class TagBuild(tag: String) {
@@ -131,7 +131,7 @@ object Main {
   publish_time = """ + post.publish_time + """,
   catid = '""" + post.cate + """',
   catname = '""" + Blog.getCatename(post.cate) + """',
-  comment_count = """ + Blog.comnumById.getOrElse(post.id, 0) + """,
+  comment_count = """ + Blog.comnumById(post.id) + """,
   tags = {
 """ +
 build.tags.map((t) => "    { id = '" + Blog.tagId(t) + "', name = '" + t + "' },").mkString("\n") + 
@@ -178,7 +178,7 @@ categories.map(
   populars = {
 """ +
 popular.map(
-  p => "    { id = '" + p.id + "', title = '" + p.title + "', comnum = " + Blog.comnumById.getOrElse(p.id, 0) + " },"
+  p => "    { id = '" + p.id + "', title = '" + p.title + "', comnum = " + Blog.comnumById(p.id) + " },"
 ).mkString("\n") +
 """
   }

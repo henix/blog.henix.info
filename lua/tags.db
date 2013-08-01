@@ -30,6 +30,7 @@ POJ	poj
 Prolog	prolog
 Python	Python
 robocopy	robocopy
+Scala	Scala
 screen	screen
 sed	sed
 shell	shell
@@ -83,3 +84,4 @@ X11	X11
 调试	debug
 软件工程	software-engineering
 随机数	random
+面向对象	OO
