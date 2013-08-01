@@ -72,6 +72,9 @@ object Blog {
       .filter((p: Blogpost) => relative((this, Blog.blogs(p))) > 0)
       .sortBy((p: Blogpost) => relative((this, Blog.blogs(p))))
       .reverse.take(5)
+
+    lazy val random = new scala.util.Random()
+    lazy val randposts: List[Blogpost] = random.shuffle(Blog.posts).take(5)
   }
 
   val blogs: Memo[Blogpost, BlogBuild] = Memo(new BlogBuild(_))
@@ -139,6 +142,11 @@ build.tags.map((t) => "    { id = '" + Blog.tagId(t) + "', name = '" + t + "' },
 build.relaposts.map((p) => "    { id = '" + p.id + "', title = '" + p.title + "' },").mkString("\n") +
 """
   },
+  randposts = {
+""" +
+build.randposts.map(p => "    { id = '" + p.id + "', title = '" + p.title + "' },").mkString("\n") +
+"""
+  }
 }
 """
       updateFile(postPath + "/" + post.id + ".lua", lua)

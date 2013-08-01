@@ -43,6 +43,13 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 	</ul>
 </div>
 
+<div class="related-posts">
+	<p>随机推荐：</p>
+	<ul>#{ for _, p in ipairs(randposts) do }#
+	<li><a href="#{= getPostURL(p.id) }#">#{= escapeHtml(p.title) }#</a></li>#{ end }#
+	</ul>
+</div>
+
 <div id="disqus_thread"></div>
 </div><!-- content -->
 
