@@ -18,7 +18,6 @@ if (window.top != window) {
 #{ local selectedIndex = 0 }##{include: 'nav.seg.htm' }##{ selectedIndex = null }#
 <div id="content">
 #{include: 'searchbar.seg.htm' }#
-<p style="font-size: 14px; line-height: 2em">　　这里是 henix 的技术博客，我平时遇到的各种技术问题和想法会记录在这里。 :)</p>
 <p style="font-size: 14px; line-height: 2em; margin-bottom: 1em">　　点击文章标题右边空白处可展开/折叠。</p>
 #{ for _, cate in ipairs(categories) do }#
 <div class="box" data-class="CateItem">

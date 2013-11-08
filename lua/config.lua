@@ -1,6 +1,6 @@
 -- sitedesc = '一起看那遥远的街市上，发生的一幕幕故事'
 -- sitedesc = '多研究些问题，少谈些主义'
-sitedesc = 'henix\'s blog 每月1号和15号更新'
+sitedesc = 'henix\'s blog'
 
 -- siteurl = 'http://the-distant-town.appspot.com'
 -- siteurl = 'http://www.henix-blog.co.cc'
