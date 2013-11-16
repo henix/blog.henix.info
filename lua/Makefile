@@ -39,7 +39,7 @@ runscala: classes/henix/blog/Main.class commons-io-2.4.jar
 
 -include index.pp.htm.d
 
-pages/index.html: build/index.lua index.pp.htm config.lua $(patsubst blogs/*.md,build/post/%.digest.seg.htm,$(MDS))
+pages/index.html: build/index.lua index.pp.htm config.lua $(patsubst blogs/%.md,build/post/%.digest.seg.htm,$(MDS))
 	runslt2.lua -d config.lua -t index.pp.htm < $< > $@
 
 # tags
