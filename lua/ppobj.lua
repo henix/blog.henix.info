@@ -11,7 +11,13 @@ local function obj2token(obj)
 		coroutine.yield(string.format('%q', obj))
 	elseif type(obj) == 'table' then
 		coroutine.yield('{')
-		for k, v in pairs(obj) do
+		local tmp = {}
+		for k, _ in pairs(obj) do
+			table.insert(tmp, k)
+		end
+		table.sort(tmp)
+		for _, k in ipairs(tmp) do
+			local v = obj[k]
 			if type(k) == 'string' and string.match(k, '^[%a_][%w_]*$') then
 				coroutine.yield(k)
 			else
