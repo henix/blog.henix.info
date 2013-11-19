@@ -1,3 +1,3 @@
-　　henix，某男。喜欢折腾和开源的东西，追求用最简单的方法解决问题。我的 github：[https://github.com/henix](https://github.com/henix) 。
+　　henix，某男。喜欢折腾开源的东西，追求用最简单的方法解决问题。我的 github：[https://github.com/henix](https://github.com/henix) 。
 
-　　本博客内容仅代表个人观点，与我过去或现在所属的任何组织或公司无关。
+　　本站的形式我也说不清是 blog 还是 wiki 。每篇文章可能更新，这跟博客不同，上面的日期是最后更新日期。
