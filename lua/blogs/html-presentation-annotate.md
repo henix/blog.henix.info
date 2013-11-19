@@ -10,8 +10,6 @@
 
 　　找到一个 [Screen Draw](https://addons.mozilla.org/en-US/firefox/addon/screen-draw/) 。
 
-　　如果是 Linux 而且以 file:/// 开头的 html 就会无法使用，原因不明。只能自己开一个 web server 比如 lighttpd 。
-
 3\. bookmarklets
 
 * http://markup.io/ - 加载之后把整个页面搞坏了，似乎不支持 file://
