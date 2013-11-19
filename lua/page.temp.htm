@@ -1,10 +1,8 @@
 #{include: 'doctype.seg.htm' }#
 <head>
 #{include: 'head-common.seg.htm' }#
-<script type="text/javascript">
-document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? 'rdark' : 'default') + '.css" type="text/css" />');
-</script>
-<noscript><link rel="stylesheet" href="/highlight/default.css" type="text/css" /></noscript>
+<link rel="stylesheet" href="/css/posts.css" type="text/css" />
+<link rel="stylesheet" href="/highlight/default.css" type="text/css" />
 
 <title>#{= title }# - #{= sitetitle }#</title>
 </head>
@@ -12,25 +10,18 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 <body>
 <div id="page">
 
-<h1 class="title"><a href="#{= getPostURL(id) }#">#{= escapeHtml(title) }#</a></h1>
-
-<div id="content">
-
-<p class="date">#{= publish_time }#</p>
+<h1 class="title"><a href="#{= getPageURL(id) }#">#{= escapeHtml(title) }#</a></h1>
 
 #{= loadFile(postfile) }#
 
 <div id="disqus_thread"></div>
 
-</div>
-
 <div id="footer">
 	<div style="float:left">
-		<a href="http://validator.w3.org/check?uri=referer">Valid</a> | &copy; 2010-2013 henix
+		<a href="http://validator.w3.org/check?uri=referer">Valid</a>
 	</div>
 	<div style="float:right">
-		<a href="#{= siteurl }#">#{= sitetitle }#</a> &gt;
-		<a href="#{= getCategoryURL(catid) }#">#{= escapeHtml(catname) }#</a>
+		<a href="#{= siteurl }#">#{= sitetitle }#</a>
 	</div>
 </div>
 
@@ -42,7 +33,7 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 
 	// The following are highly recommended additional parameters. Remove the slashes in front to use.
 	var disqus_identifier = '#{= id }#';
-	var disqus_url = '#{= siteurl }##{= getPostURL(id) }#';
+	var disqus_url = '#{= siteurl }##{= getPageURL(id) }#';
 
 	/* * * DON'T EDIT BELOW THIS LINE * * */
 	(function() {

@@ -1,3 +1,5 @@
+sitetitle = '遥远的街市'
+
 -- sitedesc = '一起看那遥远的街市上，发生的一幕幕故事'
 -- sitedesc = '多研究些问题，少谈些主义'
 sitedesc = 'henix\'s blog'
@@ -28,8 +30,8 @@ function getCategoryURL(cat)
 	return '/#'..cat
 end
 
-function getTagURL(id)
-	return '/tags/'..id..'.html'
+function getPageURL(id)
+	return '/'..id..'.html'
 end
 
 function loadFile(path)

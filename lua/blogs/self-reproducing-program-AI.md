@@ -57,4 +57,4 @@ echo $(echo -e $s)"
 p(puts("#define p(a) int main(){a;puts(\"p(\"#a\")\");return 0;}"))
 ]=], 'cpp')}#
 
-　　至于它们是怎么实现的，就留给读者自己琢磨了。自产生程序也称为 [Quine](http://en.wikipedia.org/wiki/Quine_(computing)) ，可以参考 [Quine Page](http://www.nyx.net/~gthompso/quine.htm) 。
+　　至于它们是怎么实现的，就留给读者自己琢磨了。自产生程序也称为 [Quine](http://en.wikipedia.org/wiki/Quine_%28computing%29) ，可以参考 [Quine Page](http://www.nyx.net/~gthompso/quine.htm) 。

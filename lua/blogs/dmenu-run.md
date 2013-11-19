@@ -1,0 +1,53 @@
+　　dmenu\_run 是一个程序启动器：输入程序名，回车，启动相应程序，很简单。
+
+　　我很想要一个功能：根据我的使用频率调整项目的位置，比如以前要输入“fir”才能出现“firefox”，我希望用了几次之后，dmenu\_run 发现 firefox 的使用频率很高，当我按了“f”之后就自动把 firefox 排在第一个。
+
+　　在网上看到 gnome-do 可以实现这个功能，于是装了。然后它似乎在我的 awesome 下不能很好的绑定快捷键，而且找不到配置文档。
+
+　　于是又转到 dmenu + history patch ，还好 AUR 上有现成的 PKGBUILD 。装了之后费了九牛二虎之力用 gdb 调试 Segmentation fault ，最后发现 history 文件是必须先存在的，否则会触发 dmenu\_history 的一个变量未初始化 bug 。
+
+　　终于得到了我想要的功能，但这时我发现有一个 Haskell 写的 dmenu 前端可以实现这个功能。也就是说：这个功能其实不用给 dmenu 加 patch 就可以实现。
+
+　　想想也是：因为 dmenu 是按照喂给它的列表的先后顺序来确定显示出来的菜单的先后顺序的，如果在喂给它列表的时候就按照使用频率调整了顺序的话不就可以了。
+
+　　于是我打算用 bash 给 dmenu 写一个前端，从而避免这个充满 bug 的 history patch 。我也终于明白为什么 dmenu 作者不做这个功能了。
+
+　　再仔细一想我发现，其实 $PATH 里的那些可执行程序，保守估计 90% 的程序我都没用过，甚至听都没听说过。我平时要用启动器启动的东西只有屈指可数的那么几个，我干嘛要用 $PATH 里的那么一大堆东西呢？
+
+　　dmenu 的功能很简单，就是从 stdin 读入一个列表，显示出来，然后输出你选择的那一项。于是参考 dmenu\_run 写了一个脚本，取名“dmrun”，比原来的还简单：
+
+#{= highlight([=[
+#!/bin/sh
+cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
+if [ -d "$cachedir" ]; then
+    cache=$cachedir/dmenu_run
+else
+    cache=$HOME/.dmenu_cache # if no xdg dir, fall back to dotfile in ~
+fi
+
+prog=$(dmenu "$@" < "$cache")
+if [ -n "$prog" ]; then
+    env $prog &
+fi
+]=], 'bash', {lineno=true})}#
+
+　　直接去掉了从 $PATH 中获取程序名的步骤，然后我自己编辑 ~/.cache/dmenu_run ：
+
+```
+firefox
+goldendict
+opera
+chromium
+gthumb
+gvim
+libreoffice
+leafpad
+subl
+scite
+qterm
+gimp
+```
+
+　　这些就是我平时要通过启动器启动的程序的全部了，其他像什么 mplayer 或 zathura 我都是直接从命令行启动的。在这个列表里，以“f”开头的只有“firefox”，直接解决了选项太多，甚至需要按使用频率排序的问题，想要谁排在前面还可以自己调整。
+
+　　至此，我发现，这才是 dmenu 的正确用法。

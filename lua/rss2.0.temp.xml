@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 	<channel>
-		<title>遥远的街市</title>
+		<title>#{= sitetitle }#</title>
 		<link>#{= siteurl }#</link>
 		<description>#{= sitedesc }#</description>
 		<language>zh-cn</language>
@@ -13,12 +13,11 @@
 		<item>
 			<title>#{= escapeHtml(post.title) }#</title>
 			<link>#{= siteurl }##{= getPostURL(post.id) }#</link>
-			<description>#{= escapeHtml(loadFile('build/post/'..post.id..'.md.htm')) }#</description>
+			<description>#{= escapeHtml(loadFile(post.postfile)) }#</description>
 			<author>henix</author>
 			<guid>#{= post.id }#</guid>
-			<pubDate>#{= os.date("%a, %d %b %Y %H:%M +0800", post.publish_time) }#</pubDate>
+			<pubDate>#{= post.publish_time }#</pubDate>
 			<category>#{= escapeHtml(post.catname) }#</category>
-			#{ for _, t in ipairs(post.tags) do }#<category>#{= escapeHtml(t) }#</category>#{ end }#
 		</item>#{ end }#
 	</channel>
 </rss>

@@ -7,9 +7,7 @@
 <script type="text/javascript">
 var h = (new Date()).getHours();
 var when;
-if (h >= 5 && h < 16) {
-	when = 'morning';
-} else if (h >= 16 && h < 20) {
+if (h >= 5 && h < 20) {
 	when = 'morning';
 } else {
 	when = 'night';
@@ -18,4 +16,5 @@ if (when !== 'morning') {
 	document.write('<link rel="stylesheet" href="/css/root-' + when + '.css" type="text/css" />');
 }
 </script>
-<link rel="prefetch" href="http://go.disqus.com/embed.js" />
+
+<link rel="prefetch" href="http://go.disqus.com/embed.ignition.js" />

@@ -2,21 +2,8 @@
 static/*.html
 static/*.xml
 static/blog/
-static/tags/
 
-lua/comments.xml
-lua/comments.db
-
-lua/blog/
 lua/build/
-lua/tags/
-lua/pages/
-lua/digestHtml
+lua/output/
 lua/*.pp.htm
 lua/*.pp.htm.d
-lua/tags.mk.inc
-
-lua/commons-io-2.4.jar
-lua/classes/
-
-static/js/catebox.js
