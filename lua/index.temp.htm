@@ -36,7 +36,6 @@ if (window.top != window) {
 #{ for _, page in ipairs(pages) do }#
 	| <a href="#{=getPageURL(page.id)}#">#{=escapeHtml(page.title)}#</a>
 #{ end }#
-	| <a href="/rss2.0.xml">RSS</a>
 	</div>
 </div>
 
