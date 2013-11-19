@@ -86,7 +86,7 @@ for k, v in pairs(CatpostById) do
 end
 
 table.sort(categories, function(a, b)
-	return not (a.posts[1].publish_time < b.posts[1].publish_time) 
+	return a.posts[1].publish_time > b.posts[1].publish_time
 end)
 
 updateFile('build/index.lua', ppobj.tostring({ categories = categories, pages = pages })..'\n')
