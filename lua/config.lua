@@ -8,6 +8,8 @@ sitedesc = 'henix\'s blog'
 -- siteurl = 'http://www.henix-blog.co.cc'
 siteurl = 'http://blog.henix.info'
 
+author = 'henix'
+
 disqus_shortname = 'thedistanttown'
 
 baseurl = ''
