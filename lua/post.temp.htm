@@ -6,6 +6,8 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 </script>
 <noscript><link rel="stylesheet" href="/highlight/default.css" type="text/css" /></noscript>
 
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - #{= escapeHtml(catname) }#" href="#{= getRssURL(catid) }#" />
+
 <title>#{= title }# - #{= sitetitle }#</title>
 </head>
 
@@ -16,7 +18,7 @@ document.write('<link rel="stylesheet" href="/highlight/' + (when == 'night' ? '
 
 <div id="content">
 
-<p class="date">#{= publish_time }#</p>
+<p class="date">最后更新日期：#{= publish_time }#</p>
 
 #{= loadFile(postfile) }#
 

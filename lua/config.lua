@@ -2,7 +2,7 @@ sitetitle = '遥远的街市'
 
 -- sitedesc = '一起看那遥远的街市上，发生的一幕幕故事'
 -- sitedesc = '多研究些问题，少谈些主义'
-sitedesc = 'henix\'s blog'
+sitedesc = 'henix 的个人网站'
 
 -- siteurl = 'http://the-distant-town.appspot.com'
 -- siteurl = 'http://www.henix-blog.co.cc'
@@ -34,6 +34,10 @@ end
 
 function getPageURL(id)
 	return '/'..id..'.html'
+end
+
+function getRssURL(catid)
+	return '/rss/'..catid..'.xml'
 end
 
 function loadFile(path)

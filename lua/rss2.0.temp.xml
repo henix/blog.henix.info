@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 	<channel>
-		<title>#{= sitetitle }#</title>
+		<title>#{= sitetitle }##{if catname then}# &gt; #{=catname}##{end}#</title>
 		<link>#{= siteurl }#</link>
 		<description>#{= sitedesc }#</description>
 		<language>zh-cn</language>
-		<category>Blog</category>
-		<category>技术</category>
-		<category>Computer</category>
-		<category>IT</category>
 		<lastBuildDate>#{= os.date("%a, %d %b %Y %H:%M +0800") }#</lastBuildDate>#{ for _, post in ipairs(posts) do }#
 		<item>
 			<title>#{= escapeHtml(post.title) }#</title>
 			<link>#{= siteurl }##{= getPostURL(post.id) }#</link>
 			<description>#{= escapeHtml(loadFile(post.postfile)) }#</description>
 			<author>#{= author }#</author>
-			<guid>#{= post.id }#</guid>
+			<guid>#{= post.id }#@#{= post.publish_time }#</guid>
 			<pubDate>#{= post.publish_time }#</pubDate>
 			<category>#{= escapeHtml(post.catname) }#</category>
 		</item>#{ end }#
