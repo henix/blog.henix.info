@@ -2,15 +2,15 @@
 
 	觉得 Google 搜索的重定向很烦？这个脚本可以让 Google 的搜索结果不包含重定向，点击链接直接到对应网站。
 
-* [豆沙绿#C7EDCC](http://userscripts.org/scripts/show/109390)
-
-	我在之前的[介绍 awesome 的文章](/blog/archlinux-awesome-config.html)提到，浏览器的背景太白，感觉很刺眼。这个脚本可以把所有网页的白色部分改成豆沙绿。
-
 * [t.co Bypasser[modified]](http://userscripts.org/scripts/show/126245)
 
 	让 twitter 上的短地址不再经过 t.co 。
 
-　　下面是我开发的 userscripts（当然也都在用）：
+下面是我开发的 userscripts（当然也都在用）：
+
+* [NoBrighter](http://userscripts.org/scripts/show/138275)
+
+	将太亮的页面元素改成淡绿色，避免刺眼。
 
 * [Douban Timeline Marker](http://userscripts.org/scripts/show/125728)
 
@@ -34,6 +34,6 @@
 
 ### 如何安装油猴脚本？
 
-* chrome 用户直接点。实际上，当打开一个以 .user.js 结尾的链接的时候就会提示安装，chrome 是把它当扩展安装了。
-* firefox 用户需要安装扩展 [GreaseMonkey](https://addons.mozilla.org/zh-CN/firefox/addon/greasemonkey/) 。
-* opera 用户打开 Settings -&gt; Advanced -&gt; Content -&gt; JavaScript Options -&gt; User JavaScript Folder 然后选择一个文件夹并把 userjs 放在那个文件夹下面。
+* chrome：先安装 [Tampermonkey](http://tampermonkey.net/) 。
+* firefox：先安装 [GreaseMonkey](https://addons.mozilla.org/zh-CN/firefox/addon/greasemonkey/) 。
+* opera：打开 Settings -&gt; Advanced -&gt; Content -&gt; JavaScript Options -&gt; User JavaScript Folder 然后选择一个文件夹并把 userjs 放在那个文件夹下面。
