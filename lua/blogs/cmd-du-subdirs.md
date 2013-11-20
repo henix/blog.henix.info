@@ -25,7 +25,7 @@ C:\Users\Administrator>for /F "tokens=*" %i in ('dir /ad /b') do @echo "%i" | xa
 
 　　这样我们就可以瞅准占用空间最多的文件夹进行整理了。
 
-　　这么一条命令真可称得上怪异：既用到了 Windows 的 dir ，又用到了 Linux 的 xargs du 等。要想运行它，你需要安装 [GnuWin32](http://gnuwin32.sourceforge.net/) 的 [CoreUtils](http://gnuwin32.sourceforge.net/packages/coreutils.htm) 和 [FindUtils](http://gnuwin32.sourceforge.net/packages/findutils.htm)。
+　　这么一条命令真可称得上怪异：既用到了 Windows 的 dir ，又用到了 Linux 的 xargs du 等。要想运行它，你需要安装 [GnuWin32](http://gnuwin32.sourceforge.net/) 的 [CoreUtils](http://gnuwin32.sourceforge.net/packages/coreutils.htm) 和 [FindUtils](http://gnuwin32.sourceforge.net/packages/findutils.htm) 。
 
 ## 其他方案
 
