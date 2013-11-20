@@ -1,4 +1,4 @@
-　　[slt](http://code.google.com/p/slt/)（Simple Lua Template）是一个 Lua 模板引擎。模板引擎类似 printf 的格式化字符串，根据一个模板，将一些变量“串行化”成一段文本，不过功能更强大，通常用来生成 HTML 页面。
+　　[slt2](https://github.com/henix/slt2)（Simple Lua Template 2）是一个 Lua 模板引擎。模板引擎类似 printf 的格式化字符串，根据一个模板，将一些变量“串行化”成一段文本，不过功能更强大，通常用来生成 HTML 页面。
 
 　　一般的模板引擎应该实现的功能有：
 
@@ -17,15 +17,15 @@
 
 　　Simple Lua Template 的想法很简单。就像 jsp 可以在 HTML 中嵌入 Java 代码一样，或者像 PHP 的风格一样，slt 就是在 HTML 中嵌入 Lua 代码。
 
-#{= highlight([=[
+#{= highlight([[
 <span>
-#{ if user ~= nil then }
-  Hello, #{= user.name }!
-#{ else }
+#{ if user ~= nil then }]]..[[#
+  Hello, #{= user.name }]]..[[#!
+#{ else }]]..[[#
   <a href="/login">login</a>
-#{ end }
+#{ end }]]..[[#
 </span>
-#{]=]..[=[include: 'footer.seg.htm' }
-]=], 'html', {lineno=true})}#
+#]]..[[{include: 'footer.seg.htm' }]]..[[#
+]], 'html', {lineno=true})}#
 
-　　我认为这样就够用了，也够简单。欢迎试用，欢迎提建议：[http://code.google.com/p/slt/](http://code.google.com/p/slt/) 。
+　　我认为这样就够用了，也够简单。欢迎试用，欢迎提建议：[https://github.com/henix/slt2](https://github.com/henix/slt2) 。

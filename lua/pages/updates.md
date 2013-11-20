@@ -3,3 +3,4 @@
 * [全部文章 RSS](/rss2.0.xml)
 * [Linux 技巧 RSS](/rss/linux.xml)
 * [编程 RSS](/rss/programming.xml)
+* [编程/Lua RSS](/rss/lua.xml)
