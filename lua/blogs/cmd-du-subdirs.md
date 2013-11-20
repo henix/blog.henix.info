@@ -33,6 +33,6 @@ C:\Users\Administrator>for /F "tokens=*" %i in ('dir /ad /b') do @echo "%i" | xa
 
 #{= highlight([=[
 du -hs $(ls -A) | sort -k 1hr | head -n 20
-]=], 'bat')}#
+]=], 'bash')}#
 
 　　小众软件推荐 [TreeSize Free](http://www.appinn.com/treesize/) ，但显然不如命令绿色。
