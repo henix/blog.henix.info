@@ -4,3 +4,4 @@ dmenu-run	dmenu 的正确用法	2013-11-18	linux
 x11-selection-copy-paste	X11 中的复制粘贴	2011-12-13	linux
 self-reproducing-program-AI	神奇的自产生程序，兼谈人工生命	2011-08-06	programming
 simple-lua-template	Simple Lua Template	2011-07-02	lua
+cmd-du-subdirs	列出某文件夹下所有子文件夹占用的空间大小	2013-07-11	windows
