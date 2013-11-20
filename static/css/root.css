@@ -203,7 +203,7 @@ p, ol, ul, pre {
 }
 
 pre {
-	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", Courier, "微软雅黑", "WenQuanYi Zen Hei", monospace;
+	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", "微软雅黑", "WenQuanYi Zen Hei", monospace;
 	background-color: #ccc;
 	padding: 1em;
 	margin: 1em;
@@ -222,7 +222,7 @@ blockquote {
 }
 
 div.hl {
-	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", Courier, "微软雅黑", "WenQuanYi Zen Hei", monospace;
+	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", "微软雅黑", "WenQuanYi Zen Hei", monospace;
 	padding: 1px 0;
 }
 
