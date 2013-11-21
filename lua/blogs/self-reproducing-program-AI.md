@@ -26,31 +26,112 @@
 
 　　一般地，我们知道，如果程序 A 能产生程序 B ，那么 A 必须包含 B 的全部信息，而且应该比 B 的信息还多，因为还要包含额外的打印语句。也就是说，一般情况下，信息是减少的。而这个自产生程序，自己要包含自己的全部信息，从某种程度上已经具有生命的意味了。
 
-　　下面是 Python 版：
+　　下面列出一些自产生程序及其思路。
+
+　　需要注意的是，使用编程语言本身的反射功能或者读取文件等做法都被视为 cheating ，比如这样的 bash 脚本：
 
 #{= highlight([=[
-s = '\'s = \' + repr(s) + \'\\nprint \' + s'
-print 's = ' + repr(s) + '\nprint ' + s
+#!/bin/sh
+cat $0
+]=], 'bash')}#
+
+　　或者像这样的 javascript ：
+
+#{= highlight([=[
+function a() { console.log(a.toString(), "a()"); } a()
+]=], 'js')}#
+
+　　因为这些程序没有体现出自产生程序的递归和自指特性，或者结果严重依赖于编程语言的具体实现。
+
+## 输出源代码在该语言中的转义
+
+　　Python ：
+
+#{= highlight([=[
+s = "'s = ' + repr(s) + '\\nprint(' + s + ')'"
+print('s = ' + repr(s) + '\nprint(' + s + ')')
 ]=], 'python')}#
 
-　　一个 Lua 版：
+　　Lua 5.1 ：
 
 #{= highlight([=[
-s = 'string.format(\'s = %q\\nprint(%s)\', s, s)'
+s = "string.format('s = %q\\nprint(%s)', s, s)"
 print(string.format('s = %q\nprint(%s)', s, s))
 ]=], 'lua')}#
+
+　　另一个 Lua 版：
+
+#{= highlight([=[
+s = "s = %q\
+print(string.format(s, s))"
+print(string.format(s, s))
+]=], 'lua')}#
+
+　　Scala ：
+
+#{= highlight([=[
+def e(s: String) = ("\"" + s.replace("\\", "\\\\").replace("\"", "\\\"") + "\"")
+val s = "\"\"\"def e(s: String) = (\"\\\"\" + s.replace(\"\\\\\", \"\\\\\\\\\").replace(\"\\\"\", \"\\\\\\\"\") + \"\\\"\")\"\"\" + \"\\nval s = \" + e(s) + \"\\nprintln(\" + s + \")\""
+println("""def e(s: String) = ("\"" + s.replace("\\", "\\\\").replace("\"", "\\\"") + "\"")""" + "\nval s = " + e(s) + "\nprintln(" + s + ")")
+]=], 'scala')}#
+
+## 源代码不转义，而用某种方法“执行”
 
 　　Bash：
 
 #{= highlight([=[
-#!/bin/bash
-s='\x22#!/bin/bash\ns=\x27$s\x27\necho $(echo -e $s)\x22'
-echo "#!/bin/bash
+#!/bin/sh
+s='\x22#!/bin/sh\ns=\x27$s\x27\necho $(echo -e $s)\x22'
+echo "#!/bin/sh
 s='$s'
 echo $(echo -e $s)"
 ]=], 'bash')}#
 
-　　C ：
+　　Lua 5.2 使用 load()：
+
+#{= highlight([=[
+s = "a,q,b=string.char(39),string.char(34),string.char(92) return a..'s = '..q..a..'..s..'..a..q..b..'nprint('..a..'..load(s)()..'..a..')'..a"
+print('s = "'..s..'"\nprint('..load(s)()..')')
+]=], 'lua')}#
+
+　　Scala ：
+
+#{= highlight([=[
+val s = "%22val+s+%3D+%5C%22%22+%2B+s+%2B+%22%5C%22%5Cnprintln%28%22+%2B+java.net.URLDecoder.decode%28s%2C+%22UTF-8%22%29+%2B+%22%29%22"
+println("val s = \"" + s + "\"\nprintln(" + java.net.URLDecoder.decode(s, "UTF-8") + ")")
+]=], 'scala')}#
+
+## 有 eval 的语言可以 eval
+
+　　Lua load() 的另一种用法：
+
+#{= highlight([=[
+s = "print(string.format('s = %q load(s)()', s))" load(s)()
+]=], 'lua')}#
+
+　　js 的 eval()：
+
+#{= highlight([=[
+s = "q = String.fromCharCode(34); console.log('s = ' + q + s + q + '; eval(s)')"; eval(s)
+]=], 'js')}#
+
+## 使用语言中的更强的转义机制
+
+　　Lua ：
+
+#{= highlight([=[
+x = [["x = [".."["..x.."]".."]\nprint("..x..")"]]
+print("x = [".."["..x.."]".."]\nprint("..x..")")
+]=], 'lua')}#
+
+　　Scala ：
+
+#{= highlight([=[
+val s = """"val s = \"\"\"" + s + "\"\"\"\nprintln(" + s + ")""""
+println("val s = \"\"\"" + s + "\"\"\"\nprintln(" + s + ")")
+]=], 'scala')}#
+
+## 使用 C 的宏
 
 #{= highlight([=[
 #define p(a) int main(){a;puts("p("#a")");return 0;}
