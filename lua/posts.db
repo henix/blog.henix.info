@@ -5,5 +5,5 @@ dmenu-run	dmenu 的正确用法	2013-11-18	linux
 cmd-du-subdirs	列出某文件夹下所有子文件夹占用的空间大小	2013-07-11	windows
 greasemonkey-userscripts-recommends	一些我使用和开发的油猴脚本	2012-04-15	tips
 x11-selection-copy-paste	X11 中的复制粘贴	2011-12-13	linux
-simple-lua-template	Simple Lua Template	2011-07-02	lua
+simple-lua-template	Simple Lua Template	2011-07-02	programming
 robocopy-sync-files	使用 robocopy 实时同步文件夹	2011-01-02	windows
