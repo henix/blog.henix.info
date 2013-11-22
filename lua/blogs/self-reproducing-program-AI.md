@@ -75,9 +75,9 @@ val s = "\"\"\"def e(s: String) = (\"\\\"\" + s.replace(\"\\\\\", \"\\\\\\\\\").
 println("""def e(s: String) = ("\"" + s.replace("\\", "\\\\").replace("\"", "\\\"") + "\"")""" + "\nval s = " + e(s) + "\nprintln(" + s + ")")
 ]=], 'scala')}#
 
-## 源代码不转义，而用某种方法“执行”
+## 用某种方法 encode 源代码，使之不包含引号，然后还原出源代码
 
-　　Bash：
+　　Bash ：
 
 #{= highlight([=[
 #!/bin/sh
@@ -101,7 +101,7 @@ val s = "%22val+s+%3D+%5C%22%22+%2B+s+%2B+%22%5C%22%5Cnprintln%28%22+%2B+java.ne
 println("val s = \"" + s + "\"\nprintln(" + java.net.URLDecoder.decode(s, "UTF-8") + ")")
 ]=], 'scala')}#
 
-## 有 eval 的语言可以 eval
+## 使用 eval ：在 eval 的字符串中引用自己
 
 　　Lua load() 的另一种用法：
 
@@ -117,14 +117,16 @@ s = "q = String.fromCharCode(34); console.log('s = ' + q + s + q + '; eval(s)')"
 
 ## 使用语言中的更强的转义机制
 
-　　Lua ：
+　　类似上面的第二种，但不用引号。
+
+　　Lua 的 long string ：
 
 #{= highlight([=[
 x = [["x = [".."["..x.."]".."]\nprint("..x..")"]]
 print("x = [".."["..x.."]".."]\nprint("..x..")")
 ]=], 'lua')}#
 
-　　Scala ：
+　　Scala 的三引号：
 
 #{= highlight([=[
 val s = """"val s = \"\"\"" + s + "\"\"\"\nprintln(" + s + ")""""
@@ -132,6 +134,10 @@ println("val s = \"\"\"" + s + "\"\"\"\nprintln(" + s + ")")
 ]=], 'scala')}#
 
 ## 使用 C 的宏
+
+　　先执行传入的参数，再把参数变成字符串。
+
+　　gcc ：
 
 #{= highlight([=[
 #define p(a) int main(){a;puts("p("#a")");return 0;}
