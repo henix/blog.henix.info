@@ -11,7 +11,7 @@
 			<link>#{= siteurl }##{= getPostURL(post.id) }#</link>
 			<description>#{= escapeHtml(loadFile(post.postfile)) }#</description>
 			<author>#{= author }#</author>
-			<guid>#{= post.id }#@#{= post.publish_time }#</guid>
+			<guid>#{= post.id }#</guid>
 			<pubDate>#{= post.publish_time }#</pubDate>
 			<category>#{= escapeHtml(post.catname) }#</category>
 		</item>#{ end }#
