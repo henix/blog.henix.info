@@ -5,5 +5,4 @@
 * [技巧/Windows](/rss/windows.xml)
 * [技巧](/rss/tips.xml)
 * [编程](/rss/programming.xml)
-* [编程/Lua](/rss/lua.xml)
 * [文档编写](/rss/document.xml)
