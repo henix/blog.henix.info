@@ -2,7 +2,7 @@
 
 　　我想用 HTML 做 presentation 的时候也可以这样，这就需要在网页上用鼠标画图。
 
-1\. 先转 pdf 再用 PDF Presenter
+1\. 先转 pdf 再用 [PDF Presenter](http://sourceforge.net/projects/pdfpresenter/)
 
 　　有时候不能完全转 pdf
 
@@ -12,13 +12,13 @@
 
 3\. bookmarklets
 
-* http://markup.io/ - 加载之后把整个页面搞坏了，似乎不支持 file://
-* http://drawhere.com/ - 打开后页面就不能动了
-* http://goggles.sneakygcr.net/ - 太乱了
-* http://eatponies.com/ - 它强调可以协作，但我不需要
-* http://scribblet.org/ - 不错，但是还是这个问题：一旦进入画图模式页面就不能动了
+* http://markup.io/ - 有时候加载之后会影响页面样式，特别是 file:// 的时候。加载速度太慢。
+* http://drawhere.com/ - 打开后页面就不能动了。
+* http://goggles.sneakygcr.net/ - 功能不错，还可以擦除。但如果在公开的页面（不是 file://）上打开的话会显示其他所有人画出来的笔迹，也就是说会记录你画的东西。
+* http://eatponies.com/ - 它强调可以协作，但我不需要。
+* http://scribblet.org/ - 不错，但是还是这个问题：一旦进入画图模式页面就不能动了。
 
-　　这类中最好的选择：scribblet
+　　这类中最好的选择：Goggles 、scribblet
 
 4\. 自己用 Raphael 写一个 js 库
 
