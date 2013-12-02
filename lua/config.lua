@@ -36,10 +36,6 @@ function getPageURL(id)
 	return '/'..id..'.html'
 end
 
-function getRssURL(catid)
-	return '/rss/'..catid..'.xml'
-end
-
 function loadFile(path)
 	local fin = assert(io.open(path))
 	local all = fin:read('*a')

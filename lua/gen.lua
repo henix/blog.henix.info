@@ -36,7 +36,6 @@ fcate:close()
 
 os.execute('mkdir -p build/post')
 os.execute('mkdir -p build/page')
-os.execute('mkdir -p build/rss')
 
 -- 1. posts.db -> build/post/%.lua
 
@@ -94,16 +93,3 @@ updateFile('build/index.lua', ppobj.tostring({ categories = categories, pages = 
 -- 4. rss.lua
 
 updateFile('build/rss.lua', ppobj.tostring({ posts = posts })..'\n')
-
--- 4.1 categories -> build/rss/%.lua
-
-for _, c in ipairs(categories) do
-	updateFile('build/rss/'..c.catid..'.lua', ppobj.tostring(c)..'\n')
-
-	local t = {}
-	for _, p in ipairs(c.posts) do
-		table.insert(t, p.postfile)
-	end
-
-	updateFile('build/rss/'..c.catid..'.xml.d', 'output/rss/'..c.catid..'.xml: '..table.concat(t, ' ')..'\n')
-end

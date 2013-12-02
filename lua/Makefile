@@ -1,4 +1,4 @@
-.PHONY: all dirs allposts allpages rss
+.PHONY: all dirs allposts allpages
 
 .SECONDARY:
 
@@ -6,11 +6,10 @@ BLOGS := $(wildcard blogs/*.md)
 
 PAGES := $(wildcard pages/*.md)
 
-all: dirs allposts allpages rss
+all: dirs allposts allpages output/rss2.0.xml
 
 dirs:
 	@mkdir -p output/blog
-	@mkdir -p output/rss
 
 # preprocess rule
 
@@ -59,10 +58,3 @@ allpages: $(patsubst pages/%.md,output/%.html,$(PAGES)) output/index.html
 
 output/rss2.0.xml: build/rss.lua rss2.0.temp.xml config.lua $(patsubst blogs/%.md,build/post/%.htm,$(BLOGS))
 	runslt2.lua -d config.lua -t rss2.0.temp.xml < $< > $@
-
--include $(wildcard build/rss/*.xml.d)
-
-output/rss/%.xml: build/rss/%.lua rss2.0.temp.xml config.lua
-	runslt2.lua -d config.lua -t rss2.0.temp.xml < $< > $@
-
-rss: output/rss2.0.xml $(patsubst build/rss/%.lua,output/rss/%.xml,$(wildcard build/rss/*.lua))

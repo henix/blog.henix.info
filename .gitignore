@@ -3,7 +3,6 @@
 static/*.html
 static/*.xml
 static/blog/
-static/rss/
 
 lua/build/
 lua/output/
