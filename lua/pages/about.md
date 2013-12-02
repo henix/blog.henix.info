@@ -11,5 +11,3 @@
 　　本站的形式我也说不清是 blog 还是 wiki 。跟博客不同的是，每篇文章可能会更新，上面的时间是最后更新时间。这样做的目的是希望这些文章能长期维护，而不是写完就扔下不管了。
 
 　　向我提问：[henix@SegmentFault](http://segmentfault.com/u/henix) 。
-
-　　给我写信：$(echo U2FsdGVkX19vH2UGzBjzGFhZ5aqINae5ASKVWLzvRkePMksU | openssl enc -d -aes-128-ofb -k ${我的昵称} -a) 。
