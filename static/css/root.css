@@ -57,10 +57,13 @@ table {
 
 /* Common settings */
 
+html {
+	background-color: #eee;
+}
+
 body {
 	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, "微软雅黑", "WenQuanYi Zen Hei", sans-serif;
 	font-size: 10.5pt;
-	background-color: #eee;
 }
 
 img {
