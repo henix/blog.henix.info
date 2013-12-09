@@ -21,7 +21,7 @@ $$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\\\1&x_2&y_2&z_2\\\\1&x_3&y_3&z_3\\\\1
 
 1\. 希腊字母
 
-<table style="width: 100%">
+<table>
 <tr><th>LaTex</th><th>显示效果</th></tr>
 <tr><td>\alpha</td><td>\(\alpha\)</td></tr>
 <tr><td>\beta</td><td>\(\beta\)</td></tr>
@@ -35,7 +35,7 @@ $$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\\\1&x_2&y_2&z_2\\\\1&x_3&y_3&z_3\\\\1
 
 2\. 花体字
 
-<table style="width: 100%">
+<table>
 <tr><th>LaTex</th><th>显示效果</th></tr>
 <tr><td>\mathcal{L}</td><td>\(\mathcal{L}\)</td></tr>
 <tr><td>\mathcal{M}</td><td>\(\mathcal{M}\)</td></tr>
@@ -45,7 +45,7 @@ $$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\\\1&x_2&y_2&z_2\\\\1&x_3&y_3&z_3\\\\1
 
 3\. 微积分
 
-<table style="width: 100%">
+<table>
 <tr><th>LaTex</th><th>显示效果</th></tr>
 <tr><td>\int</td><td>\(\Large\int\)</td></tr>
 <tr><td>\iint</td><td>\(\Large\iint\)</td></tr>
@@ -63,7 +63,7 @@ $$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\\\1&x_2&y_2&z_2\\\\1&x_3&y_3&z_3\\\\1
 
 4\. 代数
 
-<table style="width: 100%">
+<table>
 <tr><th>LaTex</th><th>显示效果</th></tr>
 <tr><td>\frac12</td><td>\(\Large\frac12\)</td></tr>
 <tr><td>\sum</td><td>\(\sum\)</td></tr>
@@ -88,7 +88,7 @@ $$ \left[\begin{array}{cccc}1&x_1&y_1&z_1\\\\1&x_2&y_2&z_2\\\\1&x_3&y_3&z_3\\\\1
 
 5\. 杂项
 
-<table style="width: 100%">
+<table>
 <tr><th>LaTex</th><th>显示效果</th></tr>
 <tr><td>\ </td><td>\(\ \) 空格</td></tr>
 <tr><td>\dots</td><td>\(\dots\)</td></tr>
