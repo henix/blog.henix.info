@@ -224,6 +224,16 @@ blockquote {
 	/* quotes: '"' '"'; */
 }
 
+table {
+	margin: 1em auto;
+	width: 80%;
+}
+
+th, td {
+	border: 1px solid black;
+	padding: 0.3em;
+}
+
 div.hl {
 	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", "微软雅黑", "WenQuanYi Zen Hei", monospace;
 	padding: 1px 0;

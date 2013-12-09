@@ -1,4 +1,4 @@
-body {
+html {
 	background-color: #123;
 }
 
@@ -61,6 +61,10 @@ blockquote {
 pre {
 	background-color: #1e2426;
 	color: #babdb6;
+}
+
+th, td {
+	border: 1px solid #666;
 }
 
 #footer {
