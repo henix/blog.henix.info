@@ -62,7 +62,7 @@ html {
 }
 
 body {
-	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, "微软雅黑", "WenQuanYi Zen Hei", sans-serif;
+	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, sans-serif;
 	font-size: 10.5pt;
 }
 
@@ -77,6 +77,10 @@ a {
 
 a:hover {
 	text-decoration: underline;
+}
+
+h1, h2, h3 {
+	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, "微软雅黑", "WenQuanYi Zen Hei", sans-serif;
 }
 
 .clear { /* deprecated */
@@ -206,7 +210,7 @@ p, ol, ul, pre {
 }
 
 pre {
-	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", "微软雅黑", "WenQuanYi Zen Hei", monospace;
+	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
 	background-color: #ccc;
 	padding: 1em;
 	margin: 1em;
@@ -235,7 +239,7 @@ th, td {
 }
 
 div.hl {
-	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", "微软雅黑", "WenQuanYi Zen Hei", monospace;
+	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
 	padding: 1px 0;
 }
 
