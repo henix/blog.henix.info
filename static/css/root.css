@@ -158,6 +158,11 @@ h1 {
 	padding-left: 6px;
 }
 
+h1.sitetitle {
+	/* for opera */
+	font-family: "微软雅黑", "WenQuanYi Zen Hei", sans-serif;
+}
+
 ::selection {
 	color: White;
 	background-color: #FF5E99; /*#ff1493; /* #f39 */
