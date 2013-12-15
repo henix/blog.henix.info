@@ -1,9 +1,9 @@
-self-reproducing-program-AI	神奇的自产生程序，兼谈人工生命	2013-11-22	programming
-bash-history-alias	从 bash_history 得到 alias 建议	2013-11-20	linux
-html-presentation-annotate	HTML presentation 如何 annotate	2013-11-19	document
-dmenu-run	dmenu 的正确用法	2013-11-18	linux
-greasemonkey-userscripts-recommends	一些我使用和开发的油猴脚本	2012-04-15	tips
-x11-selection-copy-paste	X11 中的复制粘贴	2011-12-13	linux
-simple-lua-template	Simple Lua Template	2011-07-02	programming
-mathjax-render-latex-math-online	MathJax: 在网页上显示 LaTeX 数学公式	2011-05-02	document
-robocopy-sync-files	使用 robocopy 实时同步文件夹	2011-01-02	windows
+self-reproducing-program-AI	神奇的自产生程序，兼谈人工生命	2013-11-22	programming	gfm
+bash-history-alias	从 bash_history 得到 alias 建议	2013-11-20	linux	gfm
+html-presentation-annotate	HTML presentation 如何 annotate	2013-11-19	document	gfm
+dmenu-run	dmenu 的正确用法	2013-11-18	linux	gfm
+greasemonkey-userscripts-recommends	一些我使用和开发的油猴脚本	2012-04-15	tips	gfm
+x11-selection-copy-paste	X11 中的复制粘贴	2011-12-13	linux	gfm
+simple-lua-template	Simple Lua Template	2011-07-02	programming	gfm
+mathjax-render-latex-math-online	MathJax: 在网页上显示 LaTeX 数学公式	2011-05-02	document	gfm
+robocopy-sync-files	使用 robocopy 实时同步文件夹	2011-01-02	windows	gfm

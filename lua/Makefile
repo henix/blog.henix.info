@@ -32,8 +32,13 @@ output/index.html: build/index.lua index.pp.htm config.lua
 build/post/%.smd: blogs/%.md config.lua
 	runslt2.lua -d config.lua -v "{}" -t $< > $@
 
-build/post/%.htm: build/post/%.smd
-	gfm $< > $@
+GFM := gfm
+PANDOC := pandoc -f markdown-markdown_in_html_blocks-tex_math_dollars --toc --template=pandoc.temp.htm
+
+build/posts.mk: posts.db
+	cut -f 1,5 $< | awk '{ print "build/post/" $$1 ".htm: build/post/" $$1 ".smd"; print "\t$$(" toupper($$2) ") $$< > $$@\n"; }' > $@
+
+-include build/posts.mk
 
 -include post.pp.htm.d
 
