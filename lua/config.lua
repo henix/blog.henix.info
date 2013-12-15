@@ -62,3 +62,60 @@ function highlight(str, lang, options)
 	os.remove(tmpname)
 	return (options.lineno and '<div class="hl">' or '<pre class="hl">')..all:gsub('&nbsp;', ' ')..(options.lineno and '</div>' or '</pre>')
 end
+
+local function makeTable_co(str, header_func, caption)
+	local yield = coroutine.yield
+	yield('<table>')
+	yield('\n')
+	if caption then
+		yield('<caption>')
+		yield(escapeHtml(caption))
+		yield('</caption>')
+		yield('\n')
+	end
+	yield('<tbody>')
+	yield('\n')
+	local i = 1
+	for line in string.gmatch(str, '[^\n]+') do
+		yield('<tr>')
+		local j = 1
+		for cell in string.gmatch(line, '[^\t]+') do
+			local isHeader = header_func(i, j)
+			yield(isHeader and '<th>' or '<td>')
+			yield(escapeHtml(cell))
+			yield(isHeader and '</th>' or '</td>')
+			j = j + 1
+		end
+		yield('</tr>')
+		yield('\n')
+		i = i + 1
+	end
+	yield('</tbody>')
+	yield('\n')
+	yield('</table>')
+end
+
+local function collect(co)
+	local t = {}
+	local ok, res = coroutine.resume(co)
+	while ok and res do
+		table.insert(t, res)
+		ok, res = coroutine.resume(co)
+	end
+	if not ok then
+		error(res)
+	end
+	return t
+end
+
+function makeTable(str, header_func, caption)
+	local co = coroutine.create(function()
+		makeTable_co(str, header_func, caption)
+	end)
+	return table.concat(collect(co))
+end
+
+TH = {
+	none = function(i, j) return false end,
+	first_row = function(i, j) return i == 1 end,
+}
