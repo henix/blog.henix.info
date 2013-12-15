@@ -93,3 +93,7 @@ updateFile('build/index.lua', ppobj.tostring({ categories = categories, pages = 
 -- 4. rss.lua
 
 updateFile('build/rss.lua', ppobj.tostring({ posts = posts })..'\n')
+
+-- 5. sitemap.lua
+
+updateFile('build/sitemap.lua', ppobj.tostring({ posts = posts, pages = pages })..'\n')
