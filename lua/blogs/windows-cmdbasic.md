@@ -3,6 +3,7 @@
 * 2013-12-15
 
 	* 源文件从 html 迁移到 Pandoc Markdown 格式，并合并到 blog 中。
+	* 修改了一些应用举例，添加了“快速切换 IP/DNS 配置”和“平坦复制”
 
 * 2011-3-22
 
@@ -555,6 +556,8 @@ C:\WINDOWS>
 
 　　变量给命令或批处理文件带来了极大的灵活性，多用于批处理文件中。
 
+<!-- TODO: PATH -->
+
 ## 5. 批处理文件简介
 
 　　使用批处理文件（亦称批处理程序或脚本），可以简化日常或重复性任务。批处理文件是纯文本文件，它包含一条或多条命令，其文件扩展名为 .bat 或 .cmd 。在命令提示符下键入批处理文件的名称，Cmd.exe 就会按照该文件中各个命令出现的顺序来逐个运行它们。所以批处理文件的特点是：一次建立，多次运行，适合进行重复性任务。在 DOS 中只能使用 .bat 的批处理文件。
@@ -585,57 +588,54 @@ start	启动另一个窗口来运行指定的程序或命令
 
 ### 6.1 批量改名
 
-<!-- TODO: 换例子 -->
+　　下载了一组图片后，得到如下文件：（加粗为用户输入的内容）
 
-　　今天的《xxxHoLic》漫画更新到了 158 话，我下载后，得到如下文件：（加粗为用户输入的内容）
+<pre>
+C:\&gt;<strong>d:</strong>（输入 D: 以切换到 D 盘，否则下一个 cd 命令无效）
 
-```
-C:\>d:（输入 D: 以切换到 D 盘，否则下一个 cd 命令无效）
+D:\&gt;<strong>cd D:\pics</strong>
 
-D:\>cd D:\xxxHoLic\vol14\158
-
-D:\xxxHoLic\vol14\158>dir /b
-XXXholic158_001.jpg
-XXXholic158_002-003.jpg
-XXXholic158_004.JPG
-XXXholic158_005.JPG
-XXXholic158_006.jpg
-XXXholic158_007.JPG
-XXXholic158_008.jpg
-XXXholic158_009.jpg
-XXXholic158_010.JPG
-XXXholic158_011.JPG
-XXXholic158_012.jpg
-XXXholic158_013.JPG
-XXXholic158_014.JPG
-XXXholic158_015.JPG
-XXXholic158_016.jpg
-XXXholic158_017.jpg
-XXXholic158_018.JPG
-XXXholic158_019.jpg
-XXXholic158_020.JPG
-```
+D:\pics&gt;<strong>dir /b</strong>
+001.jpg
+002-003.jpg
+004.JPG
+005.JPG
+006.jpg
+007.JPG
+008.jpg
+009.jpg
+010.JPG
+011.JPG
+012.jpg
+013.JPG
+014.JPG
+015.JPG
+016.jpg
+017.jpg
+018.JPG
+019.jpg
+020.JPG
+</pre>
 
 　　我想将它们改名为 01.jpg \~ 20.jpg 用命令该怎样做呢？这里只提供一种可能的办法，实际上还有很多种方法，大家可触类旁通。
 
-```
-D:\xxxHoLic\vol14\158>for %i in (01,04,05,06,07,08,09) do ren XXXholic158_0%i.jp
-g %i.jpg（for 命令中，%i 变量遍历小括号中的内容）
+<pre>
+D:\pics&gt;<strong>for %i in (01,04,05,06,07,08,09) do ren 0%i.jpg %i.jpg</strong>（for 命令中，%i 变量遍历小括号中的内容）
 
-D:\xxxHoLic\vol14\158>ren XXXholic158_001.jpg 01.jpg
+D:\pics&gt;ren 001.jpg 01.jpg
 ……（命令回显会显示实际执行的命令，省略输出若干）
-D:\xxxHoLic\vol14\158>ren XXXholic158_009.jpg 09.jpg
+D:\pics&gt;ren 009.jpg 09.jpg
 
-D:\xxxHoLic\vol14\158>for /L %i in (10,1,20) do ren XXXholic158_0%i.jpg %i.jpg
+D:\pics&gt;<strong>for /L %i in (10,1,20) do ren 0%i.jpg %i.jpg</strong>
 
-D:\xxxHoLic\vol14\158>ren XXXholic158_010.jpg 10.jpg
+D:\pics&gt;ren 010.jpg 10.jpg
 （省略输出若干）
-D:\xxxHoLic\vol14\158>ren XXXholic158_020.jpg 20.jpg
+D:\pics&gt;ren 020.jpg 20.jpg
 
-D:\xxxHoLic\vol14\158>ren XXXholic158_002-003.jpg 02-03.jpg（最后手动改名）
+D:\pics&gt;<strong>ren 002-003.jpg 02-03.jpg</strong>（最后手动改名）
 
-D:\xxxHoLic\vol14\158>
-```
+D:\pics&gt;
+</pre>
 
 　　以上主要通过 for...in...do 结构及 /L 参数，使得本来要 19 次的改名操作只用两个 for 命令及一个 ren 就搞定。for 命令详细用法请参考其帮助页。
 
@@ -644,22 +644,20 @@ D:\xxxHoLic\vol14\158>
 　　接着刚才的例子，如果我想用 [4.2 节](#特殊设备)所述的方法“粉碎”当前文件夹下的所有 jpeg 文件，我该怎样做？
 
 ```
-D:\xxxHoLic\vol14\158>for %i in (*.jpg) do copy nul %i /y
+D:\pics>for %i in (*.jpg) do copy nul %i /y
 ```
 
 　　这里使用 /y 来防止 copy 的覆盖前提示。
 
 ### 6.3 清理 Windows 临时文件夹 %tmp%
 
-<!-- TODO: Win7 -->
-
-　　“%tmp%”这个环境变量保存了 Windows 临时文件夹的位置，通常这个文件夹是 C:\\Documents and Settings\\用户名\\Local Settings\\Temp 。某些程序（典型如安装程序，解压缩软件）运行过程中产生的临时文件会存放于此，总之，是个堆放杂物的地方，其中文件一般可全部删除。在“我的电脑”的“地址栏”（若找不到地址栏，“查看”-\>“工具栏”-\>“地址栏”）中输入“%tmp%”，然后回车，看看你的临时文件夹有多少东西。
+　　`%tmp%` 这个环境变量保存了 Windows 临时文件夹的位置，通常这个文件夹在 Windows 7 中是 `C:\\Users\\用户名\\AppData\\Local\\Temp` ，WinXP 中则是 `C:\\Documents and Settings\\用户名\\Local Settings\\Temp` 。某些程序（典型如安装程序，解压缩软件）运行过程中产生的临时文件会存放于此，总之，是个堆放杂物的地方，其中文件一般可全部删除。在“我的电脑”的“地址栏”（若找不到地址栏，“查看”-\>“工具栏”-\>“地址栏”）中输入“%tmp%”，然后回车，看看你的临时文件夹有多少东西。
 
 　　下面讨论清理。可能每隔一段时间就需要清理临时文件夹，因此我们采用[批处理文件](#批处理文件简介)。以下为 CleanTmp.cmd 文件的内容。
 
 第一种方案：全部删除
 
-```
+#{= highlight([[
 @echo off
 rem 命令前加“@”会不让该命令显示出来，而“echo off”的作用是关闭整个
 rem 脚本的命令回显。若不懂，请注释掉第一行（在最前面加“rem ”）再试。
@@ -670,11 +668,11 @@ rd /s /q %tmp%
 md %tmp%
 echo Done.
 pause
-```
+]], 'bat', {lineno=true}) }#
 
 　　也许你希望留下一些文件，比如 \*.log ，那也可以用第二种方案：删除部分文件
 
-```
+#{= highlight([[
 rem CleanTmp.cmd : 清理 Windows 临时文件夹
 rem Author : henix<http://blog.henix.info/>
 del %tmp%\*.tmp /q
@@ -682,39 +680,77 @@ del %tmp%\*.wmv /q
 del %tmp%\*.xml /q
 rem 也可以添加更多，你的临时文件夹中经常出现的，而你又不想要的文件
 pause
-```
+]], 'bat', {lineno=true}) }#
 
 　　将以上内容保存为 CleanTmp.cmd ，放在桌面（或其他你方便的地方），以后你只需双击这个 CleanTmp.cmd 就可清理临时文件夹。
 
-### 6.4 优化服务配置：svc2kxp.cmd
+### 6.4 快速切换 IP/DNS 配置
 
-　　如果说以上这些脚本只是我个人举的教学样例，只是些小打小闹的话，那下面这个德国人写的脚本会让你见识到什么是真正的脚本应用，以及真正的脚本编程。
+　　有时我们可能需要经常切换 IP 配置，比如带着笔记本往返于家和公司之间，在家使用动态获取 IP，而在公司使用静态 IP ，如果每次都要点出对话框来修改 IP 的话，相当不方便。netsh 这个命令可以帮我们设置 IP 地址。
 
-　　在“开始”-\>“运行”中输入“services.msc”，会显示你的计算机当前的服务配置。怎样配置这些服务以达到最优化，是网上很多论坛讨论的话题。这里并不讨论怎样配置服务，因为有 svc2kxp.cmd 帮我们配置。该软件的实际使用效果我不清楚，只是推荐它来学习脚本编程。
+　　在桌面上创建一个 dhcp.cmd ，内容如下：
 
-　　官方网站：[http://www.ntsvcfg.de/ntsvcfg\_eng.html](http://www.ntsvcfg.de/ntsvcfg_eng.html)（英文）
+#{= highlight([[
+set name="本地连接"
+netsh interface ip set address %name% dhcp
+netsh interface ip set dns %name% dhcp
+pause
+]], 'bat', {lineno=true}) }#
 
-　　看别人写的脚本也是一种有效的学习方法。这个脚本注释丰富，大量使用了 if...goto 、reg 、文件操作等，看完后定会让你受益匪浅（反正我是没法看完的啦）。
+　　假如你要切换的静态 IP 是 192.168.3.19 ，创建另一个文件 319.cmd ，内容如下：
+
+#{= highlight([[
+set OUT=%TMP%\319.txt
+set name="本地连接"
+
+echo interface ip set address %name% static 192.168.3.19 255.255.255.0 192.168.3.1 0 > %OUT%
+echo interface ip set dns %name% static 192.168.3.1 >> %OUT%
+echo interface ip add dns %name% 8.8.8.8 >> %OUT%
+
+netsh -f %OUT%
+
+pause
+]], 'bat', {lineno=true}) }#
+
+　　每次需要切换的时候双击运行这个脚本即可。这里 pause 的作用是暂停这个脚本，避免一闪而过。
+
+　　第二个脚本使用 netsh 的 -f 参数把一个文件当作脚本执行，这样 netsh 只初始化一次，速度较快。
 
 ### 6.5 下载一系列图片：for + wget
 
 　　有时我们在网上看到一系列图片，想把它们都下载下来，怎么办？首先要取得图片的地址，只有当图片的地址有一定规律性时，才能使用此法下载：在图片上点右键-\>“属性”，然后复制“地址”一栏的内容。假设要下载的图片地址很有规律，恰为 http://www.example.com/ 下的 1.jpg - 100.jpg 。
 
-　　网上有很多命令行小程序，可以增强命令行的功能。这里使用 [GNU](http://www.gnu.org/) 的 GNU Wget ，该程序可通过 HTTP 、HTTPS 、FTP 协议下载文件。
+　　网上有很多命令行小程序，可以增强命令行的功能。这里使用 [GNU](http://www.gnu.org/) 的 [GNU Wget](http://www.gnu.org/software/wget/) ，该程序可通过 HTTP 、HTTPS 、FTP 协议下载文件。
 
-　　官方网站：[http://www.gnu.org/software/wget/](http://www.gnu.org/software/wget/) 。Windows 版下载地址：[http://gnuwin32.sourceforge.net/packages/wget.htm](http://gnuwin32.sourceforge.net/packages/wget.htm)
+　　Windows 版下载地址：[http://gnuwin32.sourceforge.net/packages/wget.htm](http://gnuwin32.sourceforge.net/packages/wget.htm) 。
 
 　　一般下载最新的稳定（stable）版本，解压后进入 wget 的安装目录，输入：
 
-```
-D:\soft\wget>md E:\pic （建立目录用来存放下载的图片）
+<pre>
+D:\soft\wget&gt;md E:\pic （建立目录用来存放下载的图片）
 
-D:\soft\wget>for /L %i in (1,1,100) do wget -P E:\pic http://www.example.com/
+D:\soft\wget&gt;for /L %i in (1,1,100) do wget -P E:\pic http://www.example.com/
 %i.jpg
 （注意，wget 中的参数以“-”开头，而不是“/”，而且严格区分大小写。这是 Unix 风格的
 参数写法。）
 （-P 指定文件的存放位置。wget 的其他功能请参考其帮助手册页）
-```
+</pre>
+
+### 6.6 平坦复制（flat copy）
+
+　　如果想把一个目录中的所有文件（包含子目录）复制到另一处，但不想复制子目录结构，怎么办？
+
+　　使用 for 命令并使用 dir 的运行结果：
+
+#{= highlight([[
+for /F "tokens=*" %i in ('dir /s /b /a-d "%SRC%"') do copy "%i" "%DEST%"
+]], 'bat') }#
+
+　　或者直接用 for /R ：
+
+#{= highlight([[
+for /R "%SRC%" %i in (*) do copy "%i" "%DEST%"
+]], 'bat') }#
 
 ## 7. 常见问题解答
 
@@ -724,20 +760,6 @@ D:\soft\wget>for /L %i in (1,1,100) do wget -P E:\pic http://www.example.com/
 
 	```
 	set/p=输出的内容<nul
-	```
-
-* 问：我想把一个目录中的所有文件（包含子目录）复制到另一处，但我不想复制子目录结构，怎么办？
-
-	答：使用 for 命令并使用 dir 的运行结果：
-
-	```
-	for /F "tokens=*" %i in ('dir /s /b /a-d "%SRC%"') do copy "%i" "%DEST%"
-	```
-
-	或者直接用 for /R ：
-
-	```
-	for /R "%SRC%" %i in (*) do copy "%i" "%DEST%"
 	```
 
 * 问：据说用 md 可以创建一些特殊目录？
