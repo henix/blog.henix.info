@@ -119,3 +119,22 @@ TH = {
 	none = function(i, j) return false end,
 	first_row = function(i, j) return i == 1 end,
 }
+
+function dotsvg(str, pos)
+	local tmpname = os.tmpname()
+	do
+		local ftmp = assert(io.open(tmpname, 'w'))
+		ftmp:write(str)
+		ftmp:close()
+	end
+	local fin = io.popen('dot -Tsvg '..tmpname)
+	local all = fin:read('*a')
+	fin:close()
+	os.remove(tmpname)
+	local s, e = string.find(all, '<svg ', 1, true)
+	local html = '<script type="image/svg+xml">'..string.sub(all, s)..'</script>'
+	if pos == 'center' then
+		html = '<p class="center">'..html..'</p>'
+	end
+	return html
+end

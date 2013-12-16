@@ -65,6 +65,17 @@ Windows 操作系统已得到了广泛使用，我们处理日常事务也大多
 
 　　目录好比书的章、节等不同层次，呈树形结构。除根目录外，其他目录称为子目录。子目录下又可再带子目录。下图是一个树形目录结构的例子。
 
+#{= dotsvg([[
+graph G {
+	bgcolor = "#cccccc"
+	node [shape="box",fontname="sans"]
+	根目录 -- { a1 b1 c1 }
+	a1 -- { a11 a12 }
+	a12 -- { a121 a122 }
+	c1 -- { c11 c12 c13 }
+}
+]], 'center') }#
+
 　　除根目录外的所有子目录都有个名字，命名规则同文件，一般没有扩展名。
 
 ### 2.4 绝对路径和相对路径
@@ -926,3 +937,5 @@ robocopy	Windows 的可靠文件复制。
 	[http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx](http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx)
 
 henix 完成于 2008-6-22 。
+
+#{include: 'svgweb.seg.htm' }#
