@@ -113,33 +113,6 @@ h1, h2, h3 {
 	text-align: right;
 }
 
-/* tooltip link */
-
-a.tooltip {
-	position: relative;
-}
-
-a.tooltip span {
-	display: none;
-}
-
-a.tooltip:hover {
-	font-weight: bold;
-}
-
-a.tooltip:hover span {
-	display: block;
-	position: absolute;
-	top: -1.5em;
-	left: 0;
-	padding: 0.2em;
-	white-space: nowrap;
-	background-color: Black;
-	color: White;
-	opacity: 0.9;
-	filter: alpha(opacity=90);
-}
-
 /* Layout */
 
 #page {
