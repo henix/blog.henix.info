@@ -580,7 +580,7 @@ C:\>D:\GnuWin32\bin\wget
 ...（运行成功）
 ```
 
-　　如果每次使用的时候都要输入完整的路径 `D:\GnuWin32\bin\wget` ，显得哊些繁琐，我们希望 wget 能像其他的 Windows 命令一样只输入名字就可以使用。这时可将它所在的目录，即 `D:\GnuWin32\bin` 加到 PATH 中：
+　　如果每次使用的时候都要输入完整的路径 `D:\GnuWin32\bin\wget` ，显得有些繁琐，我们希望 wget 能像其他的 Windows 命令一样只输入名字就可以使用。这时可将它所在的目录，即 `D:\GnuWin32\bin` 加到 PATH 中：
 
 ```
 C:\>echo %PATH%
