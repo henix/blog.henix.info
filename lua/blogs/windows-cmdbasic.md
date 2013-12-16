@@ -5,6 +5,7 @@
 	* 源文件从 html 迁移到 Pandoc Markdown 格式，并合并到 blog 中。
 	* 修改了一些应用举例，添加了“快速切换 IP/DNS 配置”和“平坦复制”
 	* 添加“环境变量 PATH”
+	* 删除用 prn 文件打印的部分，用得太少了，而且可能不通用
 
 * 2011-3-22
 
@@ -526,21 +527,11 @@ C:\>
 
 　　使用“copy nul 文件名”的办法，将文件大小改为 0 后再删除，这样即使用软件恢复也只能恢复出来一个空文件而已，无法得到原来的那个文件了。
 
-3\. 使用 prn 或 lpt 打印文档
-
-　　你是否遇到这种情况：甲电脑上的文件，要拿到乙电脑上去打印，无奈乙电脑上没安装相应软件，或无相应字体，无法打印，或效果差。这时可以通过 prn 文件来打印。即在甲电脑的“打印”对话框中选中“打印到文件”，这样会生成一 \*.prn 文件，将此文件拷贝到乙电脑中，输入：
-
-```
-copy /b *.prn lpt1 （或将 lpt1 换成你打印机的实际端口，用 mode 命令查看）
-```
-
-　　这样打印的效果和甲电脑中一模一样。但需注意，甲电脑中选择的打印机最好和实际打印的打印机型号相同，否则可能无法正确打印。若甲电脑中未安装打印机，可选择“添加打印机”，手动添加一台打印机，并在“端口”选择“FILE：（打印到文件）”，然后选择和实际打印机相同的驱动程序。
-
-　　另一种用法是 dir \> prn 直接将输出发送到打印机，不过不常用。
-
-4\. 使用 mode 命令
+3\. 使用 mode 命令
 
 　　mode 命令可查看当前可用的设备或修改设备参数，一个典型的应用是修改 con 的“代码页”（codepage）参数。详细请参考 mode 命令的帮助页。
+
+<!-- TODO: chcp -->
 
 ### 4.3 环境变量
 
@@ -815,10 +806,6 @@ for /R "%SRC%" %i in (*) do copy "%i" "%DEST%"
 
 1. Paul Love, Joe Merlino 等：《Unix 入门经典》. 张楚雄、许文昭译. 清华大学出版社. 2006
 2. 张钟澍、杨佛章编著：《电脑打字与文书编辑（修订本）》. 成都科技大学出版社. 1993
-3. 命令行参考 A-Z ：[http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx](http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx)
-4. 妙用PRN文件，实现文档换机打印：[http://blog.sina.com.cn/s/blog_46dac66f01000a8m.html](http://blog.sina.com.cn/s/blog_46dac66f01000a8m.html)
-5. PRN文件要如何打印到打印机？：[http://www.people.com.cn/GB/it/53/305/20010109/374542.html](http://www.people.com.cn/GB/it/53/305/20010109/374542.html)
-6. PrnPrint ：[http://www.magma.ca/~russrite/PrnPrint/index.html](http://www.magma.ca/~russrite/PrnPrint/index.html)
 
 ## 附录1：常用 DOS 命令一览
 
