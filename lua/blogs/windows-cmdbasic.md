@@ -1,9 +1,10 @@
 ## 修订历史
 
-* 2013-12-15
+* 2013-12-16
 
 	* 源文件从 html 迁移到 Pandoc Markdown 格式，并合并到 blog 中。
 	* 修改了一些应用举例，添加了“快速切换 IP/DNS 配置”和“平坦复制”
+	* 添加“环境变量 PATH”
 
 * 2011-3-22
 
@@ -34,7 +35,7 @@ Windows 操作系统已得到了广泛使用，我们处理日常事务也大多
 
 　　本文涵盖了 Windows 命令行的各方面的内容，从最简单的文件名命名规范到编写脚本文件，主要是基础知识。本文主要是为那些 Windows 命令行新手而写的，对读者的技术水平或使用计算机的经历不做任何要求。
 
-　　不同的 Windows 在命令行处理上也有细微差异，我用的系统是 Windows XP Home SP2 ，后面一些命令的运行结果也是基于此。
+　　不同的 Windows 在命令行处理上也有细微差异，我用的系统是 Windows XP 和 Windows 7 ，后面一些命令的运行结果是基于此。
 
 ## 2. 文件系统基础
 
@@ -331,7 +332,7 @@ Esc	作废当前行。
 Ctrl+C	强行终止当前命令或程序的执行。
 ]], TH.none) }#
 
-　　实际上，我们更多时候会在 Windows 下修改，“命令行解释器”给我们提供了更方便的修改方法。首先，在未回车时输左方向键（←）并不会像 DOS 中那样删除前一个字符，只会移动光标，故只需把光标移到有错误的地方修改即可。并且，Windows 中可使用上方向键（↑）来遍历已经输过的命令。更为重要的是，“命令行解释器”提供了强大的复制/粘贴功能！姑举一例说明：
+　　实际上，我们更多时候会在 Windows 下修改，“命令行解释器”给我们提供了更方便的修改方法。首先，在未回车时输左方向键（←）并不会像 DOS 中那样删除前一个字符，只会移动光标，故只需把光标移到有错误的地方修改即可。并且，Windows 中可使用上方向键（↑）来遍历已经输过的命令。另外，“命令行解释器”还提供了强大的复制/粘贴功能。姑举一例说明：
 
 　　假如上一个命令是“dir transitional.txt”，现在要输入“type transitional.txt”，有两种方法：
 
@@ -356,7 +357,7 @@ C:\>dir > dir.txt
 C:\>
 ```
 
-　　这里，以上命令不会产生输出，但会修改 dir.txt 的内容。注意字符“\>”会*完全覆盖* dir.txt 中已有的数据，而且 dir.txt 不存在时还会自动新建文件。如果希望保存先前数据，则可以使用 \>\> 操作符：
+　　这里，以上命令不会产生输出，但会修改 dir.txt 的内容。注意字符“\>”会 **完全覆盖** dir.txt 中已有的数据，而且 dir.txt 不存在时还会自动新建文件。如果希望保存先前数据，则可以使用 \>\> 操作符：
 
 ```
 C:\>dir >> dir.txt （将输出追加到 dir.txt 的末尾）
@@ -462,8 +463,7 @@ SORT [/R] [/+n] [/M kilobytes] [/L locale] [/REC recordbytes]
 
 ```
 C:\>set | find "Path"
-Path=C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\bin;D:\soft\GnuP
-G\pub
+Path=C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\bin
 ```
 
 ### 4.2 特殊设备
@@ -552,11 +552,45 @@ C:\WINDOWS>
 
 　　变量给命令或批处理文件带来了极大的灵活性，多用于批处理文件中。
 
-<!-- TODO: PATH -->
+### 4.4 环境变量 PATH
+
+　　有一个特殊的环境变量 PATH ，包含一组用分号（;）分隔的目录名。命令行解释器根据它查找可执行程序（exe）。
+
+　　如果想让自己的程序可以在命令行下使用，可以将程序所在的目录加入 PATH 中。
+
+　　例如若想直接使用 `D:\GnuWin32\bin` 下的 wget.exe ：
+
+```
+C:\>wget
+'wget' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+C:\>D:\GnuWin32\bin\wget
+...（运行成功）
+```
+
+　　如果每次使用的时候都要输入完整的路径 `D:\GnuWin32\bin\wget` ，显得哊些繁琐，我们希望 wget 能像其他的 Windows 命令一样只输入名字就可以使用。这时可将它所在的目录，即 `D:\GnuWin32\bin` 加到 PATH 中：
+
+```
+C:\>echo %PATH%
+C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0
+
+C:\>set PATH=%PATH%;D:\GnuWin32\bin
+
+C:\>echo %PATH%
+C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;D:\GnuWin32\bin
+
+C:\wget
+...（运行成功）
+```
+
+　　对 PATH 的更改只在这一次会话中有效，如果关闭命令行解释器再重新打开或者重启电脑 PATH 又会变成原来的系统默认值，如何修改这个默认值呢？
+
+　　Windows 7 中：计算机 -> 右键 -> 属性 -> 高级系统设置 -> 环境变量，下面的“系统变量”中的 PATH 。
 
 ## 5. 批处理文件简介
 
-　　使用批处理文件（亦称批处理程序或脚本），可以简化日常或重复性任务。批处理文件是纯文本文件，它包含一条或多条命令，其文件扩展名为 .bat 或 .cmd 。在命令提示符下键入批处理文件的名称，Cmd.exe 就会按照该文件中各个命令出现的顺序来逐个运行它们。所以批处理文件的特点是：一次建立，多次运行，适合进行重复性任务。在 DOS 中只能使用 .bat 的批处理文件。
+　　使用批处理文件（亦称批处理程序或脚本），可以简化日常或重复性任务。批处理文件是纯文本文件，它包含一条或多条命令，其文件扩展名为 .bat 或 .cmd 。在命令提示符下键入批处理文件的名称，cmd.exe 就会按照该文件中各个命令出现的顺序来逐个运行它们。所以批处理文件的特点是：一次建立，多次运行，适合进行重复性任务。在 DOS 中只能使用 .bat 的批处理文件。
 
 　　可以在批处理文件中包含任何命令。某些命令，比如 for、goto 和 if 命令等，它们允许你对批处理文件中的命令作条件流程控制。例如，if 命令根据条件语句的结果来执行命令。还有些只能在批处理文件中执行的命令。
 
@@ -639,19 +673,19 @@ D:\pics&gt;
 
 　　接着刚才的例子，如果我想用 [4.2 节](#特殊设备)所述的方法“粉碎”当前文件夹下的所有 jpeg 文件，我该怎样做？
 
-```
-D:\pics>for %i in (*.jpg) do copy nul %i /y
-```
+#{= highlight([[
+for %i in (*.jpg) do copy nul %i /y
+]], 'bat') }#
 
 　　这里使用 /y 来防止 copy 的覆盖前提示。
 
 ### 6.3 清理 Windows 临时文件夹 %tmp%
 
-　　`%tmp%` 这个环境变量保存了 Windows 临时文件夹的位置，通常这个文件夹在 Windows 7 中是 `C:\\Users\\用户名\\AppData\\Local\\Temp` ，WinXP 中则是 `C:\\Documents and Settings\\用户名\\Local Settings\\Temp` 。某些程序（典型如安装程序，解压缩软件）运行过程中产生的临时文件会存放于此，总之，是个堆放杂物的地方，其中文件一般可全部删除。在“我的电脑”的“地址栏”（若找不到地址栏，“查看”-\>“工具栏”-\>“地址栏”）中输入“%tmp%”，然后回车，看看你的临时文件夹有多少东西。
+　　`%tmp%` 这个环境变量保存了 Windows 临时文件夹的位置，通常这个文件夹在 Windows 7 中是 `C:\Users\用户名\AppData\Local\Temp` ，WinXP 中则是 `C:\Documents and Settings\用户名\Local Settings\Temp` 。某些程序（典型如安装程序，解压缩软件）运行过程中产生的临时文件会存放于此，总之，是个堆放杂物的地方，其中文件一般可全部删除。在“我的电脑”的“地址栏”（若找不到地址栏，“查看”->“工具栏”->“地址栏”）中输入“%tmp%”，然后回车，看看你的临时文件夹有多少东西。
 
 　　下面讨论清理。可能每隔一段时间就需要清理临时文件夹，因此我们采用[批处理文件](#批处理文件简介)。以下为 CleanTmp.cmd 文件的内容。
 
-第一种方案：全部删除
+　　第一种方案：全部删除
 
 #{= highlight([[
 @echo off
@@ -714,23 +748,17 @@ pause
 
 ### 6.5 下载一系列图片：for + wget
 
-　　有时我们在网上看到一系列图片，想把它们都下载下来，怎么办？首先要取得图片的地址，只有当图片的地址有一定规律性时，才能使用此法下载：在图片上点右键-\>“属性”，然后复制“地址”一栏的内容。假设要下载的图片地址很有规律，恰为 http://www.example.com/ 下的 1.jpg - 100.jpg 。
+　　有时我们在网上看到一系列图片，想把它们都下载下来，怎么办？首先要取得图片的地址，只有当图片的地址有一定规律性时，才能使用此法下载：在图片上点右键-\>“属性”，然后复制“地址”一栏的内容。假设要下载的图片地址很有规律，恰为 http://www.example.com/ 下的 1.jpg - 10.jpg 。
 
-　　网上有很多命令行小程序，可以增强命令行的功能。这里使用 [GNU](http://www.gnu.org/) 的 [GNU Wget](http://www.gnu.org/software/wget/) ，该程序可通过 HTTP 、HTTPS 、FTP 协议下载文件。
+　　网上有很多命令行小程序，可以增强命令行的功能。这里使用 [GNU Wget](http://www.gnu.org/software/wget/) ，该程序可通过 HTTP 、HTTPS 、FTP 协议下载文件。
 
-　　Windows 版下载地址：[http://gnuwin32.sourceforge.net/packages/wget.htm](http://gnuwin32.sourceforge.net/packages/wget.htm) 。
+　　Windows 版下载地址：[http://gnuwin32.sourceforge.net/packages/wget.htm](http://gnuwin32.sourceforge.net/packages/wget.htm) ，需要下载“Binaries”和“Dependencies”，并把解压后可执行程序所在的目录添加到 [PATH](#环境变量-path) 中。
 
-　　一般下载最新的稳定（stable）版本，解压后进入 wget 的安装目录，输入：
+```
+E:\pics>for /L %i in (1,1,10) do start wget http://www.example.com/%i.jpg
+```
 
-<pre>
-D:\soft\wget&gt;md E:\pic （建立目录用来存放下载的图片）
-
-D:\soft\wget&gt;for /L %i in (1,1,100) do wget -P E:\pic http://www.example.com/
-%i.jpg
-（注意，wget 中的参数以“-”开头，而不是“/”，而且严格区分大小写。这是 Unix 风格的
-参数写法。）
-（-P 指定文件的存放位置。wget 的其他功能请参考其帮助手册页）
-</pre>
+　　start 命令会开启一个新的进程，可以实现多进程并发下载。
 
 ### 6.6 平坦复制（flat copy）
 
@@ -777,9 +805,9 @@ for /R "%SRC%" %i in (*) do copy "%i" "%DEST%"
 1. Paul Love, Joe Merlino 等：《Unix 入门经典》. 张楚雄、许文昭译. 清华大学出版社. 2006
 2. 张钟澍、杨佛章编著：《电脑打字与文书编辑（修订本）》. 成都科技大学出版社. 1993
 3. 命令行参考 A-Z ：[http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx](http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx)
-4. 妙用PRN文件，实现文档换机打印：[http://blog.sina.com.cn/s/blog\_46dac66f01000a8m.html](http://blog.sina.com.cn/s/blog_46dac66f01000a8m.html)
+4. 妙用PRN文件，实现文档换机打印：[http://blog.sina.com.cn/s/blog_46dac66f01000a8m.html](http://blog.sina.com.cn/s/blog_46dac66f01000a8m.html)
 5. PRN文件要如何打印到打印机？：[http://www.people.com.cn/GB/it/53/305/20010109/374542.html](http://www.people.com.cn/GB/it/53/305/20010109/374542.html)
-6. PrnPrint ：[http://www.magma.ca/\~russrite/PrnPrint/index.html](http://www.magma.ca/~russrite/PrnPrint/index.html)
+6. PrnPrint ：[http://www.magma.ca/~russrite/PrnPrint/index.html](http://www.magma.ca/~russrite/PrnPrint/index.html)
 
 ## 附录1：常用 DOS 命令一览
 
