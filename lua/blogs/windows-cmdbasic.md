@@ -6,6 +6,7 @@
 	* 修改了一些应用举例，添加了“快速切换 IP/DNS 配置”和“平坦复制”
 	* 添加“环境变量 PATH”
 	* 删除用 prn 文件打印的部分，用得太少了，而且可能不通用
+	* 删除了 mode 命令，现在几乎不用了，而是用 chcp 修改代码页
 
 * 2011-3-22
 
@@ -23,7 +24,7 @@
 ## 1. 引言：为什么要使用命令行
 
 　　在 DOS 时代，人们只能依靠输入命令同计算机互交。而现在，微软的
-Windows 操作系统已得到了广泛使用，我们处理日常事务也大多使用基于图形用户界面（GUI，Graphics User Interface）的应用程序，命令行正在逐渐被人们淡忘。但我们同时也看到，系统自带的命令行解释器从 Windows 98 的 command.com 变成 Windows XP 的 cmd.exe ，功能大大增强了。
+Windows 操作系统已得到了广泛使用，我们处理日常事务也大多使用基于图形用户界面（GUI，Graphics User Interface）的应用程序，命令行正在逐渐被人们淡忘。但我们同时也看到，系统自带的命令行解释器从 Windows 98 的 command.com 变成 Windows XP 的 cmd.exe 直到 Windows 7 的 PowerShell ，功能大大增强了。
 
 　　命令行有它独特的价值，在某些方面的表现是 GUI 程序无法获得的，下面举例来说：
 
@@ -527,12 +528,6 @@ C:\>
 
 　　使用“copy nul 文件名”的办法，将文件大小改为 0 后再删除，这样即使用软件恢复也只能恢复出来一个空文件而已，无法得到原来的那个文件了。
 
-3\. 使用 mode 命令
-
-　　mode 命令可查看当前可用的设备或修改设备参数，一个典型的应用是修改 con 的“代码页”（codepage）参数。详细请参考 mode 命令的帮助页。
-
-<!-- TODO: chcp -->
-
 ### 4.3 环境变量
 
 　　环境变量是一个“变量名=变量值”的对应关系，每一个变量都有一个值与之对应。set 命令用于设置或查看环境变量。我们可以通过两个百分号的形式：“%变量名%”，在命令中引用变量的值。
@@ -898,6 +893,7 @@ tracert	通过递增“存在时间 (TTL)”字段的值将“Internet 控制消
 #{= makeTable([[
 命令	说明
 at	计划在指定时间和日期在计算机上运行命令和程序。at 命令只能在“计划”服务运行时使用。如果在没有参数的情况下使用，则 at 命令将列出已计划的命令。
+chcp	显示活动控制台代码页数量，或更改该控制台的活动控制台代码页。
 exit	退出当前批处理脚本或 Cmd.exe 程序（即命令解释程序）并返回到启动 Cmd.exe 的程序。
 help	提供关于系统命令的联机信息（即非网络命令）。使用不带参数的 help 列举并简要描述每个系统命令。
 reg	对注册表子项信息和注册表项值中的值执行添加、更改、导入、导出以及其他操作。
@@ -921,7 +917,7 @@ robocopy	Windows 的可靠文件复制。
 
 * 命令行参考 A-Z
 
-	[http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx](http://technet.microsoft.com/zh-cn/library/cc778084(WS.10).aspx)
+	[http://technet.microsoft.com/zh-CN/library/cc778084(v=ws.10).aspx](http://technet.microsoft.com/zh-CN/library/cc778084%28v=ws.10%29.aspx)
 
 henix 完成于 2008-6-22 。
 
