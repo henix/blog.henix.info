@@ -183,12 +183,15 @@ h1.sitetitle {
 
 /* blogpost */
 
-p, ol, ul, pre {
+p, ol, ul, pre, td, th, caption {
 	line-height: 150%;
 }
 
-pre {
+pre, pre code {
 	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
+}
+
+pre {
 	background-color: #ccc;
 	padding: 1em;
 	margin: 1em;
