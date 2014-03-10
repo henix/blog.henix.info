@@ -12,6 +12,6 @@
 
 　　本站文章均为原创，转载请注明来源及作者。
 
-　　向我提问：[henix@SegmentFault](http://segmentfault.com/u/henix) 。
+　　向我提问：[henix@SegmentFault](http://segmentfault.com/u/henix) 、[henix@zhihu](http://www.zhihu.com/people/henix) 。
 
 　　如果你使用 IE 浏览器：请至少使用 IE 8 以上的版本，推荐 IE 9 以上，否则可能无法正确显示 SVG 图片。
