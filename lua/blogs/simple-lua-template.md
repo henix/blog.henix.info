@@ -7,7 +7,7 @@
 * 包含文件
 * ……
 
-　　我接触到的第一个模板引擎是 Java 的 [FreeMarker](http://freemarker.sourceforge.net/) ，发现这东西可以取代 JSP 。
+　　我接触到的第一个模板引擎是 Java 的 [FreeMarker](http://freemarker.org/) ，发现这东西可以取代 JSP 。
 
 　　slt 是我在编写这个 blog 的过程中开发的，我使用 Lua 作为这个 blog 的开发语言，自然需要一个 Lua 的模板引擎。但现有的模板引擎感觉都太复杂。
 
