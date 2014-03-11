@@ -1,4 +1,4 @@
-* [Google Real Link](http://userscripts.org/scripts/show/125473)
+* [Remove Google Redirect](http://userscripts.org/scripts/show/117942)
 
 	觉得 Google 搜索的重定向很烦？这个脚本可以让 Google 的搜索结果不包含重定向，点击链接直接到对应网站。
 
