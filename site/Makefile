@@ -3,7 +3,7 @@
 .SECONDARY:
 
 PAGEMD := $(wildcard *.md)
-PAGES := $(wildcard %.md,%.html,$(PAGEMD))
+PAGES := $(patsubst %.md,%.html,$(PAGEMD))
 
 all: index.html $(PAGES) rss2.0.xml
 
@@ -14,7 +14,7 @@ index.html: sorted.row index.sh _.sitetitle _.siteurl $(wildcard */_.name) $(PAG
 	./index.sh > $@
 
 %.html: %.md _.sitetitle _.siteurl page.temp.htm disqus.seg.htm ga.seg.htm
-	pandoc --template=page.temp.htm -A disqus.seg.htm -A ga.seg.htm -V id=$$(echo $< | sed -e 's/\.md$$//') -V "sitetitle=$$(< _.sitetitle)" -V "siteurl=$$(< _.siteurl)" --css=root.css -o $@ $<
+	pandoc -t html5 --template=page.temp.htm -A disqus.seg.htm -A ga.seg.htm -V id=$$(echo $< | sed -e 's/\.md$$//') -V "sitetitle=$$(< _.sitetitle)" -V "siteurl=$$(< _.siteurl)" --css=root.css -o $@ $<
 
 rss2.0.xml: sorted.row rss.sh _.sitetitle _.siteurl _.sitedesc _.author $(wildcard */*/_.htm)
 	./rss.sh > $@
