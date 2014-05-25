@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="pandoc">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>$title$ - $sitetitle$</title>
+$if(quotes)$
+<style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+$endif$
+$if(highlighting-css)$
+<style type="text/css">
+$highlighting-css$
+</style>
+$endif$
+$for(css)$
+<link rel="stylesheet" href="$css$">
+$endfor$
+$if(math)$
+$math$
+$endif$
+$for(header-includes)$
+$header-includes$
+$endfor$
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+<div id="page">
+<h1 class="title"><a href="$siteurl$/$id$.html">$title$</a></h1>
+$body$
+<div id="disqus_thread"></div>
+<div id="footer">
+<div style="float:left"><a href="http://validator.w3.org/check?uri=referer">Valid</a></div>
+<div style="float:right"><a href="$siteurl$">$sitetitle$</a></div>
+</div>
+</div><!-- page -->
+<script type="text/javascript">
+var disqus_identifier = '$id$';
+var disqus_url = '$siteurl$/$id$.html';
+</script>
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>

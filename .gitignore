@@ -1,10 +1,16 @@
 .*.swp
 
-static/*.html
-static/*.xml
-static/blog/
+_.id
+_.cat
+_.row
+_.htm
+_.html
+*.svg
 
-lua/build/
-lua/output/
-lua/*.pp.htm
-lua/*.pp.htm.d
+output/
+site/sorted.row
+site/index.html
+site/about.html
+site/links.html
+site/guestbook.html
+site/rss2.0.xml

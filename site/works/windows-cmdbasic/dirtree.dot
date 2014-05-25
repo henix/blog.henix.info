@@ -1,0 +1,8 @@
+graph G {
+	bgcolor = "#cccccc"
+	node [shape="box",fontname="sans"]
+	根目录 -- { a1 b1 c1 }
+	a1 -- { a11 a12 }
+	a12 -- { a121 a122 }
+	c1 -- { c11 c12 c13 }
+}

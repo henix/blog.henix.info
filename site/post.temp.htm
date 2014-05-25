@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="pandoc">
+<meta name="author" content="$author$">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>$title$ - $sitetitle$</title>
+$if(quotes)$
+<style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+$endif$
+$if(highlighting-css)$
+<style type="text/css">
+$highlighting-css$
+</style>
+$endif$
+$for(css)$
+<link rel="stylesheet" href="$css$">
+$endfor$
+$if(math)$
+$math$
+$endif$
+$for(header-includes)$
+$header-includes$
+$endfor$
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+<div id="page">
+<h1 class="title"><a href="$siteurl$/$cat$/$id$/_.html">$title$</a></h1>
+<div id="content">
+<p class="date">最后更新日期：$date$</p>
+$if(toc)$
+<div id="$idprefix$TOC">
+$toc$
+</div>
+$endif$
+$body$
+<div id="disqus_thread"></div>
+</div><!-- content -->
+<div id="footer">
+<div style="float:left"><a href="http://validator.w3.org/check?uri=referer">Valid</a> | &copy; 2010-2014 henix</div>
+<div style="float:right"><a href="$siteurl$">$sitetitle$</a></div>
+</div>
+</div><!-- page -->
+<script type="text/javascript">
+var disqus_identifier = '$id$';
+var disqus_url = '$siteurl$/$cat$/$id$/_.html';
+</script>
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>
