@@ -13,4 +13,4 @@
 * [Github](https://github.com/henix)
 * [新浪微博](http://weibo.com/henix10)
 
-　　如果你使用 IE 浏览器：请至少使用 IE 8 以上的版本，推荐 IE 9 以上，否则可能无法正确显示 SVG 图片。
+　　如果你使用 IE 浏览器：请至少使用 IE 9 以上的版本，否则可能无法正确显示 SVG 图片。
