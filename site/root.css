@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* Normalize css IE 8+ */
+/* Normalize.css v3.0.1 */
 
 /**
  * Remove default margin.
@@ -119,16 +119,6 @@ h1, h2, h3 {
 	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, "微软雅黑", "WenQuanYi Zen Hei", sans-serif;
 }
 
-.clear { /* deprecated */
-	float: none;
-	clear: both;
-	font: 0px/0px sans-serif;
-	display: block;
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-}
-
 .clearfix {
 	*zoom: 1; /* for IE 6 7 hasLayout */
 }
@@ -139,14 +129,6 @@ h1, h2, h3 {
 	height: 0;
 	clear: both;
 	visibility: hidden;
-}
-
-.center {
-	text-align: center;
-}
-
-.right {
-	text-align: right;
 }
 
 /* Layout */
@@ -255,6 +237,7 @@ th, td {
 	padding: 0.3em;
 }
 
+/*
 div.hl {
 	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
 	padding: 1px 0;
@@ -271,6 +254,7 @@ div.hl li {
 	*white-space: pre;
 	*word-wrap: break-word;
 }
+*/
 
 /* footer */
 
