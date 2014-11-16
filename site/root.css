@@ -99,7 +99,6 @@ html {
 
 body {
 	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, sans-serif;
-	font-size: 10.5pt;
 }
 
 img {
@@ -178,7 +177,7 @@ h1.sitetitle {
 	border: 1px solid #8CACBB;
 	border-style: solid solid none solid;
 	display: inline;
-	font-size: 14px;
+	font-size: 100%;
 }
 
 .box .box-body {
