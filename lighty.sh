@@ -31,10 +31,12 @@ mimetype.assign = (
   ".xml" => "text/xml"
 )
 
-server.error-handler-404 = "/404.html"
-
 \$HTTP["url"] == "/rss2.0.xml" {
   mimetype.assign = ( "" => "application/rss+xml" )
+}
+
+\$HTTP["url"] =~ ".*\\.html" {
+  server.error-handler-404 = "/404.html"
 }
 
 # logs
@@ -47,6 +49,7 @@ accesslog.filename = "|/usr/bin/cronolog logs/%Y%m%d.log"
 \$SERVER["socket"] == ":$HTTPS_PORT" {
   ssl.engine = "enable"
   ssl.pemfile = "$PEM_FILE"
+  ssl.ca-file = "$CA_FILE"
 
   # http://disablessl3.com/
   ssl.use-sslv2 = "disable"
