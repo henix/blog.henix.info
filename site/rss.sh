@@ -21,7 +21,7 @@ while read -r publish_time cat id title; do
 <link>$siteurl/$cat/$id/_.html</link>
 <description>$(sed -f htmlesc.sed "$cat/$id/_.htm")</description>
 <author>$author</author>
-<guid isPermaLink="false">$id</guid>
+<guid isPermaLink="false">$id:$publish_time</guid>
 <pubDate>$(date --date="$publish_time" +"%a, %d %b %Y %H:%M:%S +0800")</pubDate>
 </item>
 EOF

@@ -1,0 +1,15 @@
+{
+  "name": "henix-blog",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "~3.0.3",
+    "IE9": "https://raw.githubusercontent.com/henix/ie7-js/master/lib/IE9.js"
+  }
+}

@@ -1,95 +1,8 @@
 @charset "utf-8";
 
-/* Normalize.css v3.0.1 */
+@import url("/lib/normalize.css/normalize.css?3.0.3");
 
-/**
- * Remove default margin.
- */
-body {
-	margin: 0;
-}
-
-/**
- * Remove the gray background color from active links in IE 10.
- */
-a {
-  background: transparent;
-}
-
-/**
- * Improve readability when focused and also mouse hovered in all browsers.
- */
-a:active, a:hover {
-  outline: 0;
-}
-
-/**
- * Address variable `h1` font-size and margin within `section` and `article`
- * contexts in Firefox 4+, Safari 5, and Chrome.
- */
-h1 {
-	font-size: 2em;
-	margin: 0.67em 0;
-}
-
-/**
- * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
- */
-b, strong {
-	font-weight: bold;
-}
-
-/**
- * Prevent `sub` and `sup` affecting `line-height` in all browsers.
- */
-sub, sup {
-	font-size: 75%;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
-sup {
-	top: -0.5em;
-}
-sub {
-	bottom: -0.25em;
-}
-
-/**
- * Remove border when inside `a` element in IE 8/9.
- */
-img {
-	border: 0;
-}
-
-/**
- * Address differences between Firefox and other browsers.
- */
-hr {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 0;
-}
-
-/**
- * Contain overflow in all browsers.
- */
-pre {
-  overflow: auto;
-}
-
-/**
- * Address odd `em`-unit font size rendering in all browsers.
- */
-code, kbd, pre, samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+@import "compass/css3/selection";
 
 /* Common settings */
 
@@ -119,18 +32,6 @@ h1, h2, h3 {
 	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, "微软雅黑", "WenQuanYi Zen Hei", sans-serif;
 }
 
-.clearfix {
-	*zoom: 1; /* for IE 6 7 hasLayout */
-}
-
-.clearfix:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-
 /* Layout */
 
 #page {
@@ -149,19 +50,9 @@ h1 {
 	padding-left: 6px;
 }
 
-h1.sitetitle {
-	/* for opera */
-	font-family: "微软雅黑", "WenQuanYi Zen Hei", sans-serif;
-}
-
-::selection {
-	color: White;
-	background-color: #FF5E99; /*#ff1493; /* #f39 */
-}
-
-::-moz-selection {
-	color: White;
-	background-color: #FF5E99; /*#ff1493; /* #f39 */
+* {
+  @include selection(#FF5E99, White);
+  /*#ff1493; /* #f39 */
 }
 
 /* box */
@@ -209,14 +100,21 @@ pre, pre code {
 	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
 }
 
+@mixin pre-wrap {
+  /* https://stackoverflow.com/questions/248011/how-do-i-wrap-text-in-a-pre-tag */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  white-space: pre-wrap;       /* CSS 3 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
 pre {
 	background-color: #ccc;
 	padding: 1em;
 	margin: 1em;
 
-	white-space: pre-wrap;
-	*white-space: pre;
-	*word-wrap: break-word;
+  @include pre-wrap;
 }
 
 blockquote {

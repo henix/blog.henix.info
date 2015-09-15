@@ -8,10 +8,14 @@ _.html
 *.svg
 
 output/
+lighttpd.conf
 site/sorted.row
 site/index.html
 site/about.html
 site/links.html
 site/guestbook.html
 site/404.html
+site/lib/
+site/.sass-cache/
+site/root.css
 site/rss2.0.xml

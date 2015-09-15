@@ -1,8 +1,10 @@
 #!/bin/sh
-for i in $(find . -mindepth 2 -maxdepth 2 -type d); do
-	cd "$i"
-	make -s -f ../../blog.mk
-	cd ../..
+for cat in dig hacks views works; do
+	for i in $(find $cat -mindepth 1 -maxdepth 1 -type d); do
+		cd "$i"
+		make -s -f ../../blog.mk
+		cd ../..
+	done
 done
 
 make

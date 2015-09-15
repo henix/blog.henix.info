@@ -8,14 +8,10 @@ cat <<EOF
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>$sitetitle</title>
+<!--[if lt IE 9]>
+<script src="/lib/IE9/index.js?2.1b4"></script>
+<![endif]-->
 <link rel="stylesheet" href="root.css">
-<script type="text/javascript">
-if (window.top != window) {
-	alert('检测到疑似被ISP劫持强插广告，请刷新重试。\n本站地址：$siteurl/\n即将重定向');
-	// window.top.location.href = '$siteurl/?r=' + Math.random().toString(36).substring(2);
-	// location.href = "about:blank";
-}
-</script>
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss2.0.xml">
 </head>
 
@@ -48,7 +44,7 @@ done
 cat <<EOF
 <div id="footer">
 <div style="float:left">
-<a href="http://validator.w3.org/check?uri=referer">Valid</a>
+<a href="https://validator.w3.org/check?uri=referer">Valid</a>
 EOF
 for page in links guestbook about; do
 	title=$(head -n1 "${page}.md" | sed -e 's/^% //')
