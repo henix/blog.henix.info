@@ -8,7 +8,7 @@ cat <<EOF
 <rss version="2.0">
 <channel>
 <title>$sitetitle</title>
-<link>$siteurl</link>
+<link>$siteurl/</link>
 <description>$sitedesc</description>
 <language>zh-cn</language>
 <lastBuildDate>$(date +"%a, %d %b %Y %H:%M:%S +0800")</lastBuildDate>
