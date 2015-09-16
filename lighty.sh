@@ -35,10 +35,6 @@ mimetype.assign = (
   mimetype.assign = ( "" => "application/rss+xml" )
 }
 
-\$HTTP["url"] =~ ".*\\.html" {
-  server.error-handler-404 = "/404.html"
-}
-
 # logs
 
 server.modules += ( "mod_accesslog" )
