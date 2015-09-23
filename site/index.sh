@@ -46,7 +46,7 @@ cat <<EOF
 <div style="float:left">
 <a href="https://validator.w3.org/check?uri=referer">Valid</a>
 EOF
-for page in links guestbook about; do
+for page in about; do
 	title=$(head -n1 "${page}.md" | sed -e 's/^% //')
 	cat <<EOF
 | <a href="${page}.html">$(echo "$title" | sed -f htmlesc.sed)</a>
