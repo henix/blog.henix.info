@@ -61,8 +61,6 @@ accesslog.filename = "|/usr/bin/cronolog logs/%Y%m%d.log"
 
 server.modules += ( "mod_redirect" )
 
-url.redirect-code = 302
-
 \$SERVER["socket"] == ":$HTTP_PORT" {
   \$HTTP["host"] =~ "(.*):$HTTP_PORT" {
     url.redirect = (".*" => "https://%1$(httpsport)\$0")
