@@ -1,5 +1,5 @@
 #!/bin/sh
-for cat in dig hacks views works; do
+for cat in tips security devtools program; do
 	for i in $(find $cat -mindepth 1 -maxdepth 1 -type d); do
 		cd "$i"
 		make -s -f ../../blog.mk

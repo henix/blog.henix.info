@@ -32,7 +32,7 @@ EOF
 	IFS=$'\t'
 	< sorted.row awk -F '\t' '$2 == "'"$cat"'"' | while read -r publish_time cat id title ; do
 		cat <<EOF
-<li>$publish_time<a href="$cat/$id/_.html">$(echo "$title" | sed -f htmlesc.sed)</a></li>
+<li>$publish_time<a href="blog/$id/_.html">$(echo "$title" | sed -f htmlesc.sed)</a></li>
 EOF
 	done
 	IFS=

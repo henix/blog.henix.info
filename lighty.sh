@@ -70,6 +70,35 @@ server.modules += ( "mod_redirect" )
   }
 }
 
+\$SERVER["socket"] == ":$HTTPS_PORT" {
+	url.redirect = (
+		"^/hacks/build-personal-search-engine/_.html" => "/blog/build-personal-search-engine/_.html",
+		"^/hacks/html-presentation/_.html" => "/blog/html-presentation/_.html",
+		"^/hacks/dmenu-run/_.html" => "/blog/dmenu-run/_.html",
+		"^/hacks/html-presentation-annotate/_.html" => "/blog/html-presentation-annotate/_.html",
+		"^/hacks/mathjax-render-latex-math-online/_.html" => "/blog/mathjax-render-latex-math-online/_.html",
+		"^/works/psiphon3-intro/_.html" => "/blog/psiphon3-intro/_.html",
+		"^/works/my-yahoo-pipes/_.html" => "/blog/my-yahoo-pipes/_.html",
+		"^/works/archer-rpc-scala/_.html" => "/blog/archer-rpc-scala/_.html",
+		"^/works/greasemonkey-userscripts-recommends/_.html" => "/blog/greasemonkey-userscripts-recommends/_.html",
+		"^/works/windows-cmdbasic/_.html" => "/blog/windows-cmdbasic/_.html",
+		"^/works/bash-history-alias/_.html" => "/blog/bash-history-alias/_.html",
+		"^/works/simple-lua-template/_.html" => "/blog/simple-lua-template/_.html",
+		"^/views/why-https-so-important/_.html" => "/blog/why-https-so-important/_.html",
+		"^/views/program-information-reverse-run/_.html" => "/blog/program-information-reverse-run/_.html",
+		"^/views/use-chinese-identifier/_.html" => "/blog/use-chinese-identifier/_.html",
+		"^/views/self-reproducing-program-AI/_.html" => "/blog/self-reproducing-program-AI/_.html",
+		"^/dig/scala-bug-macro-cannot-find-annotation/_.html" => "/blog/scala-bug-macro-cannot-find-annotation/_.html",
+		"^/dig/scala-program-solve-24-game/_.html" => "/blog/scala-program-solve-24-game/_.html",
+		"^/dig/enumerate-2n-on-physical-switches-with-least-steps/_.html" => "/blog/enumerate-2n-on-physical-switches-with-least-steps/_.html",
+		"^/dig/prolog-24-game-solver/_.html" => "/blog/prolog-24-game-solver/_.html",
+		"^/dig/lua-js-closure/_.html" => "/blog/lua-js-closure/_.html",
+		"^/dig/escape-quote-filename-bash/_.html" => "/blog/escape-quote-filename-bash/_.html",
+		"^/dig/lua-program-solve-24-game/_.html" => "/blog/lua-program-solve-24-game/_.html",
+		"^/dig/reverse-polish-notation-catalan-number/_.html" => "/blog/reverse-polish-notation-catalan-number/_.html",
+	)
+}
+
 # cache
 
 server.modules += ( "mod_expire" )
