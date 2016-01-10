@@ -20,7 +20,7 @@ cat <<EOF
 
 <h1 class="sitetitle">$sitetitle</h1>
 
-<p>　　欢迎来到 henix 的个人网站。</p>
+<p id="banner"><img src="banner2.jpg" alt=""></p>
 EOF
 sortedcats=$(< sorted.row sort -t $'\t' -su -k 2,2 | sort -t $'\t' -r -k 1,1 | cut -f 2)
 for cat in $sortedcats; do
