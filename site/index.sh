@@ -8,11 +8,12 @@ cat <<EOF
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>$sitetitle</title>
-<!--[if lt IE 9]>
-<script src="/lib/IE9/index.js?2.1b4"></script>
-<![endif]-->
 <link rel="stylesheet" href="root.css">
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss2.0.xml">
+
+<!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
 </head>
 
 <body>
