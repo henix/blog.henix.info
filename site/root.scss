@@ -32,12 +32,19 @@ h1, h2, h3 {
   font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, "微软雅黑", sans-serif;
 }
 
+h2, h3 {
+  line-height: 1.6;
+}
+
 /* Layout */
 
 #page {
   margin: 2em auto;
   width: 80%;
   max-width: 960px;
+  @media (max-width 767px) {
+    width: 90%;
+  }
 }
 
 #banner {
