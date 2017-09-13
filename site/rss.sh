@@ -18,7 +18,7 @@ while read -r publish_time cat id title; do
 	cat <<EOF
 <item>
 <title>$(echo "$title" | sed -f htmlesc.sed)</title>
-<link>$siteurl/blog/$id/_.html</link>
+<link>$siteurl/blog/$id/</link>
 <description>$(sed -f htmlesc.sed "$cat/$id/_.htm")</description>
 <author>$author</author>
 <guid isPermaLink="false">$id:$publish_time</guid>

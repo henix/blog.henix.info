@@ -1,5 +1,6 @@
 .*.swp
 
+site/**/index.html
 _.id
 _.cat
 _.row
