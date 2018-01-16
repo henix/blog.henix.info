@@ -12,7 +12,7 @@ cat <<EOF
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss2.0.xml">
 
 <!--[if lt IE 9]>
-	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
 <![endif]-->
 </head>
 
