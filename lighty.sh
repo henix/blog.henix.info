@@ -42,6 +42,8 @@ accesslog.filename = "|/usr/bin/cronolog logs/%Y%m%d.log"
 
 # https
 
+server.modules += ( "mod_openssl" )
+
 \$SERVER["socket"] == ":$HTTPS_PORT" {
   ssl.engine = "enable"
   ssl.pemfile = "$PEM_FILE"
