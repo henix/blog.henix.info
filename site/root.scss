@@ -36,6 +36,12 @@ h2, h3 {
   line-height: 1.6;
 }
 
+/* Utils */
+
+.center {
+	text-align: center;
+}
+
 /* Layout */
 
 #page {
@@ -70,12 +76,12 @@ h1 {
 /* box */
 
 .box {
-  margin: 1.5em 0;
+  margin: 2em 0;
 }
 
 .box h5 {
   margin: 0;
-  padding: 0.3em 1em;
+  padding: 5px 1em;
   background-color: #DEE7EC;
   border: 1px solid #8CACBB;
   border-style: solid solid none solid;
@@ -84,7 +90,7 @@ h1 {
 }
 
 .box .box-body {
-  margin-top: 2px;
+  margin-top: 4px;
   padding: 0.5em;
   border: 1px solid #8CACBB;
 }
