@@ -45,7 +45,7 @@ done
 cat <<EOF
 <div id="footer">
 <div style="float:left">
-<a href="https://validator.w3.org/check?uri=referer">Valid</a>
+<a class="-Valid" href="https://validator.w3.org/check?uri=referer">Valid</a>
 EOF
 for page in about; do
 	title=$(head -n1 "${page}.md" | sed -e 's/^% //')
@@ -59,6 +59,7 @@ cat <<EOF
 </div>
 
 </div><!-- end of page -->
+<script async defer="defer" src="valid.js"></script>
 EOF
 cat ga.seg.htm
 cat <<EOF
