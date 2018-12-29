@@ -135,8 +135,8 @@ pre {
   @include pre-wrap;
 }
 
-code {
-	background-color: transparent; // 抵消 pandoc 默认的白色背景
+div.sourceCode {
+	background-color: #ccc; // 抵消 pandoc 默认的白色背景
 }
 
 blockquote {
