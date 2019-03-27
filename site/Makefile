@@ -13,11 +13,11 @@ sorted.row: $(wildcard */*/_.row)
 index.html: sorted.row index.sh _.sitetitle _.siteurl $(wildcard */_.name) $(PAGEMD) ga.seg.htm
 	./index.sh > $@
 
-404.html: 404.md _.sitetitle _.siteurl page.temp.htm disqus.seg.htm ga.seg.htm
-	pandoc -t html5 --template=page.temp.htm -A disqus.seg.htm -A ga.seg.htm -V id=$$(echo $< | sed -e 's/\.md$$//') -V "sitetitle=$$(< _.sitetitle)" -V "siteurl=$$(< _.siteurl)" --css="/root.css" -o $@ $<
+404.html: 404.md _.sitetitle _.siteurl page.temp.htm disqus.seg.htm ga.seg.htm baidu.seg.htm
+	pandoc -t html5 --template=page.temp.htm -A disqus.seg.htm -A ga.seg.htm -A baidu.seg.htm -V id=$$(echo $< | sed -e 's/\.md$$//') -V "sitetitle=$$(< _.sitetitle)" -V "siteurl=$$(< _.siteurl)" --css="/root.css" -o $@ $<
 
-%.html: %.md _.sitetitle _.siteurl page.temp.htm disqus.seg.htm ga.seg.htm
-	pandoc -t html5 --template=page.temp.htm -A disqus.seg.htm -A ga.seg.htm -V id=$$(echo $< | sed -e 's/\.md$$//') -V "sitetitle=$$(< _.sitetitle)" -V "siteurl=$$(< _.siteurl)" --css=root.css -o $@ $<
+%.html: %.md _.sitetitle _.siteurl page.temp.htm disqus.seg.htm ga.seg.htm baidu.seg.htm
+	pandoc -t html5 --template=page.temp.htm -A disqus.seg.htm -A ga.seg.htm -A baidu.seg.htm -V id=$$(echo $< | sed -e 's/\.md$$//') -V "sitetitle=$$(< _.sitetitle)" -V "siteurl=$$(< _.siteurl)" --css=root.css -o $@ $<
 
 root.css: root.scss
 	compass compile --sass-dir . --css-dir .

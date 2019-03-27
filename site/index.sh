@@ -62,6 +62,7 @@ cat <<EOF
 <script async defer="defer" src="valid.js"></script>
 EOF
 cat ga.seg.htm
+cat baidu.seg.htm
 cat <<EOF
 </body>
 </html>
