@@ -10,7 +10,7 @@ all: index.html $(PAGES) root.css rss2.0.xml
 sorted.row: $(wildcard */*/_.row)
 	cat $^ | sort -t $$'\t' -r -k 1,1 > $@
 
-index.html: sorted.row index.sh _.sitetitle _.siteurl $(wildcard */_.name) $(PAGEMD) ga.seg.htm
+index.html: sorted.row index.sh _.sitetitle _.siteurl $(wildcard */_.name) $(PAGEMD) disqus.seg.htm ga.seg.htm baidu.seg.htm
 	./index.sh > $@
 
 404.html: 404.md _.sitetitle _.siteurl page.temp.htm disqus.seg.htm ga.seg.htm baidu.seg.htm
