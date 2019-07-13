@@ -1,6 +1,5 @@
 #!/bin/bash
-sitetitle=$(< _.sitetitle)
-siteurl=$(< _.siteurl)
+. ./_.ini
 cat <<EOF
 <!DOCTYPE html>
 <html>
@@ -10,12 +9,10 @@ cat <<EOF
 <title>$sitetitle</title>
 <link rel="stylesheet" href="root.css">
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss2.0.xml">
-
-<!--[if lt IE 9]>
-	<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-<![endif]-->
+EOF
+cat myhead.seg.htm
+cat <<EOF
 </head>
-
 <body>
 <div id="page">
 
@@ -61,8 +58,7 @@ cat <<EOF
 </div><!-- end of page -->
 <script async defer="defer" src="valid.js"></script>
 EOF
-cat ga.seg.htm
-cat baidu.seg.htm
+cat all-end.seg.htm
 cat <<EOF
 </body>
 </html>

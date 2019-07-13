@@ -1,0 +1,92 @@
+require 'rake'
+require 'inifile'
+
+pages = Rake::FileList["*.md"].ext(".html")
+files = pages + ["index.html", "root.css", "rss2.0.xml"]
+
+posts_dir = Rake::FileList["*/*"].select{|f|File.directory?(f)}
+
+# vars 里应有：id, toc
+def pandoc(template, heads, afters, csspath, vars, mdfile, outfile)
+  heads_ops = heads.map{|h|" -H #{h}"}.join("")
+  afters_ops = afters.map{|a|" -A #{a}"}.join("")
+  vars_ops = vars.to_a.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
+  toc_ops = vars["toc"] ? " --toc" : ""
+  sh "pandoc -t html5 --mathjax='https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --highlight-style=kate --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} -o #{outfile} #{mdfile}"
+end
+
+pages.each do |page_html|
+  id = page_html.chomp(".html")
+  template = "page.temp.htm"
+  heads = ["myhead.seg.htm"]
+  afters = ["comment.seg.htm", "all-end.seg.htm"]
+  file page_html => ["#{id}.md", template, "_.ini"] + heads + afters do |t|
+    vars = IniFile.load("_.ini")["global"]
+    vars["id"] = id
+    path_prefix = id == "404" ? "/" : ""
+    pandoc(template, heads, afters, path_prefix + "root.css", vars, t.source, t.name)
+  end
+end
+
+posts_dir.each do |dir|
+  id = File.basename(dir)
+  template = "post.temp.htm"
+  heads = ["myhead.seg.htm"]
+  afters = ["comment.seg.htm", "all-end.seg.htm"]
+  html = File.join(dir, "index.html")
+  htm = File.join(dir, "_.htm")
+  ini = File.join(dir, "_.ini")
+  file html => [File.join(dir, "_.md"), ini, template, "_.ini"] + heads + afters do |t|
+    vars = IniFile.load("_.ini")["global"]
+    vars["id"] = id
+    vars.merge!(IniFile.load(ini)["global"])
+    pandoc(template, heads, afters, "../../root.css", vars, t.source, t.name)
+  end
+  file htm => [File.join(dir, "_.md"), ini, "content.temp.htm"] do |t|
+    vars = IniFile.load(ini)["global"]
+    title = vars.fetch("title")
+    toc_ops = vars["toc"] ? " --toc" : ""
+    sh "pandoc -t html5 --mathjax --template=content.temp.htm -M \"title=#{title}\"#{toc_ops} -o #{t.name} #{t.source}"
+  end
+  files << html
+  files << htm
+end
+
+dot_files = Rake::FileList["*/*/*.dot"]
+
+dot_files.each do |dot|
+  svg = dot.chomp(".dot") + ".svg"
+  file svg => dot do |t|
+    sh "dot -T svg #{t.source} > #{t.name}"
+  end
+  files << svg
+end
+
+file "root.css" => "root.scss" do |t|
+  sh "compass compile --sass-dir . --css-dir ."
+  # sh "npx postcss #{t.name} --use autoprefixer -r --no-map"
+end
+
+file "sorted.row" => posts_dir.map{|d|File.join(d, "_.ini")} do |t|
+  data = t.sources.map { |src|
+    cat, id, _ = src.split("/")
+    vars = IniFile.load(src)["global"]
+    [vars.fetch("date"), cat, id, vars.fetch("title")]
+  }
+  data.sort! { |a,b| b[0] <=> a[0] }
+  IO.write(t.name, data.map{|r|r.join("\t")+"\n"}.join())
+end
+
+file "rss2.0.xml" => ["rss.sh", "sorted.row", "_.ini"] + posts_dir.map{|d|File.join(d, "_.htm")} do |t|
+  sh "./#{t.source} > #{t.name}"
+end
+
+file "index.html" => ["index.sh", "sorted.row", "_.ini", "all-end.seg.htm"] + Rake::FileList["*/_.name"] do |t|
+  sh "./#{t.source} > #{t.name}"
+end
+
+task :default => files
+
+task :clean do |t|
+  sh(*(["rm", "sorted.row"] + files))
+end
