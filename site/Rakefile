@@ -10,7 +10,7 @@ posts_dir = Rake::FileList["*/*"].select{|f|File.directory?(f)}
 def pandoc(template, heads, afters, csspath, vars, mdfile, outfile)
   heads_ops = heads.map{|h|" -H #{h}"}.join("")
   afters_ops = afters.map{|a|" -A #{a}"}.join("")
-  vars_ops = vars.to_a.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
+  vars_ops = vars.to_a.select{|k,v|k!="toc"}.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
   toc_ops = vars["toc"] ? " --toc" : ""
   sh "pandoc -t html5 --mathjax='https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --highlight-style=kate --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} -o #{outfile} #{mdfile}"
 end
