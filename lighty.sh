@@ -117,7 +117,6 @@ server.modules += ( "mod_expire" )
 server.modules += ( "mod_compress" )
 
 compress.filetype = ("text/plain", "text/html", "text/xml", "text/css", "text/javascript", "text/css", "image/svg+xml", "application/rss+xml")
-compress.cache-dir = "cache.tmp"
 EOF
 }
 
