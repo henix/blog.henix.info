@@ -36,10 +36,18 @@ h2, h3 {
   line-height: 1.6;
 }
 
+figure {
+  text-align: center;
+}
+
+figcaption {
+  margin-top: .5em;
+}
+
 /* Utils */
 
 .center {
-	text-align: center;
+  text-align: center;
 }
 
 /* Layout */
@@ -136,7 +144,7 @@ pre {
 }
 
 div.sourceCode {
-	background-color: #ccc; // 抵消 pandoc 默认的白色背景
+  background-color: #ccc; // 抵消 pandoc 默认的白色背景
 }
 
 blockquote {
