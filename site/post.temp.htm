@@ -14,12 +14,12 @@ $if(highlighting-css)$
 $highlighting-css$
 </style>
 $endif$
+$if(math)$
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" crossorigin="anonymous">
+$endif$
 $for(css)$
 <link rel="stylesheet" href="$css$">
 $endfor$
-$if(math)$
-$math$
-$endif$
 $for(header-includes)$
 $header-includes$
 $endfor$
@@ -45,6 +45,31 @@ $body$
 <div style="float:right"><a href="$siteurl$/">$sitetitle$</a></div>
 </div>
 </div><!-- page -->
+$if(math)$
+<script>
+if (!document.body.classList) {
+	document.write('<script src="https://cdn.jsdelivr.net/npm/dom4@2.1.5/build/dom4.js"><\/script>');
+}
+</script>
+<script async defer="defer">
+function loadScript(src, onload) {
+	var script = document.createElement("script");
+	script.async = true;
+	script.defer = true;
+	script.src = src;
+	script.onload = onload;
+	document.body.appendChild(script);
+}
+loadScript("https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js", function() {
+	[].slice.call(document.querySelectorAll("span.math")).forEach(function(elem) {
+		katex.render(elem.textContent, elem, {
+			displayMode: elem.classList.contains("display"),
+			throwOnError: false,
+		});
+	});
+});
+</script>
+$endif$
 <script async defer="defer" src="/valid.js"></script>
 <script>
 var disqus_identifier = '$id$';

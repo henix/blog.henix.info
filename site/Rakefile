@@ -12,7 +12,8 @@ def pandoc(template, heads, afters, csspath, vars, mdfile, outfile)
   afters_ops = afters.map{|a|" -A #{a}"}.join("")
   vars_ops = vars.to_a.select{|k,v|k!="toc"}.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
   toc_ops = vars["toc"] ? " --toc" : ""
-  sh "pandoc -t html5 --mathjax='https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --highlight-style=kate --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} -o #{outfile} #{mdfile}"
+  # sh "pandoc -t html5 --mathjax='https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --highlight-style=kate --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} -o #{outfile} #{mdfile}"
+  sh "pandoc -t html5 --katex --highlight-style=kate --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} -o #{outfile} #{mdfile}"
 end
 
 pages.each do |page_html|
@@ -46,7 +47,7 @@ posts_dir.each do |dir|
     vars = IniFile.load(ini)["global"]
     title = vars.fetch("title")
     toc_ops = vars["toc"] ? " --toc" : ""
-    sh "pandoc -t html5 --mathjax --template=content.temp.htm -M \"title=#{title}\"#{toc_ops} -o #{t.name} #{t.source}"
+    sh "pandoc -t html5 --katex --template=content.temp.htm -M \"title=#{title}\"#{toc_ops} -o #{t.name} #{t.source}"
   end
   files << html
   files << htm
