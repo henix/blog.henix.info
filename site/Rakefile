@@ -82,7 +82,7 @@ file "rss2.0.xml" => ["rss.sh", "sorted.row", "_.ini"] + posts_dir.map{|d|File.j
   sh "./#{t.source} > #{t.name}"
 end
 
-file "index.html" => ["index.sh", "sorted.row", "_.ini", "all-end.seg.htm"] + Rake::FileList["*/_.name"] do |t|
+file "index.html" => ["index.sh", "sorted.row", "_.ini", "myhead.seg.htm", "all-end.seg.htm"] + Rake::FileList["*/_.name"] do |t|
   sh "./#{t.source} > #{t.name}"
 end
 
