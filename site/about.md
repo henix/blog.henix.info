@@ -6,8 +6,8 @@
 
 　　本博客的设计参考了以下网站，向前辈们致敬！
 
-* [安全焦点](http://www.xfocus.net/)
-* [老罗的缤纷天地](http://www.luocong.com/)
+* [安全焦点](https://web.archive.org/web/20180224034738/http://xfocus.net/)
+* [老罗的缤纷天地](https://web.archive.org/web/20180221085754/http://www.luocong.com/)
 
 　　首页图片来源：[《魔卡少女樱》剧场版 1](https://movie.douban.com/subject/3117775/)
 
