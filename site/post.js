@@ -21,7 +21,7 @@
 			}
 		});
 	}, { threshold: 0.05 });
-	[].slice.call(document.querySelectorAll("img[data-src]")).forEach(function(elem) {
+	Array.from(document.querySelectorAll("img[data-src]")).forEach(function(elem) {
 		observer.observe(elem);
 	});
 })();

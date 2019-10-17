@@ -46,6 +46,10 @@ $body$
 </div>
 </div><!-- page -->
 <script>
+if (typeof Function.prototype.bind != "function") {
+	document.write('<script src="https://cdn.jsdelivr.net/npm/es5-shim@4.5.13/es5-shim.min.js"><\/script>');
+}
+Array.from=Array.from||function(o){var a=[];for(var i=0;i<o.length;i++)a[i]=o[i];return a};
 if (typeof Promise == "undefined") {
 	document.write('<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.1.3/dist/polyfill.min.js"><\/script>');
 }
@@ -56,7 +60,7 @@ if (!window.IntersectionObserver) {
 	document.write('<script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.min.js"><\/script>');
 }
 </script>
-<script src="/post.js"></script>
+<script async defer="defer" src="/post.js"></script>
 $if(math)$
 <script>
 if (!document.body.classList) {
@@ -73,7 +77,7 @@ function loadScript(src, onload) {
 	document.body.appendChild(script);
 }
 loadScript("https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js", function() {
-	[].slice.call(document.querySelectorAll("span.math")).forEach(function(elem) {
+	Array.from(document.querySelectorAll("span.math")).forEach(function(elem) {
 		katex.render(elem.textContent, elem, {
 			displayMode: elem.classList.contains("display"),
 			throwOnError: false,
