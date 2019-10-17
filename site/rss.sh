@@ -22,7 +22,7 @@ while read -r publish_time cat id title; do
 <pubDate>$(date --date="$publish_time" +"%a, %d %b %Y %H:%M:%S +0800")</pubDate>
 </item>
 EOF
-done < sorted.row
+done < <(head -n 10 sorted.row)
 cat <<EOF
 </channel>
 </rss>
