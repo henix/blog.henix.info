@@ -10,6 +10,7 @@ node_modules
 
 public/
 lighttpd.conf
+site/render.js
 site/sorted.row
 site/*.html
 site/root.css

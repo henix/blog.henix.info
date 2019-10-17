@@ -2,7 +2,7 @@ require 'rake'
 require 'inifile'
 
 pages = Rake::FileList["*.md"].ext(".html")
-files = pages + ["index.html", "root.css", "rss2.0.xml"]
+files = pages + ["render.js", "index.html", "root.css", "rss2.0.xml"]
 
 posts_dir = Rake::FileList["*/*"].select{|f|File.directory?(f)}
 
@@ -12,8 +12,7 @@ def pandoc(template, heads, afters, csspath, vars, mdfile, outfile)
   afters_ops = afters.map{|a|" -A #{a}"}.join("")
   vars_ops = vars.to_a.select{|k,v|k!="toc"}.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
   toc_ops = vars["toc"] ? " --toc" : ""
-  # sh "pandoc -t html5 --mathjax='https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --highlight-style=kate --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} -o #{outfile} #{mdfile}"
-  sh "pandoc -t html5 --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} -o #{outfile} #{mdfile}"
+  sh "pandoc -t html5 --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} #{mdfile} | node render.js > #{outfile}"
 end
 
 pages.each do |page_html|
@@ -21,7 +20,7 @@ pages.each do |page_html|
   template = "page.temp.htm"
   heads = ["myhead.seg.htm"]
   afters = ["comment.seg.htm", "all-end.seg.htm"]
-  file page_html => ["#{id}.md", template, "_.ini"] + heads + afters do |t|
+  file page_html => ["#{id}.md", template, "_.ini", "render.js"] + heads + afters do |t|
     vars = IniFile.load("_.ini")["global"]
     vars["id"] = id
     path_prefix = id == "404" ? "/" : ""
@@ -34,16 +33,17 @@ posts_dir.each do |dir|
   template = "post.temp.htm"
   heads = ["myhead.seg.htm"]
   afters = ["comment.seg.htm", "all-end.seg.htm"]
+  md = File.join(dir, "_.md")
   html = File.join(dir, "index.html")
   htm = File.join(dir, "_.htm")
   ini = File.join(dir, "_.ini")
-  file html => [File.join(dir, "_.md"), ini, template, "_.ini"] + heads + afters do |t|
+  file html => [md, ini, template, "_.ini", "render.js"] + heads + afters do |t|
     vars = IniFile.load("_.ini")["global"]
     vars["id"] = id
     vars.merge!(IniFile.load(ini)["global"])
     pandoc(template, heads, afters, "../../root.css", vars, t.source, t.name)
   end
-  file htm => [File.join(dir, "_.md"), ini, "content.temp.htm"] do |t|
+  file htm => [md, ini, "content.temp.htm"] do |t|
     vars = IniFile.load(ini)["global"]
     title = vars.fetch("title")
     toc_ops = vars["toc"] ? " --toc" : ""
@@ -61,6 +61,10 @@ dot_files.each do |dot|
     sh "dot -T svg #{t.source} > #{t.name}"
   end
   files << svg
+end
+
+file "render.js" => ["render.ts", "tsconfig.json"] do |t|
+  sh "tsc"
 end
 
 file "root.css" => "root.scss" do |t|

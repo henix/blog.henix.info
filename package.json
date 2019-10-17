@@ -1,0 +1,13 @@
+{
+	"name": "blog.henix.info",
+	"version": "2.3.0",
+	"author": "henix",
+	"private": true,
+	"license": "UNLICENSED",
+	"devDependencies": {
+		"@types/parse5-html-rewriting-stream": "^5.1.2",
+		"autoprefixer": "^9.6.5",
+		"parse5-html-rewriting-stream": "^5.1.0",
+		"postcss-cli": "^6.1.3"
+	}
+}
