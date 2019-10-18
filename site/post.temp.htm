@@ -25,9 +25,6 @@ $header-includes$
 $endfor$
 </head>
 <body>
-$for(include-before)$
-$include-before$
-$endfor$
 <div id="page">
 <h1 class="title"><a href="$siteurl$/blog/$id$/">$title$</a></h1>
 <div id="content">
@@ -46,26 +43,24 @@ $body$
 </div>
 </div><!-- page -->
 <script>
-if (typeof Function.prototype.bind != "function") {
-	document.write('<script src="https://cdn.jsdelivr.net/npm/es5-shim@4.5.13/es5-shim.min.js"><\/script>');
+function disqus_config() {
+this.page.identifier = '$id$';
+this.page.url = '$siteurl$/blog/$id$/';
 }
-Array.from=Array.from||function(o){var a=[];for(var i=0;i<o.length;i++)a[i]=o[i];return a};
-if (typeof Promise == "undefined") {
-	document.write('<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.1.3/dist/polyfill.min.js"><\/script>');
-}
-if (!window.fetch) {
-	document.write('<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0.0/dist/fetch.umd.min.js"><\/script>');
-}
-if (!window.IntersectionObserver) {
-	document.write('<script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.7.0/intersection-observer.min.js"><\/script>');
-}
+</script>
+$for(include-before)$
+$include-before$
+$endfor$
+<script>
+typeof Promise=="undefined"&&w("promise-polyfill@8.1.3/dist/polyfill.min")
+window.getComputedStyle||w("ie8@0.8.1/build/ie8")
+window.fetch||w("whatwg-fetch@3.0.0/dist/fetch.umd.min")
+window.IntersectionObserver||w("intersection-observer@0.7.0/intersection-observer.min")
 </script>
 <script async defer="defer" src="/post.js"></script>
 $if(math)$
 <script>
-if (!document.body.classList) {
-	document.write('<script src="https://cdn.jsdelivr.net/npm/dom4@2.1.5/build/dom4.js"><\/script>');
-}
+document.body.classList||w("dom4@2.1.5/build/dom4")
 </script>
 <script async defer="defer">
 function loadScript(src, onload) {
@@ -86,11 +81,6 @@ loadScript("https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js", functi
 });
 </script>
 $endif$
-<script async defer="defer" src="/valid.js"></script>
-<script>
-var disqus_identifier = '$id$';
-var disqus_url = '$siteurl$/blog/$id$/';
-</script>
 $for(include-after)$
 $include-after$
 $endfor$

@@ -56,11 +56,8 @@ cat <<EOF
 </div>
 
 </div><!-- end of page -->
-<script>
-Array.from=Array.from||function(o){var a=[];for(var i=0;i<o.length;i++)a[i]=o[i];return a};
-</script>
-<script async defer="defer" src="valid.js"></script>
 EOF
+cat js-start.seg.htm
 cat all-end.seg.htm
 cat <<EOF
 </body>

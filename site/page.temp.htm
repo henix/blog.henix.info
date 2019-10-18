@@ -24,9 +24,6 @@ $header-includes$
 $endfor$
 </head>
 <body>
-$for(include-before)$
-$include-before$
-$endfor$
 <div id="page">
 <h1 class="title"><a href="$siteurl$/$id$.html">$title$</a></h1>
 $body$
@@ -37,13 +34,14 @@ $body$
 </div>
 </div><!-- page -->
 <script>
-Array.from=Array.from||function(o){var a=[];for(var i=0;i<o.length;i++)a[i]=o[i];return a};
+function disqus_config() {
+this.page.identifier = '$id$';
+this.page.url = '$siteurl$/$id$.html';
+}
 </script>
-<script async defer="defer" src="/valid.js"></script>
-<script>
-var disqus_identifier = '$id$';
-var disqus_url = '$siteurl$/$id$.html';
-</script>
+$for(include-before)$
+$include-before$
+$endfor$
 $for(include-after)$
 $include-after$
 $endfor$

@@ -7,24 +7,26 @@ files = pages + ["render.js", "index.html", "root.css", "rss2.0.xml"]
 posts_dir = Rake::FileList["*/*"].select{|f|File.directory?(f)}
 
 # vars 里应有：id, toc
-def pandoc(template, heads, afters, csspath, vars, mdfile, outfile)
+def pandoc(template, heads, befores, afters, csspath, vars, mdfile, outfile)
   heads_ops = heads.map{|h|" -H #{h}"}.join("")
+  befores_ops = befores.map{|h|" -B #{h}"}.join("")
   afters_ops = afters.map{|a|" -A #{a}"}.join("")
   vars_ops = vars.to_a.select{|k,v|k!="toc"}.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
   toc_ops = vars["toc"] ? " --toc" : ""
-  sh "pandoc -t html5 --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} #{mdfile} | node render.js > #{outfile}"
+  sh "pandoc -t html5 --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{befores_ops}#{afters_ops}#{vars_ops} --css=#{csspath}#{toc_ops} #{mdfile} | node render.js > #{outfile}"
 end
 
 pages.each do |page_html|
   id = page_html.chomp(".html")
   template = "page.temp.htm"
   heads = ["myhead.seg.htm"]
+  befores = ["js-start.seg.htm"]
   afters = ["comment.seg.htm", "all-end.seg.htm"]
-  file page_html => ["#{id}.md", template, "_.ini", "render.js"] + heads + afters do |t|
+  file page_html => ["#{id}.md", template, "_.ini", "render.js"] + heads + befores + afters do |t|
     vars = IniFile.load("_.ini")["global"]
     vars["id"] = id
     path_prefix = id == "404" ? "/" : ""
-    pandoc(template, heads, afters, path_prefix + "root.css", vars, t.source, t.name)
+    pandoc(template, heads, befores, afters, path_prefix + "root.css", vars, t.source, t.name)
   end
 end
 
@@ -32,16 +34,17 @@ posts_dir.each do |dir|
   id = File.basename(dir)
   template = "post.temp.htm"
   heads = ["myhead.seg.htm"]
+  befores = ["js-start.seg.htm"]
   afters = ["comment.seg.htm", "all-end.seg.htm"]
   md = File.join(dir, "_.md")
   html = File.join(dir, "index.html")
   htm = File.join(dir, "_.htm")
   ini = File.join(dir, "_.ini")
-  file html => [md, ini, template, "_.ini", "render.js"] + heads + afters do |t|
+  file html => [md, ini, template, "_.ini", "render.js"] + heads + befores + afters do |t|
     vars = IniFile.load("_.ini")["global"]
     vars["id"] = id
     vars.merge!(IniFile.load(ini)["global"])
-    pandoc(template, heads, afters, "../../root.css", vars, t.source, t.name)
+    pandoc(template, heads, befores, afters, "../../root.css", vars, t.source, t.name)
   end
   file htm => [md, ini, "content.temp.htm"] do |t|
     vars = IniFile.load(ini)["global"]
@@ -86,7 +89,7 @@ file "rss2.0.xml" => ["rss.sh", "sorted.row", "_.ini"] + posts_dir.map{|d|File.j
   sh "./#{t.source} > #{t.name}"
 end
 
-file "index.html" => ["index.sh", "sorted.row", "_.ini", "myhead.seg.htm", "all-end.seg.htm"] + Rake::FileList["*/_.name"] do |t|
+file "index.html" => ["index.sh", "sorted.row", "_.ini", "myhead.seg.htm", "js-start.seg.htm", "all-end.seg.htm"] + Rake::FileList["*/_.name"] do |t|
   sh "./#{t.source} > #{t.name}"
 end
 
