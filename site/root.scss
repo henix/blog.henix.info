@@ -158,11 +158,24 @@ blockquote {
 table {
   margin: 1em auto;
   width: 80%;
+  border-collapse: collapse;
 }
 
 th, td {
   border: 1px solid black;
   padding: 0.3em;
+}
+
+.footnote-ref {
+  sup {
+    margin: 0 .2em;
+    &:before {
+      content: "[";
+    }
+    &:after {
+      content: "]";
+    }
+  }
 }
 
 /*
