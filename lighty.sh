@@ -35,11 +35,6 @@ mimetype.assign = (
   mimetype.assign = ( "" => "application/rss+xml" )
 }
 
-# logs
-
-server.modules += ( "mod_accesslog" )
-accesslog.filename = "|/usr/bin/cronolog logs/%Y%m%d.log"
-
 # https
 
 server.modules += ( "mod_openssl" )
