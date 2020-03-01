@@ -8,13 +8,20 @@
 				observer.unobserve(elem);
 				var src = elem.getAttribute("data-src");
 				elem.removeAttribute("data-src");
-				if (window.fetch && window.URL && URL.createObjectURL) {
-					fetch(src).then(function(resp) {
-						return resp.blob();
-					}).then(function(blob) {
-						var url = URL.createObjectURL(blob);
-						elem.setAttribute("src", url);
-					});
+				if (window.URL && URL.createObjectURL) {
+					// IE 10+
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET", src);
+					xhr.responseType = "blob";
+					xhr.onreadystatechange = function() {
+						if (this.readyState == XMLHttpRequest.DONE) {
+							if (this.status == 200) {
+								var url = URL.createObjectURL(xhr.response);
+								elem.setAttribute("src", url);
+							}
+						}
+					};
+					xhr.send();
 				} else {
 					elem.setAttribute("src", src);
 				}
