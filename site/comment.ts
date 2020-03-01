@@ -1,5 +1,13 @@
 declare class XDomainRequest extends XMLHttpRequest {}
 
+function removeEnd(s: string, suffix: string): string {
+	if (s.endsWith(suffix)) {
+		return s.substring(0, s.length - suffix.length);
+	} else {
+		return s;
+	}
+}
+
 function frag(...childs: (HTMLElement | HTMLElement[])[]): DocumentFragment;
 function frag(): DocumentFragment {
 	const elem = document.createDocumentFragment();
@@ -221,10 +229,7 @@ class CommentPane {
 		const childs: { [k: string]: string[] } = {};
 		childs[""] = [];
 		// 删除最后一个 \n
-		if (data.charAt(data.length - 1) == '\n') {
-			data = data.substring(0, data.length - 1);
-		}
-		data.split("\n").forEach(function(line) {
+		removeEnd(data, "\n").split("\n").forEach(function(line) {
 			const [id, date, uid, name, content0, replyTo ] = line.split("\t");
 			const content = content0.replace(/\\[trn\\]/g, function(m) {
 				switch (m) {
