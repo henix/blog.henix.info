@@ -1,8 +1,7 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
-		"esModuleInterop": true,
-		"target": "es6",
+		"module": "None",
+		"target": "es5",
 		"moduleResolution": "node",
 		"noUnusedLocals": true,
 		"noImplicitAny": true,
@@ -11,6 +10,6 @@
 		"newLine": "lf"
 	},
 	"files": [
-		"render.ts"
+		"comment.ts"
 	]
 }
