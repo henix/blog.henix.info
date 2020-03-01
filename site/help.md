@@ -84,5 +84,5 @@
 
 ## 脚注
 
-[^1]: [新闻实验室: 请网易邮箱立即停止侵犯公民通信自由](https://archive.is/4lLNi)
-[^2]: [一天世界: 网易会删除用户已经收到的邮件](https://blog.yitianshijie.net/2020/02/13/netease-mailbox-deletes-users-emails/)
+[^1]: [请网易邮箱立即停止侵犯公民通信自由 - 新闻实验室](https://archive.is/4lLNi)
+[^2]: [网易会删除用户已经收到的邮件 - 一天世界](https://blog.yitianshijie.net/2020/02/13/netease-mailbox-deletes-users-emails/)
