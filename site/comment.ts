@@ -8,6 +8,15 @@ function removeEnd(s: string, suffix: string): string {
 	}
 }
 
+function splitLines(content: string): string[] {
+	// 对空串直接 split 会得到一个由空串构成的数组，但实际希望得到空数组
+	if (content) {
+		return removeEnd(content, "\n").split("\n");
+	} else {
+		return [];
+	}
+}
+
 function frag(...childs: (HTMLElement | HTMLElement[])[]): DocumentFragment;
 function frag(): DocumentFragment {
 	const elem = document.createDocumentFragment();
@@ -228,8 +237,7 @@ class CommentPane {
 		const comments: { [k: string]: BlogComment } = {};
 		const childs: { [k: string]: string[] } = {};
 		childs[""] = [];
-		// 删除最后一个 \n
-		removeEnd(data, "\n").split("\n").forEach(function(line) {
+		splitLines(data).forEach(function(line) {
 			const [id, date, uid, name, content0, replyTo ] = line.split("\t");
 			const content = content0.replace(/\\[trn\\]/g, function(m) {
 				switch (m) {
