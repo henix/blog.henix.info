@@ -66,11 +66,16 @@
 2. 我会比对你的发件箱地址和 Disqus 提供的模糊化后的邮箱地址，如果能匹配就添加关联
 3. 关联成功后你就可以在新系统中编辑或删除自己的评论
 
-### 隐私相关
+### 隐私和安全注意事项
 
 * 你的电子邮件地址不会在 Web 上公开
 * 当你回复他人时，被回复的人可以看到你的电子邮件地址
 * 据网友反馈[^1][^2]和我自己测试（截至 2020 年 2 月），网易邮箱可能会收不到 Gmail 发出的邮件，不推荐使用网易邮箱（163、126、yeah）
+
+　　如果你使用自己的域名邮箱：请务必设置好域名的 [SPF 记录](https://www.renfei.org/blog/introduction-to-spf.html)，否则你的电子邮件地址有被别人冒用的风险。我的评论系统会拒收 SPF 检查失败的邮件。常见邮箱提供商的设置方法如下：
+
+* [借助 SPF 记录防范电子邮件假冒行为 - G Suite 管理员帮助](https://support.google.com/a/answer/33786?hl=zh-Hans)
+* [什么是SPF？如何设置SPF来防止我的邮件被拒收呢？_QQ邮箱帮助中心](https://service.mail.qq.com/cgi-bin/help?subtype=1&id=48&no=417)
 
 　　如果你使用小众或自己架设的邮箱服务：请确保启用了[传输过程加密（TLS）](https://www.internetsociety.org/resources/ota/2017/transport-layered-security-tls-for-email/)，我的评论系统会拒收未启用 TLS 的邮件。此技术通常完全由邮箱服务商控制，用户无法自己设置，各个大的邮箱服务商均已采用了 TLS 。如果你不确定，可以在 [CheckTLS](https://www.checktls.com/) 网站上输入域名进行在线测试。其他关于传输过程加密的信息可参考：
 
