@@ -17,6 +17,36 @@ function splitLines(content: string): string[] {
 	}
 }
 
+type ValueChanged<K, V> = {
+	key: K,
+	value: V,
+};
+
+class ListenableMap<K, V> {
+	private map: Map<K, V> = new Map();
+	private changeListeners: Map<K, ((_: ValueChanged<K, V>) => void)[]> = new Map();
+	onChange(k: K, f: (_: ValueChanged<K, V>) => void) {
+		let fs = this.changeListeners.get(k);
+		if (!fs) {
+			fs = [];
+			this.changeListeners.set(k, fs);
+		}
+		fs.push(f);
+	}
+	get(k: K): V | undefined {
+		return this.map.get(k);
+	}
+	set(k: K, v: V) {
+		this.map.set(k, v);
+		const fs = this.changeListeners.get(k);
+		if (fs) {
+			for (const f of fs) {
+				f({ key: k, value: v });
+			}
+		}
+	}
+}
+
 function frag(...childs: (HTMLElement | HTMLElement[])[]): DocumentFragment;
 function frag(): DocumentFragment {
 	const elem = document.createDocumentFragment();
@@ -34,7 +64,7 @@ function frag(): DocumentFragment {
 }
 
 type HtmlEl = string | HTMLElement | HTMLElement[];
-function h(tag: string, attrs?: { [k: string]: string } | HtmlEl, ...childs: HtmlEl[]): HTMLElement {
+function h(tag: string, attrs?: { [k: string]: string | undefined } | HtmlEl, ...childs: HtmlEl[]): HTMLElement {
 	function toNode(e: HtmlEl): Node {
 		if (typeof e == "string") {
 			return document.createTextNode(e);
@@ -50,7 +80,10 @@ function h(tag: string, attrs?: { [k: string]: string } | HtmlEl, ...childs: Htm
 			childs.unshift(attrs);
 		} else {
 			for (const k in attrs) {
-				elem.setAttribute(k, attrs[k]);
+				const v = attrs[k];
+				if (v != null) {
+					elem.setAttribute(k, v);
+				}
 			}
 		}
 	}
@@ -58,6 +91,17 @@ function h(tag: string, attrs?: { [k: string]: string } | HtmlEl, ...childs: Htm
 		elem.appendChild(toNode(child));
 	}
 	return elem;
+}
+
+/**
+ * 支持 IE 8 9 简单跨域
+ */
+function newXhr() {
+	let xhr = new XMLHttpRequest();
+	if (typeof xhr.withCredentials == "undefined" && typeof XDomainRequest != "undefined") {
+		xhr = new XDomainRequest();
+	}
+	return xhr;
 }
 
 type EmailProvider = {
@@ -123,6 +167,8 @@ class CommentPane {
 	readonly urlPrefix: string;
 	readonly blogId: string;
 	readonly blogTitle: string;
+
+	readonly urlByUid: ListenableMap<string, string> = new ListenableMap();
 
 	viewed = false;
 	provider = "";
@@ -215,10 +261,7 @@ class CommentPane {
 	onView() {
 		if (!this.viewed) {
 			this.viewed = true;
-			let xhr = new XMLHttpRequest();
-			if (typeof xhr.withCredentials == "undefined" && typeof XDomainRequest != "undefined") {
-				xhr = new XDomainRequest();
-			}
+			const xhr = newXhr();
 			const $this = this;
 			xhr.open("GET", this.urlPrefix + "/" + this.blogId + ".tsv");
 			xhr.responseType = "text";
@@ -263,8 +306,14 @@ class CommentPane {
 					replyButton.addEventListener("click", function() {
 						$this.reply(id);
 					});
+					const uid = comment.uid;
+					const userLink = h("a", { "class": "comment-user", href: $this.urlByUid.get(uid), target: "_blank", title: uid ? "ID: " + uid : "" }, comment.name);
+					// 后期更新 uid -> url
+					$this.urlByUid.onChange(uid, function({ value }) {
+						userLink.setAttribute("href", value);
+					});
 					return h("div", { "class": "comment-header" },
-						h("a", { "class": "comment-user", target: "_blank", title: comment.uid ? "ID: " + comment.uid : "" }, comment.name),
+						userLink,
 						h("span", { "class": "comment-date" }, comment.date),
 						replyButton);
 				} else {
@@ -285,5 +334,20 @@ class CommentPane {
 		this.elem.appendChild(frag(
 			childs[""].map(renderComment)
 		));
+		// 渲染完后请求 uid -> url 数据
+		const xhr = newXhr();
+		xhr.open("GET", this.urlPrefix + "/_user.tsv");
+		xhr.responseType = "text";
+		xhr.onreadystatechange = function() {
+			if (this.readyState == XMLHttpRequest.DONE) {
+				if (this.status == 200) {
+					for (const line of splitLines(this.responseText)) {
+						const [k, v] = line.split("\t");
+						$this.urlByUid.set(k, v);
+					}
+				}
+			}
+		};
+		xhr.send();
 	}
 }
