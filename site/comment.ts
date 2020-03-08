@@ -17,28 +17,28 @@ function splitLines(content: string): string[] {
 	}
 }
 
-type ValueChanged<K, V> = {
-	key: K,
+type ValueChanged<V> = {
+	key: string,
 	value: V,
 };
 
-class ListenableMap<K, V> {
-	private map: Map<K, V> = new Map();
-	private changeListeners: Map<K, ((_: ValueChanged<K, V>) => void)[]> = new Map();
-	onChange(k: K, f: (_: ValueChanged<K, V>) => void) {
-		let fs = this.changeListeners.get(k);
+class ListenableMap<V> {
+	private map: { [k: string]: V } = {};
+	private changeListeners: { [k: string]: ((_: ValueChanged<V>) => void)[] } = {};
+	onChange(k: string, f: (_: ValueChanged<V>) => void) {
+		let fs = this.changeListeners[k];
 		if (!fs) {
 			fs = [];
-			this.changeListeners.set(k, fs);
+			this.changeListeners[k] = fs;
 		}
 		fs.push(f);
 	}
-	get(k: K): V | undefined {
-		return this.map.get(k);
+	get(k: string): V | undefined {
+		return this.map[k];
 	}
-	set(k: K, v: V) {
-		this.map.set(k, v);
-		const fs = this.changeListeners.get(k);
+	set(k: string, v: V) {
+		this.map[k] = v;
+		const fs = this.changeListeners[k];
 		if (fs) {
 			for (const f of fs) {
 				f({ key: k, value: v });
@@ -168,7 +168,7 @@ class CommentPane {
 	readonly blogId: string;
 	readonly blogTitle: string;
 
-	readonly urlByUid: ListenableMap<string, string> = new ListenableMap();
+	readonly urlByUid: ListenableMap<string> = new ListenableMap();
 
 	viewed = false;
 	provider = "";
