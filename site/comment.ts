@@ -307,11 +307,19 @@ class CommentPane {
 						$this.reply(id);
 					});
 					const uid = comment.uid;
-					const userLink = h("a", { "class": "comment-user", href: $this.urlByUid.get(uid), target: "_blank", title: uid ? "ID: " + uid : "" }, comment.name);
-					// 后期更新 uid -> url
-					$this.urlByUid.onChange(uid, function({ value }) {
-						userLink.setAttribute("href", value);
-					});
+					const userLink = (function() {
+						if (uid.startsWith("disqus:")) {
+							const disqusUid = uid.substring("disqus:".length);
+							return h("a", { "class": "comment-user", href: `https://disqus.com/by/${disqusUid}/`, target: "_blank", title: uid }, comment.name);
+						} else {
+							const userLink = h("a", { "class": "comment-user", href: $this.urlByUid.get(uid), target: "_blank", title: uid ? "ID: " + uid : "" }, comment.name);
+							// 后期更新 uid -> url
+							$this.urlByUid.onChange(uid, function({ value }) {
+								userLink.setAttribute("href", value);
+							});
+							return userLink;
+						}
+					})();
 					return h("div", { "class": "comment-header" },
 						userLink,
 						h("span", { "class": "comment-date" }, comment.date),
