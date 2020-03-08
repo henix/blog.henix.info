@@ -178,6 +178,71 @@ th, td {
   }
 }
 
+.footnotes {
+  hr {
+    display: none;
+  }
+}
+
+/* Comment */
+
+.-CommentPane {
+  line-height: 2;
+  border-top: 1px solid rgba(#8CACBB, .5);
+}
+
+.comment-form {
+  padding: .5em;
+  > a {
+    white-space: nowrap;
+  }
+}
+
+.comment-mailspec {
+  .field-name {
+    display: inline-block;
+    width: 3em;
+    margin-right: .5em;
+  }
+  input {
+    padding: .2em .3em;
+    width: calc(100% - 9em);
+    margin-right: .5em;
+  }
+}
+
+.comment-reply-list {
+  padding-left: 1em;
+}
+
+.comment-header {
+  background-color: #DEE7EC;
+  padding-left: .5em;
+  &.deleted {
+    line-height: 1.5;
+  }
+}
+
+.comment-date {
+  margin-left: 1em;
+  font-size: smaller;
+}
+
+.comment-reply-button {
+  font-size: smaller;
+  margin-left: 1em;
+}
+
+.comment-content {
+  padding-left: 1em;
+  margin: .5em;
+  white-space: pre-wrap;
+  &.deleted {
+    font-size: smaller;
+    color: gray;
+  }
+}
+
 /*
 div.hl {
   font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
