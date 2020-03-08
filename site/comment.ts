@@ -335,19 +335,21 @@ class CommentPane {
 			childs[""].map(renderComment)
 		));
 		// 渲染完后请求 uid -> url 数据
-		const xhr = newXhr();
-		xhr.open("GET", this.urlPrefix + "/_user.tsv");
-		xhr.responseType = "text";
-		xhr.onreadystatechange = function() {
-			if (this.readyState == XMLHttpRequest.DONE) {
-				if (this.status == 200) {
-					for (const line of splitLines(this.responseText)) {
-						const [k, v] = line.split("\t");
-						$this.urlByUid.set(k, v);
+		if (childs[""].length > 0) {
+			const xhr = newXhr();
+			xhr.open("GET", this.urlPrefix + "/_user.tsv");
+			xhr.responseType = "text";
+			xhr.onreadystatechange = function() {
+				if (this.readyState == XMLHttpRequest.DONE) {
+					if (this.status == 200) {
+						for (const line of splitLines(this.responseText)) {
+							const [k, v] = line.split("\t");
+							$this.urlByUid.set(k, v);
+						}
 					}
 				}
-			}
-		};
-		xhr.send();
+			};
+			xhr.send();
+		}
 	}
 }
