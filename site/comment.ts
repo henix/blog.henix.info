@@ -95,13 +95,31 @@ function h(tag: string, attrs?: { [k: string]: string | undefined } | HtmlEl, ..
 
 /**
  * 支持 IE 8 9 简单跨域
+ *
+ * @param onSuccess 只有 HTTP 200 时才会被调用
  */
-function newXhr() {
-	let xhr = new XMLHttpRequest();
+function ajaxGetText(url: string, onSuccess: (_: string) => void) {
+	const xhr = new XMLHttpRequest();
 	if (typeof xhr.withCredentials == "undefined" && typeof XDomainRequest != "undefined") {
-		xhr = new XDomainRequest();
+		const xdr = new XDomainRequest();
+		xdr.open("GET", url);
+		xdr.onload = function() {
+			onSuccess(this.responseText);
+		};
+		// 用 setTimeout 包一层，详见 https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest
+		setTimeout(function() {
+			xdr.send();
+		}, 0);
+	} else {
+		xhr.open("GET", url);
+		xhr.responseType = "text";
+		xhr.onload = function() {
+			if (this.status == 200) {
+				onSuccess(this.responseText);
+			}
+		};
+		xhr.send();
 	}
-	return xhr;
 }
 
 type EmailProvider = {
@@ -120,7 +138,7 @@ const providers: EmailProvider[] = [
 	// { id: "qq", name: "QQ" },
 	{ id: "yahoo", name: "Yahoo" },
 	{ id: "yandex", name: "Yandex" },
-	{ id: "other", name: "其他" },
+	{ id: "other", name: "其他" }
 ];
 
 /**
@@ -208,7 +226,7 @@ class CommentPane {
 		this.mailspec = h("blockquote", { "class": "comment-mailspec" },
 			"请按照如下格式发邮件：", h("br"),
 			h("span", { "class": "field-name" }, "收件人"), h("a", { href: "mailto:" + COMMENT_MAIL }, COMMENT_MAIL), h("br"),
-			h("span", { "class": "field-name" }, "标题"), this.mailspecTitle, copyButton,
+			h("span", { "class": "field-name" }, "标题"), this.mailspecTitle, copyButton, h("br"),
 			h("span", { "class": "field-name" }, "正文"), "评论 / 回复内容，只支持纯文本");
 
 		this.setProvider(select.value);
@@ -261,18 +279,10 @@ class CommentPane {
 	onView() {
 		if (!this.viewed) {
 			this.viewed = true;
-			const xhr = newXhr();
 			const $this = this;
-			xhr.open("GET", this.urlPrefix + "/" + this.blogId + ".tsv");
-			xhr.responseType = "text";
-			xhr.onreadystatechange = function() {
-				if (this.readyState == XMLHttpRequest.DONE) {
-					if (this.status == 200) {
-						$this.onCommentData(this.responseText);
-					}
-				}
-			};
-			xhr.send();
+			ajaxGetText(this.urlPrefix + "/" + this.blogId + ".tsv", function(resp) {
+				$this.onCommentData(resp);
+			});
 		}
 	}
 	onCommentData(data: string) {
@@ -344,20 +354,12 @@ class CommentPane {
 		));
 		// 渲染完后请求 uid -> url 数据
 		if (childs[""].length > 0) {
-			const xhr = newXhr();
-			xhr.open("GET", this.urlPrefix + "/_user.tsv");
-			xhr.responseType = "text";
-			xhr.onreadystatechange = function() {
-				if (this.readyState == XMLHttpRequest.DONE) {
-					if (this.status == 200) {
-						for (const line of splitLines(this.responseText)) {
-							const [k, v] = line.split("\t");
-							$this.urlByUid.set(k, v);
-						}
-					}
+			ajaxGetText(this.urlPrefix + "/_user.tsv", function(resp) {
+				for (const line of splitLines(resp)) {
+					const [k, v] = line.split("\t");
+					$this.urlByUid.set(k, v);
 				}
-			};
-			xhr.send();
+			});
 		}
 	}
 }
