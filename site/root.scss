@@ -237,6 +237,7 @@ th, td {
   padding-left: 1em;
   margin: .5em;
   white-space: pre-wrap;
+  overflow: auto;
   &.deleted {
     font-size: smaller;
     color: gray;
