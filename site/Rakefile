@@ -4,8 +4,6 @@ require 'inifile'
 pages = Rake::FileList["*.md"].ext(".html")
 files = pages + ["render.js", "comment.js", "index.html", "root.css", "rss2.0.xml"]
 
-$ver = 3
-
 posts_dir = Rake::FileList["*/*"].select{|f|File.directory?(f)}
 
 # vars 里应有：id, toc
@@ -15,7 +13,7 @@ def pandoc(template, heads, befores, afters, csspath, vars, mdfile, outfile)
   afters_ops = afters.map{|a|" -A #{a}"}.join("")
   vars_ops = vars.to_a.select{|k,v|k!="toc"}.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
   toc_ops = vars["toc"] ? " --toc" : ""
-  sh "pandoc -t html5 --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{befores_ops}#{afters_ops}#{vars_ops} --css=\"#{csspath}?#{$ver}\"#{toc_ops} #{mdfile} | node render.js > #{outfile}"
+  sh "pandoc -t html5 --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{befores_ops}#{afters_ops}#{vars_ops} --css=\"#{csspath}\"#{toc_ops} #{mdfile} | node render.js > #{outfile}"
 end
 
 pages.each do |page_html|
