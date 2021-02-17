@@ -15,7 +15,7 @@ $highlighting-css$
 </style>
 $endif$
 $if(math)$
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://henix-static.azureedge.net/katex/dist/katex.min.css" crossorigin="anonymous">
 $endif$
 $for(css)$
 <link rel="stylesheet" href="$css$">
@@ -48,18 +48,18 @@ $endfor$
 <script>
 String.prototype.startsWith=String.prototype.startsWith||function(b){return this.lastIndexOf(b,0)==0}
 String.prototype.endsWith=String.prototype.endsWith||function(b){return this.indexOf(b,this.length-b.length)>=0}
-window.getComputedStyle||w("ie8@0.8.1/build/ie8")
-window.IntersectionObserver||w("intersection-observer@0.7.0/intersection-observer.min")
+window.getComputedStyle||w("ie8/build/ie8")
+window.IntersectionObserver||w("intersection-observer/intersection-observer")
 </script>
-<script src="https://cdn.jsdelivr.net/gh/henix/flowerui@v1.1/flowerui.min.js"></script>
+<script src="https://henix-static.azureedge.net/flowerui/flowerui.js"></script>
 <script src="/comment.js"></script>
 <script>
 FlowerUI.compileAll();
 </script>
-<script async defer="defer" src="/post.js?2"></script>
+<script async defer="defer" src="/post.js"></script>
 $if(math)$
 <script>
-document.body.classList||w("dom4@2.1.5/build/dom4")
+document.body.classList||w("dom4/build/dom4")
 </script>
 <script async defer="defer">
 function loadScript(src, onload) {
@@ -70,7 +70,7 @@ function loadScript(src, onload) {
 	script.onload = onload;
 	document.body.appendChild(script);
 }
-loadScript("https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js", function() {
+loadScript("https://henix-static.azureedge.net/katex/dist/katex.min.js", function() {
 	Array.from(document.querySelectorAll("span.math")).forEach(function(elem) {
 		katex.render(elem.textContent, elem, {
 			displayMode: elem.classList.contains("display"),
