@@ -7,11 +7,11 @@ cat <<EOF
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>$sitetitle</title>
-<link rel="stylesheet" href="root.css">
-<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss2.0.xml">
 EOF
 cat myhead.seg.htm
 cat <<EOF
+<link rel="stylesheet" href="root.css">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="rss2.0.xml">
 </head>
 <body>
 <div id="page">
