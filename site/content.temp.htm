@@ -1,6 +1,9 @@
 $if(toc)$
-<div id="$idprefix$TOC">
-$toc$
-</div>
+<nav id="$idprefix$TOC" role="doc-toc">
+$if(toc-title)$
+<h2 id="$idprefix$toc-title">$toc-title$</h2>
+$endif$
+$table-of-contents$
+</nav>
 $endif$
 $body$

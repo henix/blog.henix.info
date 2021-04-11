@@ -8,14 +8,9 @@
 $for(header-includes)$
 $header-includes$
 $endfor$
-$if(quotes)$
-<style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
-$endif$
-$if(highlighting-css)$
-<style type="text/css">
-$highlighting-css$
+<style>
+$styles.html()$
 </style>
-$endif$
 $for(css)$
 <link rel="stylesheet" href="$css$">
 $endfor$
