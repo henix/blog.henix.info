@@ -50,7 +50,7 @@ posts_dir.each do |dir|
     vars = IniFile.load(ini)["global"]
     title = vars.fetch("title")
     toc_ops = vars["toc"] ? " --toc" : ""
-    sh "pandoc -t html5 --katex --template=content.temp.htm -M \"title=#{title}\"#{toc_ops} -o #{t.name} #{t.source}"
+    sh "pandoc -t html5 --katex --no-highlight --template=content.temp.htm -M \"title=#{title}\"#{toc_ops} -o #{t.name} #{t.source}"
   end
   files << html
   files << htm
