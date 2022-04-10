@@ -13,7 +13,7 @@ def pandoc(template, heads, befores, afters, csspath, vars, mdfile, outfile)
   afters_ops = afters.map{|a|" -A #{a}"}.join("")
   vars_ops = vars.to_a.select{|k,v|k!="toc"}.map{|k,v|" -M \"#{k}=#{v}\""}.join("")
   toc_ops = vars["toc"] ? " --toc" : ""
-  sh "pandoc -t html5 --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{befores_ops}#{afters_ops}#{vars_ops} --css=\"#{csspath}\"#{toc_ops} #{mdfile} | node render.js > #{outfile}"
+  sh "pandoc -t html5 --wrap=preserve --katex --highlight-style=kate --email-obfuscation=references --template=#{template}#{heads_ops}#{befores_ops}#{afters_ops}#{vars_ops} --css=\"#{csspath}\"#{toc_ops} #{mdfile} | node render.js > #{outfile}"
 end
 
 pages.each do |page_html|
@@ -50,7 +50,7 @@ posts_dir.each do |dir|
     vars = IniFile.load(ini)["global"]
     title = vars.fetch("title")
     toc_ops = vars["toc"] ? " --toc" : ""
-    sh "pandoc -t html5 --katex --no-highlight --template=content.temp.htm -M \"title=#{title}\"#{toc_ops} -o #{t.name} #{t.source}"
+    sh "pandoc -t html5 --wrap=preserve --katex --no-highlight --template=content.temp.htm -M \"title=#{title}\"#{toc_ops} -o #{t.name} #{t.source}"
   end
   files << html
   files << htm
