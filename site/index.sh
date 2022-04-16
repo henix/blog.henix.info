@@ -44,14 +44,13 @@ cat <<EOF
 <div style="float:left">
 <a class="-Valid" href="https://validator.w3.org/check?uri=referer">Valid</a>
 EOF
-for page in about; do
+for page in about updates ; do
 	title=$(head -n1 "${page}.md" | sed -e 's/^% //')
 	cat <<EOF
 | <a href="${page}.html">$(echo "$title" | sed -f htmlesc.sed)</a>
 EOF
 done
 cat <<EOF
-| <a href="rss2.0.xml">订阅更新</a>
 </div>
 </div>
 
