@@ -2,7 +2,7 @@ require 'rake'
 require 'inifile'
 
 pages = Rake::FileList["*.md"].ext(".html")
-files = pages + ["render.js", "comment.js", "index.html", "root.css", "rss2.0.xml"]
+files = pages + ["render.js", "comment.js", "index.html", "root.css", "rss2.0.xml", "sitemap.xml"]
 
 posts_dir = Rake::FileList["*/*"].select{|f|File.directory?(f)}
 
@@ -91,6 +91,40 @@ end
 
 file "rss2.0.xml" => ["rss.sh", "sorted.row", "_.ini"] + posts_dir.map{|d|File.join(d, "_.htm")} do |t|
   sh "./#{t.source} > #{t.name}"
+end
+
+file "sitemap.xml" => ["sorted.row", "_.ini"] + Rake::FileList["*.md"] do |t|
+	siteurl = IniFile.load("_.ini")["global"]["siteurl"]
+	out = File.open(t.name, "w")
+	out.write(%{<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>#{siteurl}/</loc>
+	<lastmod>#{File.mtime(t.source).strftime("%Y-%m-%d")}</lastmod>
+</url>
+})
+	t.sources.each { |src|
+		if src.end_with?(".md")
+			id = src.chomp(".md")
+			out.write(%{<url>
+	<loc>#{siteurl}/#{id}.html</loc>
+	<lastmod>#{File.mtime(src).strftime("%Y-%m-%d")}</lastmod>
+</url>
+})
+		end
+	}
+	file = File.open(t.source)
+	file.each_line { |line|
+		date, cat, id = line.split("\t")
+		out.write(%{<url>
+	<loc>#{siteurl}/blog/#{id}/</loc>
+	<lastmod>#{date}</lastmod>
+</url>
+})
+	}
+	file.close
+	out.write("</urlset>\n")
+	out.close
 end
 
 file "index.html" => ["index.sh", "sorted.row", "_.ini", "myhead.seg.htm", "js-start.seg.htm", "all-end.seg.htm"] + Rake::FileList["*/_.name"] do |t|
