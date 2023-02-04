@@ -16,3 +16,4 @@ site/sorted.row
 site/*.html
 site/root.css
 site/rss2.0.xml
+site/sitemap.xml
