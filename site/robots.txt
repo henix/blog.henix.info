@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://blog.henix.info/sitemap.xml
+Sitemap: https://blog.henix.info/sitemap.xml
