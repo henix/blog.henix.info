@@ -84,8 +84,8 @@
 
 　　如果你使用自己的域名邮箱：请务必设置好域名的 [SPF 记录](https://www.renfei.org/blog/introduction-to-spf.html)，否则你的电子邮件地址有被别人冒用的风险。我的评论系统会拒收 SPF 检查失败的邮件。常见邮箱提供商的设置方法如下：
 
-* [借助 SPF 记录防范电子邮件假冒行为 - G Suite 管理员帮助](https://support.google.com/a/answer/33786?hl=zh-Hans)
-* [什么是SPF？如何设置SPF来防止我的邮件被拒收呢？_QQ邮箱帮助中心](https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=20022&&no=1001060)
+* [借助 SPF 防范仿冒邮件和垃圾邮件 - Google Workspace 管理员帮助](https://support.google.com/a/answer/33786?hl=zh-Hans)
+* [SPF指引 - QQ邮箱帮助中心](https://service.mail.qq.com/detail/0/64)
 
 　　如果你使用小众或自己架设的邮箱服务：请确保启用了[传输过程加密（TLS）](https://www.internetsociety.org/resources/ota/2017/transport-layered-security-tls-for-email/)，否则你的邮件可能会在网络传输过程中被第三方截获或篡改。我的评论系统会拒收未启用 TLS 的邮件。此技术通常完全由邮箱服务商控制，用户无法自己设置，各个大的邮箱服务商均已采用了 TLS 。如果你不确定，可以在 [CheckTLS](https://www.checktls.com/) 网站上输入域名进行在线测试。其他关于传输过程加密的信息可参考：
 
