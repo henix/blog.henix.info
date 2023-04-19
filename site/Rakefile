@@ -2,7 +2,7 @@ require 'rake'
 require 'inifile'
 
 pages = Rake::FileList["*.md"].ext(".html")
-files = pages + ["render.js", "comment.js", "index.html", "root.css", "rss2.0.xml", "sitemap.xml"]
+files = pages + ["render.js", "index.html", "root.css", "rss2.0.xml", "sitemap.xml"]
 
 posts_dir = Rake::FileList["*/*"].select{|f|File.directory?(f)}
 
@@ -68,10 +68,6 @@ end
 
 file "render.js" => ["render.ts", "tsconfig.json"] do |t|
 	sh "tsc"
-end
-
-file "comment.js" => ["tsconfig-web.json", "comment.ts"] do |t|
-	sh "tsc -p #{t.source}"
 end
 
 file "root.css" => "root.scss" do |t|

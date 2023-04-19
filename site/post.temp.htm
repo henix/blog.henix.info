@@ -33,7 +33,7 @@ $table-of-contents$
 </nav>
 $endif$
 $body$
-<div class="-CommentPane" data-url-prefix="$commenturl$" data-id="$id$" blog-title="$title$"></div>
+<div class="-CommentPane" data-id="$id$" blog-title="$title$"></div>
 </div><!-- content -->
 <div id="footer">
 <div style="float:left"><a class="-Valid" href="https://validator.w3.org/check?uri=referer">Valid</a> | &copy; 2010-2023 henix</div>
@@ -49,11 +49,7 @@ String.prototype.endsWith=String.prototype.endsWith||function(b){return this.ind
 window.getComputedStyle||w("ie8@0.8.1/build/ie8")
 window.IntersectionObserver||w("intersection-observer@0.12.0/intersection-observer")
 </script>
-<script src="https://henix-static.azureedge.net/flowerui@v1.1/flowerui.js"></script>
-<script src="/comment.js"></script>
-<script>
-FlowerUI.compileAll();
-</script>
+<script src="/comment.js?20230419"></script>
 <script async defer="defer" src="/post.js"></script>
 $if(math)$
 <script>

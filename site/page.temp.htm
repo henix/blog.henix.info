@@ -22,7 +22,7 @@ $endif$
 <div id="page">
 <h1 class="title"><a href="$siteurl$/$id$.html">$title$</a></h1>
 $body$
-<div class="-CommentPane" data-url-prefix="$commenturl$" data-id="$id$" blog-title="$title$"></div>
+<div class="-CommentPane" data-id="$id$" blog-title="$title$"></div>
 <div id="footer">
 <div style="float:left"><a class="-Valid" href="https://validator.w3.org/check?uri=referer">Valid</a></div>
 <div style="float:right"><a href="$siteurl$/">$sitetitle$</a></div>
@@ -37,11 +37,7 @@ String.prototype.endsWith=String.prototype.endsWith||function(b){return this.ind
 window.getComputedStyle||w("ie8@0.8.1/build/ie8")
 window.IntersectionObserver||w("intersection-observer@0.12.0/intersection-observer")
 </script>
-<script src="https://henix-static.azureedge.net/flowerui@v1.1/flowerui.js"></script>
-<script src="/comment.js"></script>
-<script>
-FlowerUI.compileAll();
-</script>
+<script src="/comment.js?20230419"></script>
 $for(include-after)$
 $include-after$
 $endfor$
