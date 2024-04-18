@@ -29,7 +29,7 @@
 标题|[回复] {文章标题} #评论ID|[回复] 关于 #7715841|
 正文|回复内容|好久不见
 
-　　在文章页面上，如果选择评论邮箱为“其他”可获得评论 ID 。
+　　在文章页面上，如果选择评论邮箱为“手动”可获得评论 ID 。
 
 ### 编辑评论
 
@@ -82,12 +82,16 @@
 * 你在邮箱中设置的用户名会作为评论的用户名公开
 * 据网友反馈[^1][^2]和我自己测试（截至 2020 年 2 月），网易邮箱可能会收不到 Gmail 发出的邮件，不推荐使用网易邮箱（163、126、yeah）
 
-　　如果你使用自己的域名邮箱：请务必设置好域名的 [SPF 记录](https://www.renfei.org/blog/introduction-to-spf.html)，否则你的电子邮件地址有被别人冒用的风险。我的评论系统会拒收 SPF 检查失败的邮件。常见邮箱提供商的设置方法如下：
+#### 如果你使用自己的域名邮箱
+
+　　请务必设置好域名的 [SPF 记录](https://www.renfei.org/blog/introduction-to-spf.html)，否则你的电子邮件地址有被别人冒用的风险。我的评论系统会拒收 SPF 检查失败的邮件。常见邮箱提供商的设置方法如下：
 
 * [借助 SPF 防范仿冒邮件和垃圾邮件 - Google Workspace 管理员帮助](https://support.google.com/a/answer/33786?hl=zh-Hans)
 * [SPF指引 - QQ邮箱帮助中心](https://service.mail.qq.com/detail/0/64)
 
-　　如果你使用小众或自己架设的邮箱服务：请确保启用了[传输过程加密（TLS）](https://www.internetsociety.org/resources/ota/2017/transport-layered-security-tls-for-email/)，否则你的邮件可能会在网络传输过程中被第三方截获或篡改。我的评论系统会拒收未启用 TLS 的邮件。此技术通常完全由邮箱服务商控制，用户无法自己设置，各个大的邮箱服务商均已采用了 TLS 。如果你不确定，可以在 [CheckTLS](https://www.checktls.com/) 网站上输入域名进行在线测试。其他关于传输过程加密的信息可参考：
+#### 如果你使用小众或自己架设的邮箱服务
+
+　　请确保启用了[传输过程加密（TLS）](https://www.internetsociety.org/resources/ota/2017/transport-layered-security-tls-for-email/)，否则你的邮件可能会在网络传输过程中被第三方截获或篡改。我的评论系统会拒收未启用 TLS 的邮件。此技术通常完全由邮箱服务商控制，用户无法自己设置，各个大的邮箱服务商均已采用了 TLS 。如果你不确定，可以在 [CheckTLS](https://www.checktls.com/) 网站上输入域名进行在线测试。其他关于传输过程加密的信息可参考：
 
 * [传输过程中的电子邮件加密 - Gmail帮助](https://support.google.com/mail/answer/6330403?hl=zh-Hans)
 * [传输期间的电子邮件加密 – Google 透明度报告](https://transparencyreport.google.com/safer-email/overview?hl=zh-Hans)
