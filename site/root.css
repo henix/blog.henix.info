@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+/* Common settings */
+
+html {
+	background-color: #eee;
+}
+
+body {
+	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, sans-serif;
+}
+
+img {
+	vertical-align: middle;
+	max-width: 100%;
+}
+
+a {
+	color: #436976;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2, h3 {
+	font-family: "DejaVu Sans", "Bitstream Vera Sans", Verdana, "微软雅黑", sans-serif;
+}
+
+h2, h3 {
+	line-height: 1.6;
+}
+
+figure {
+	text-align: center;
+}
+
+figcaption {
+	margin-top: .5em;
+}
+
+/* Utils */
+
+.center {
+	text-align: center;
+}
+
+/* Layout */
+
+#page {
+	margin: 2em auto;
+	width: 80%;
+	max-width: 800px;
+}
+@media (max-width: 767px) {
+	#page {
+		width: 90%;
+	}
+}
+
+#banner {
+	text-align: center;
+}
+
+#content {
+	padding: 0 10px;
+}
+
+h1 {
+	border-left: 5px solid rgb(237, 128, 41);
+	border-bottom: 1px solid #8CACBB;
+	padding-bottom: 0.2em;
+	padding-left: 6px;
+}
+
+*::-moz-selection {
+	color: White;
+	background-color: #FF5E99;
+	/*#ff1493; /* #f39 */
+}
+*::selection {
+	color: White;
+	background-color: #FF5E99;
+}
+
+/* box */
+
+.box {
+	margin: 2em 0;
+}
+
+.box h5 {
+	margin: 0;
+	padding: 5px 1em;
+	background-color: #DEE7EC;
+	border: 1px solid #8CACBB;
+	border-style: solid solid none solid;
+	display: inline;
+	font-size: 100%;
+}
+
+.box .box-body {
+	margin-top: 4px;
+	padding: 0.5em;
+	border: 1px solid #8CACBB;
+}
+
+.box ul.box-body {
+	list-style-type: none;
+}
+
+/* post-list */
+
+.post-list li {
+}
+
+.post-list li a {
+	margin-left: 1em;
+}
+
+/* blogpost */
+
+p, ol, ul, pre, td, th, caption {
+	line-height: 160%;
+}
+
+pre, code {
+	font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Consolas", "Lucida Console", "Courier New", monospace;
+}
+
+pre {
+	background-color: #ccc;
+	padding: 1em;
+	margin: 1em;
+}
+
+div.sourceCode {
+	background-color: #ccc; /* 抵消 pandoc 默认的白色背景 */
+}
+
+/* 覆盖 pandoc 默认 white-space: pre */
+pre, pre > code.sourceCode {
+	/* https://stackoverflow.com/questions/248011/how-do-i-wrap-text-in-a-pre-tag */
+	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	white-space: pre-wrap;       /* CSS 3 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+blockquote {
+	border: 1px solid #8CACBB;
+	background-color: #DEE7EC;
+	padding: 0.3em 1em;
+	margin: 1em;
+	/* quotes: '"' '"'; */
+}
+
+table {
+	margin: 1em auto;
+	width: 80%;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid black;
+	padding: 0.3em;
+}
+
+/* 正文中的脚注引用上标 */
+.footnote-ref sup {
+	margin: 0 .2em;
+}
+.footnote-ref sup:before {
+	content: "[";
+}
+.footnote-ref sup:after {
+	content: "]";
+}
+
+/* 下面的脚注部分 */
+.footnotes hr {
+	display: none;
+}
+
+/* Comment */
+
+.-CommentPane {
+	line-height: 2;
+	/* #8CACBB */
+	border-top: 1px solid rgba(140, 172, 187, 0.5);
+}
+
+.comment-form {
+	padding: .5em;
+}
+.comment-form > a {
+	white-space: nowrap;
+}
+
+.comment-mailspec .field-name {
+	display: inline-block;
+	width: 3em;
+	margin-right: .5em;
+}
+.comment-mailspec input {
+	padding: .2em .3em;
+	width: calc(100% - 9em);
+	margin-right: .5em;
+}
+
+.comment-reply-list {
+	padding-left: 1em;
+}
+
+.comment-header {
+	background-color: #DEE7EC;
+	padding-left: .5em;
+}
+.comment-header.deleted {
+	line-height: 1.5;
+}
+
+.comment-date {
+	margin-left: 1em;
+	font-size: smaller;
+}
+
+.comment-reply-button {
+	font-size: smaller;
+	margin-left: 1em;
+}
+
+.comment-content {
+	padding-left: 1em;
+	margin: .5em;
+	white-space: pre-wrap;
+	overflow: auto;
+}
+
+.comment-content.deleted {
+	font-size: smaller;
+	color: gray;
+}
+
+/*
+div.hl {
+  font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
+  padding: 1px 0;
+}
+
+div.hl ol {
+}
+
+div.hl li {
+  border-left: 2px solid #999;
+  padding-left: 0.6em;
+
+  white-space: pre-wrap;
+  *white-space: pre;
+  *word-wrap: break-word;
+}
+*/
+
+/* footer */
+
+#footer {
+	clear: both;
+	float: none;
+	border-top: 1px solid #8CACBB;
+	/*background-color: #DEE7EC;*/
+	text-align: center;
+	margin-top: 2em;
+	padding: 1em 0 2em 0;
+}

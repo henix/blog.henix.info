@@ -1,3 +1,4 @@
+"use strict";
 // img lazy-load
 (function() {
 	var observer = new IntersectionObserver(function(entries, observer) {
