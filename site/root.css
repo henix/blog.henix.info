@@ -190,24 +190,40 @@ th, td {
 	line-height: 2;
 	/* #8CACBB */
 	border-top: 1px solid rgba(140, 172, 187, 0.5);
+	padding-top: 1em;
 }
 
 .comment-form {
-	padding: .5em;
+	border: 1px solid #8CACBB;
+	background-color: #DEE7EC;
+	margin: 1em;
+	padding: 0.5em 1em;
 }
-.comment-form > a {
-	white-space: nowrap;
+.comment-form > div {
+	margin: 1em 0;
 }
-
-.comment-mailspec .field-name {
+.comment-form label {
 	display: inline-block;
 	width: 3em;
-	margin-right: .5em;
 }
-.comment-mailspec input {
-	padding: .2em .3em;
-	width: calc(100% - 9em);
-	margin-right: .5em;
+.comment-form textarea {
+	box-sizing: border-box;
+	border: 1px solid #8CACBB;
+	padding: 0.3em;
+	width: calc(100% - 6em);
+	height: 8em;
+	vertical-align: middle;
+}
+.comment-form input {
+	border: 1px solid #8CACBB;
+	padding: 0.3em;
+}
+.comment-form .error-panel {
+	color: red;
+	margin-left: 3em;
+}
+.comment-form button:hover {
+	cursor: pointer;
 }
 
 .comment-reply-list {
@@ -243,25 +259,6 @@ th, td {
 	font-size: smaller;
 	color: gray;
 }
-
-/*
-div.hl {
-  font-family: "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Lucida Console", "Courier New", monospace;
-  padding: 1px 0;
-}
-
-div.hl ol {
-}
-
-div.hl li {
-  border-left: 2px solid #999;
-  padding-left: 0.6em;
-
-  white-space: pre-wrap;
-  *white-space: pre;
-  *word-wrap: break-word;
-}
-*/
 
 /* footer */
 

@@ -64,7 +64,7 @@ function h(tag, attrs) {
 	return elem;
 }
 
-function ajax(method, url, onResult) {
+function ajax(method, url, onResult, body) {
 	var xhr = new XMLHttpRequest();
 	xhr.open(method, url);
 	xhr.onload = function() {
@@ -85,226 +85,212 @@ function ajax(method, url, onResult) {
 		e.response = "";
 		onResult(e);
 	};
-	xhr.send();
-}
-
-var COMMENT_MAIL = ["blog", "henix.info"].join("@");
-var PROVIDER_KEY = "email_provider";
-
-/**
- * https://tools.ietf.org/html/rfc6068
- */
-function getMailLink(id, to, subject, body) {
-	function encodeParams(params) {
-		var ar = [];
-		for (var k in params) {
-			ar.push(k + "=" + encodeURIComponent(params[k]));
-		}
-		return ar.join("&");
-	}
-	var mailto = "mailto:" + to + "?" + encodeParams({ subject: subject, body: body });
-	switch (id) {
-		case "mailto":
-			return mailto;
-		case "gmail":
-			return "https://mail.google.com/mail/?extsrc=mailto&url=" + encodeURIComponent(mailto);
-		case "outlook":
-			return "https://outlook.live.com/mail/deeplink/compose?" + encodeParams({ to: to, subject: subject, body: body });
-		case "qq":
-			// TODO: 将 subject 按 GB18030 编码
-			var delegate_url = "/cgi-bin/readtemplate?t=compose&" + encodeParams({ toemail: to, initsubject: subject });
-			return "https://mail.qq.com/cgi-bin/loginpage?" + encodeParams({ delegate_url: delegate_url });
-		case "yahoo":
-			return "https://compose.mail.yahoo.com/?" + encodeParams({ to: to, subject: subject, body: body });
-		case "yandex":
-			return "https://mail.yandex.com/compose?mailto=" + encodeURIComponent(mailto);
-		default:
-			return "";
+	if (body != null) {
+		xhr.send(body);
+	} else {
+		xhr.send();
 	}
 }
+
+function genRandomID() {
+	return Math.round(Math.random() * 4294967296).toString(36);
+}
+
+function formatDate(d) {
+	function pad2(x) {
+		return ((x < 10) ? "0" : "") + x;
+	}
+	return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+}
+
+var USERNAME_KEY = "username";
+var EMAIL_KEY = "email";
+var WEBSITE_KEY = "website";
 
 Array.from(document.querySelectorAll(".-CommentPane")).forEach(function(elem) {
-	var urlPrefix = "/comment";
 	var blogId = elem.getAttribute("data-id") || "";
-	var blogTitle = elem.getAttribute("blog-title") || "";
 
-	var provider = localStorage.getItem(PROVIDER_KEY) || "other";
-	var viewed = false;
+	// 定义组件
 
-	var select = (function() {
-		function po(id, name) {
-			var attrs = { value: id };
-			if (id == provider) {
-				attrs.selected = "";
+	/**
+	 * @param {{ id, date, name, url, content, replyTo, childs }} comment
+	 */
+	function Comment(comment) {
+		var isDeleted = !comment.date;
+		var replyList = h("div", { "class": "comment-reply-list" });
+		var commentHeader = (function() {
+			if (!isDeleted) {
+				var replyButton = h("a", { "class": "comment-reply-button", href: "javascript:;" }, "[回复]");
+				var replyForm = null;
+				replyButton.addEventListener("click", function() {
+					if (!replyForm) {
+						replyForm = CommentForm(comment.id, comment.name, replyList);
+						replyList.insertBefore(replyForm, replyList.firstChild);
+						replyButton.textContent = "[取消回复]";
+					} else {
+						replyList.removeChild(replyForm);
+						replyForm = null;
+						replyButton.textContent = "[回复]";
+					}
+				});
+				var userSpan = (function() {
+					var link = comment.name;
+					if (comment.url) {
+						link = h("a", { href: comment.url, target: "_blank" }, link);
+					}
+					return h("span", { "class": "comment-user" }, link);
+				})();
+				return h("div", { "class": "comment-header" }, userSpan, h("span", { "class": "comment-date" }, comment.date), replyButton);
+			} else {
+				var elem = h("div", { "class": "comment-header deleted" });
+				elem.innerHTML = "&nbsp;";
+				return elem;
 			}
-			return h("option", attrs, name);
+		})();
+		var elem = h("div", { "class": "comment", "id": "comment-" + comment.id },
+			commentHeader,
+			h("div", { "class": "comment-content" + (isDeleted ? " deleted" : "") }, isDeleted ? "此评论已被删除" : comment.content)
+		);
+		if (comment.childs.length > 0) {
+			replyList.appendChild(frag(comment.childs.map(Comment)));
 		}
-		return h("select",
-			po("other", "手动"),
-			h("optgroup", { label: "自动跳转" },
-				po("mailto", "系统默认"),
-				po("gmail", "GMail"),
-				po("outlook", "Outlook"),
-				// po("qq", "QQ"),
-				po("yahoo", "Yahoo"),
-				po("yandex", "Yandex")));
-	})();
-	var submitBut = h("button", "写评论");
-	var mailspecTitle = h("input", { type: "text", value: "[评论] " + blogTitle, "readonly": "" });
-	var mailspec = (function() {
-		var copyButton = h("a", { href: "javascript:;" }, "[复制]");
-		copyButton.addEventListener("click", function() {
-			mailspecTitle.select();
-			document.execCommand("copy");
-		});
-		return h("blockquote", { "class": "comment-mailspec", "style": "display:" + (provider == "other" ? "block" : "none") },
-			"请按照如下格式发邮件：", h("br"),
-			h("span", { "class": "field-name" }, "收件人"), h("a", { href: "mailto:" + COMMENT_MAIL }, COMMENT_MAIL), h("br"),
-			h("span", { "class": "field-name" }, "标题"), mailspecTitle, copyButton, h("br"),
-			h("span", { "class": "field-name" }, "正文"), "评论 / 回复内容，只支持纯文本", h("br"),
-			h("span", { "class": "field-name" }, "说明"), "评论用户名为你在邮箱中设置的用户名");
-	})();
-	var commentList = h("div", { "class": "comment-list" });
-
-	select.addEventListener("change", function() {
-		provider = this.value;
-		mailspec.style.display = provider == "other" ? "block" : "none";
-		localStorage.setItem(PROVIDER_KEY, provider);
-	});
-
-	function doComment(subject) {
-		if (provider == "other") {
-			mailspecTitle.value = subject;
-			mailspec.scrollIntoView({ behavior: "smooth" }); // TODO: 浏览器兼容性
-		} else {
-			window.open(getMailLink(provider, COMMENT_MAIL, subject, "正文只支持纯文本格式，可在编辑器中设置"), "_blank");
-		}
-	}
-	function reply(id) {
-		doComment("[回复] " + blogTitle + " #" + id);
+		elem.appendChild(replyList);
+		return elem;
 	}
 
-	submitBut.addEventListener("click", function() {
-		doComment("[评论] " + blogTitle);
-	});
-
-	elem.appendChild(frag(
-			h("div", { "class": "comment-form" },
-				"评论模式 ",
-				select,
-				" ",
-				submitBut,
-				" ",
-				h("a", { href: "/help.html" }, "评论帮助")),
-			mailspec,
-			commentList
-	));
-
-	function onView() {
-		if (!viewed) {
-			viewed = true;
-			commentList.textContent = "评论加载中";
-			ajax("GET", urlPrefix + "/" + blogId + ".tsv", function(err, resp) {
+	/**
+	 * @param {string} replyTo
+	 * @param {HTMLElement} container
+	 * @returns
+	 */
+	function CommentForm(replyTo, replyName, container) {
+		var submitButt = h("button", { type: "submit" }, "发表" + (replyTo ? "回复" : "评论"));
+		var errorPanel = h("div", { "class": "error-panel" });
+		var form = (function() {
+			var contentID = "content-" + genRandomID();
+			var nameID = "name-" + genRandomID();
+			var emailID = "email-" + genRandomID();
+			var urlID = "url-" + genRandomID();
+			return h("form", { "class": "comment-form" },
+				h("input", { type: "hidden", name: "post_id", value: blogId }),
+				h("input", { type: "hidden", name: "reply_to", value: replyTo || "" }),
+				h("div",
+					h("label", { "for": contentID }, replyTo ? "回复" : "评论"),
+					h("textarea", { id: contentID, name: "content", placeholder: replyTo ? "回复 " + replyName : "说点什么", required: "", maxlength: 2046 })
+				),
+				h("div",
+					h("label", { "for": nameID }, "名字"),
+					h("input", { type: "text", id: nameID, name: "uname", placeholder: "必填", required: "", maxlength: 31, value: localStorage.getItem(USERNAME_KEY) || "" })
+				),
+				h("div",
+					h("label", { "for": emailID }, "邮箱"),
+					h("input", { type: "email", id: emailID, name: "email", placeholder: "必填，不会公开", required: "", maxlength: 63, value: localStorage.getItem(EMAIL_KEY) || "" })
+				),
+				h("div",
+					h("label", { "for": urlID }, "主页"),
+					h("input", { type: "url", id: urlID, name: "url", placeholder: "选填", maxlength: 127, value: localStorage.getItem(WEBSITE_KEY) || "" })
+				),
+				errorPanel,
+				h("div",
+					h("label"),
+					submitButt,
+				)
+			);
+		})();
+		form.addEventListener("submit", function(event) {
+			event.preventDefault();
+			submitButt.disabled = true;
+			ajax("POST", "/api/comment", function(err, resp) {
+				submitButt.disabled = false;
+				localStorage.setItem(USERNAME_KEY, form.uname.value);
+				localStorage.setItem(EMAIL_KEY, form.email.value);
+				localStorage.setItem(WEBSITE_KEY, form.url.value);
 				if (err) {
-					var errMsg = err.status == 404 ? "暂无评论" : "评论加载出错";
-					commentList.textContent = errMsg;
+					// 错误：显示提示
+					var msg;
+					if (err.name == "ServerError") {
+						msg = err.response;
+					} else {
+						msg = "网络错误";
+					}
+					errorPanel.textContent = msg;
 					return;
 				}
-					// comment id -> { date, uid, name, content }
-					var comments = {};
-					// comment id -> child comment id
-					var childs = {};
-					childs[""] = [];
-					// uid -> [function]
-					var urlCallbacks = {};
-					function addUrlCallback(uid, f) {
-						if (!urlCallbacks[uid]) {
-							urlCallbacks[uid] = [];
-						}
-						urlCallbacks[uid].push(f);
+				// 成功：构造 comment 并插入
+				var commentElem = Comment({
+					id: resp,
+					date: formatDate(new Date()),
+					name: form.uname.value,
+					url: form.url.value,
+					content: form.content.value,
+					replyTo: replyTo,
+					childs: [],
+				});
+				container.insertBefore(commentElem, container.firstChild);
+				commentElem.scrollIntoView({ behavior: "smooth" });
+				if (replyTo) {
+					// 删除自身
+					form.parentNode.removeChild(form);
+				} else {
+					form.content.value = "";
+					errorPanel.innerHTML = "";
+				}
+			}, new URLSearchParams(new FormData(form)));
+		});
+		return form;
+	}
+
+	var commentList = h("div", { "class": "comment-list" });
+
+	elem.appendChild(frag(
+		commentList,
+		CommentForm("", "", commentList)
+	));
+
+	var viewed = false;
+	function onView() {
+		if (viewed) return;
+		viewed = true;
+		commentList.textContent = "评论加载中";
+		ajax("GET", "/comment/" + blogId + ".tsv", function(err, resp) {
+			if (err) {
+				var errMsg = err.status == 404 ? "暂无评论" : "评论加载出错";
+				commentList.textContent = errMsg;
+				return;
+			}
+			// comment id -> { id, date, name, url, content }
+			var comments = {};
+			// comment id -> child comment id
+			var childs = {};
+			childs[""] = [];
+			splitLines(resp).forEach(function(line) {
+				// id, date, name, url, content, replyTo
+				var ar = line.split("\t");
+				var id = ar[0];
+				var replyTo = ar[5];
+				var content = ar[4].replace(/\\[trn\\]/g, function(m) {
+					switch (m) {
+						case "\\t": return "\t";
+						case "\\r": return "\r";
+						case "\\n": return "\n";
+						case "\\\\": return "\\";
+						default: return m;
 					}
-					splitLines(resp).forEach(function(line) {
-						// id, date, uid, name, content, replyTo
-						var ar = line.split("\t");
-						var id = ar[0];
-						var replyTo = ar[5];
-						var content = ar[4].replace(/\\[trn\\]/g, function(m) {
-							switch (m) {
-								case "\\t": return "\t";
-								case "\\r": return "\r";
-								case "\\n": return "\n";
-								case "\\\\": return "\\";
-								default: return m;
-							}
-						});
-						var comment = { date: ar[1], uid: ar[2], name: ar[3], content: content };
-						comments[id] = comment;
-						childs[id] = [];
-						childs[replyTo].unshift(id);
-					});
-					function renderComment(id) {
-						var comment = comments[id];
-						var isDeleted = !comment.date;
-						var commentHeader = (function() {
-							if (!isDeleted) {
-								var replyButton = h("a", { "class": "comment-reply-button", href: "javascript:;" }, "[回复]");
-								replyButton.addEventListener("click", function() {
-									reply(id);
-								});
-								var uid = comment.uid;
-								var userSpan = (function() {
-									var name = comment.name;
-									if (uid.startsWith("disqus:")) {
-										var disqusUid = uid.substring("disqus:".length);
-										return h("span", { "class": "comment-user", title: uid }, h("a", { href: "https://disqus.com/by/" + disqusUid + "/", target: "_blank" }, name));
-									} else if (!uid) {
-										// 通过 disqus 发表的匿名评论没有 uid
-										return h("span", { "class": "comment-user" }, name);
-									} else {
-										var span = h("span", { "class": "comment-user", title: "ID: " + uid }, name);
-										// 后期更新 uid -> url
-										addUrlCallback(uid, function(url) {
-											var link = h("a", { href: url, target: "_blank" }, name);
-											span.innerHTML = "";
-											span.appendChild(link);
-										});
-										return span;
-									}
-								})();
-								return h("div", { "class": "comment-header" }, userSpan, h("span", { "class": "comment-date" }, comment.date), replyButton);
-							} else {
-								var elem = h("div", { "class": "comment-header deleted" });
-								elem.innerHTML = "&nbsp;";
-								return elem;
-							}
-						})();
-						var elem = h("div", { "class": "comment", "id": "comment-" + id },
-							commentHeader,
-							h("div", { "class": "comment-content" + (isDeleted ? " deleted" : "") }, isDeleted ? "此评论已被删除" : comment.content)
-						);
-						if (childs[id].length > 0) {
-							elem.appendChild(h("div", { "class": "comment-reply-list" }, childs[id].map(renderComment)));
-						}
-						return elem;
-					} // renderComment
-					commentList.innerHTML = "";
-					commentList.appendChild(frag(childs[""].map(renderComment)));
-					// 渲染完后请求 uid -> url 数据
-					ajax("GET", urlPrefix + "/_user.tsv", function(err, resp) {
-						if (!err) {
-							splitLines(resp).forEach(function(line) {
-								var ar = line.split("\t");
-								var callbacks = urlCallbacks[ar[0]];
-								if (callbacks) {
-									for (var i = 0; i < callbacks.length; i++) {
-										callbacks[i](ar[1]);
-									}
-								}
-							});
-						}
-					});
+				});
+				var comment = { id: id, date: ar[1], name: ar[2], url: ar[3], content: content, childs: [] };
+				comments[id] = comment;
+				childs[id] = [];
+				childs[replyTo].unshift(id);
 			});
-		}
+			// 将 comments + childs 扩展成树结构
+			function expandComment(id) {
+				var comment = comments[id];
+				comment.childs = childs[id].map(expandComment);
+				return comment;
+			}
+			commentList.innerHTML = "";
+			commentList.appendChild(frag(childs[""].map(expandComment).map(Comment)));
+		});
 	}
 
 	if (location.hash && location.hash.startsWith("#comment-")) {
