@@ -150,7 +150,7 @@ func PandocFull(opt *PandocOption, mdname string, target string) error {
 		args := make([]string, 0, 32)
 		args = append(args, PandocBaseOptions...)
 		args = append(args, []string{
-			"--katex", "--highlight-style=kate",
+			"--katex", "--syntax-highlighting=kate",
 			"--email-obfuscation=references",
 			"--template=" + opt.Template,
 		}...)
@@ -365,7 +365,7 @@ func genRSS(outRoot string, siteVars SiteVars, indexItems []BlogIndexItem, depti
 			args := make([]string, 0, 16)
 			args = append(args, PandocBaseOptions...)
 			args = append(args, []string{
-				"--katex", "--no-highlight",
+				"--katex", "--syntax-highlighting=none",
 				"--template=content.temp.htm",
 				"-M", "title=" + item.Title,
 			}...)
